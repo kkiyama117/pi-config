@@ -1,0 +1,11 @@
+# Mutable pi runtime state. Never commit credentials, sessions, package clones,
+# logs, or caches to this config repository.
+auth.json
+trust.json
+sessions/
+transcripts/
+logs/
+cache/
+npm/
+git/
+*.log
