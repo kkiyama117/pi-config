@@ -9,3 +9,7 @@ cache/
 npm/
 git/
 *.log
+
+# Generated cache — never managed (cursor-sdk-catalog-refresh.sop.md)
+cursor-sdk-model-list.json
+cursor-sdk-model-list.*.json

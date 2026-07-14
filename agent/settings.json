@@ -1,0 +1,137 @@
+{
+  "collapseChangelog": false,
+  "defaultModel": "glm-5.2",
+  "subagents": {
+    "defaultModel": "composer-2-5:fast",
+    "agentOverrides": {
+      "scout": {
+        "model": "ollama-cloud/deepseek-v4-flash",
+        "thinking": "medium",
+        "fallbackModels": [
+          "ollama-cloud/deepseek-v4-pro",
+          "cursor/composer-2-5:fast",
+          "anthropic/claude-haiku-4.5:low",
+          "anthropic/claude-sonnet-4-6:low"
+        ]
+      },
+      "researcher": {
+        "model": "cursor/composer-2-5:fast",
+        "thinking": "medium",
+        "fallbackModels": [
+          "ollama-cloud/glm-5.2",
+          "ollama-cloud/deepseek-v4-pro",
+          "ollama-cloud/minimax-m3",
+          "anthropic/claude-sonnet-5:medium",
+          "anthropic/claude-sonnet-4-6:medium"
+        ]
+      },
+      "planner": {
+        "model": "ollama-cloud/glm-5.2",
+        "thinking": "high",
+        "fallbackModels": [
+          "ollama-cloud/deepseek-v4-pro",
+          "cursor/claude-opus-4-8@300k",
+          "anthropic/claude-opus-4-8:high",
+          "anthropic/claude-sonnet-5:high"
+        ]
+      },
+      "worker": {
+        "model": "kimi-coding/kimi-for-coding",
+        "thinking": "medium",
+        "fallbackModels": [
+          "cursor/composer-2-5:fast",
+          "ollama-cloud/deepseek-v4-flash",
+          "anthropic/claude-sonnet-4-6:medium"
+        ]
+      },
+      "reviewer": {
+        "model": "cursor/claude-opus-4-8@1m",
+        "thinking": "high",
+        "fallbackModels": [
+          "cursor/claude-opus-4-8@300k",
+          "ollama-cloud/deepseek-v4-pro",
+          "anthropic/claude-sonnet-5:high",
+          "anthropic/claude-opus-4-7:high"
+        ]
+      },
+      "context-builder": {
+        "model": "ollama-cloud/minimax-m3",
+        "thinking": "medium",
+        "fallbackModels": [
+          "ollama-cloud/deepseek-v4-flash",
+          "cursor/sonnet-5@1m",
+          "anthropic/claude-sonnet-5:medium",
+          "anthropic/claude-haiku-4-5:medium"
+        ]
+      },
+      "oracle": {
+        "model": "anthropic/claude-fable-5:high",
+        "thinking": "high",
+        "fallbackModels": [
+          "cursor/Fable-5@1m",
+          "ollama-cloud/glm-5.2",
+          "cursor/claude-opus-4-8@1m",
+          "anthropic/claude-opus-4-8:xhigh",
+          "anthropic/claude-fable-5:high"
+        ]
+      },
+      "delegate": {
+        "model": "ollama-cloud/deepseek-v4-flash",
+        "thinking": "medium",
+        "fallbackModels": [
+          "cursor/composer-2-5:fast",
+          "cursor/claude-sonnet-4-6@1m",
+          "ollama-cloud/minimax-m3",
+          "anthropic/claude-haiku-4-5:medium",
+          "anthropic/claude-sonnet-4-6:medium",
+          "deepseek/deepseek-v4-flash"
+        ]
+      }
+    }
+  },
+  "defaultProjectTrust": "ask",
+  "defaultProvider": "cursor",
+  "defaultThinkingLevel": "high",
+  "enabledModels": [
+    "cursor/glm-5.2",
+    "cursor/gpt-5.5@1m:slow",
+    "cursor/composer-2-5:fast",
+    "kimi-coding/kimi-for-coding",
+    "ollama-cloud/deepseek-v4-pro",
+    "ollama-cloud/deepseek-v4-flash",
+    "ollama-cloud/glm-5.2",
+    "cursor/claude-opus-4-7@1m",
+    "cursor/claude-sonnet-5@1m",
+    "openrouter/openai/gpt-oss-120b:free",
+    "ollama-cloud/kimi-k2.7-code",
+    "ollama-cloud/minimax-m3",
+    "anthropic/claude-fable-5",
+    "anthropic/claude-opus-4-8",
+    "anthropic/claude-opus-4-7",
+    "anthropic/claude-sonnet-5",
+    "anthropic/claude-sonnet-4-6",
+    "anthropic/claude-haiku-4-5",
+    "openrouter/openrouter/fusion",
+    "openrouter/deepseek/deepseek-v4-flash"
+  ],
+  "lastChangelogVersion": "0.80.6",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:pi-intercom",
+    "npm:pi-prompt-template-model",
+    "npm:pi-ollama-cloud",
+    "npm:pi-provider-kimi-code",
+    "npm:@benvargas/pi-claude-code-use",
+    "npm:pi-cursor-sdk",
+    "npm:@spences10/pi-skills"
+  ],
+  "showHardwareCursor": true,
+  "theme": "dark",
+  "treeFilterMode": "default",
+  "hideThinkingBlock": true,
+  "enableSkillCommands": true,
+  "terminal": {
+    "clearOnShrink": true,
+    "showTerminalProgress": true
+  }
+}
