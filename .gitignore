@@ -13,3 +13,9 @@ git/
 # Generated cache — never managed (cursor-sdk-catalog-refresh.sop.md)
 cursor-sdk-model-list.json
 cursor-sdk-model-list.*.json
+
+# Direct-clone runtime state (pi-config is cloned into ~/.pi; these live alongside managed files)
+run-history.jsonl
+intercom/
+.pi-subagents/
+*.pre-pi-config.*
