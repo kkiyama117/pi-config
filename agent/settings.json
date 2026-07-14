@@ -90,8 +90,8 @@
     }
   },
   "defaultProjectTrust": "ask",
-  "defaultProvider": "cursor",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "ollama-cloud",
+  "defaultThinkingLevel": "xhigh",
   "enabledModels": [
     "cursor/glm-5.2",
     "cursor/gpt-5.5@1m:slow",
