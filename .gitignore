@@ -10,6 +10,9 @@ npm/
 git/
 *.log
 
+# Cache of `pi-acp`
+pi-acp/session-map.json
+
 # Generated cache — never managed (cursor-sdk-catalog-refresh.sop.md)
 cursor-sdk-model-list.json
 cursor-sdk-model-list.*.json

@@ -6,6 +6,48 @@
       "cwd": "/home/kiyama/.config/nvim",
       "sessionFile": "/home/kiyama/.pi/agent/sessions/--home-kiyama-.config-nvim--/2026-07-17T01-20-35-638Z_019f6da9-3d35-715b-a1d5-a45fda1287e5.jsonl",
       "updatedAt": "2026-07-17T01:20:36.359Z"
+    },
+    "019f6dd7-5b50-7732-83d6-301a995a7060": {
+      "sessionId": "019f6dd7-5b50-7732-83d6-301a995a7060",
+      "cwd": "/home/kiyama/.config/nvim",
+      "sessionFile": "/home/kiyama/.pi/agent/sessions/--home-kiyama-.config-nvim--/2026-07-17T02-10-58-000Z_019f6dd7-5b50-7732-83d6-301a995a7060.jsonl",
+      "updatedAt": "2026-07-17T02:10:58.715Z"
+    },
+    "019f6de6-89fd-770b-808a-35f06fa36d67": {
+      "sessionId": "019f6de6-89fd-770b-808a-35f06fa36d67",
+      "cwd": "/home/kiyama/.config/nvim",
+      "sessionFile": "/home/kiyama/.pi/agent/sessions/--home-kiyama-.config-nvim--/2026-07-17T02-27-32-989Z_019f6de6-89fd-770b-808a-35f06fa36d67.jsonl",
+      "updatedAt": "2026-07-17T02:27:33.713Z"
+    },
+    "019f6df1-f6ea-78bf-bae7-130b28dca39e": {
+      "sessionId": "019f6df1-f6ea-78bf-bae7-130b28dca39e",
+      "cwd": "/home/kiyama/.config/nvim",
+      "sessionFile": "/home/kiyama/.pi/agent/sessions/--home-kiyama-.config-nvim--/2026-07-17T02-40-01-770Z_019f6df1-f6ea-78bf-bae7-130b28dca39e.jsonl",
+      "updatedAt": "2026-07-17T02:40:02.470Z"
+    },
+    "019f6df9-e794-7079-9372-58f2cfd1f7ae": {
+      "sessionId": "019f6df9-e794-7079-9372-58f2cfd1f7ae",
+      "cwd": "/home/kiyama/.config/nvim",
+      "sessionFile": "/home/kiyama/.pi/agent/sessions/--home-kiyama-.config-nvim--/2026-07-17T02-48-42-132Z_019f6df9-e794-7079-9372-58f2cfd1f7ae.jsonl",
+      "updatedAt": "2026-07-17T02:48:42.854Z"
+    },
+    "019f6e19-1069-7ce1-b9f0-6cde84ec6a93": {
+      "sessionId": "019f6e19-1069-7ce1-b9f0-6cde84ec6a93",
+      "cwd": "/home/kiyama/.config/nvim",
+      "sessionFile": "/home/kiyama/.pi/agent/sessions/--home-kiyama-.config-nvim--/2026-07-17T03-22-44-201Z_019f6e19-1069-7ce1-b9f0-6cde84ec6a93.jsonl",
+      "updatedAt": "2026-07-17T03:22:44.901Z"
+    },
+    "019f6e2c-5e73-7e1c-93e1-902aa1889fa3": {
+      "sessionId": "019f6e2c-5e73-7e1c-93e1-902aa1889fa3",
+      "cwd": "/home/kiyama/.config/nvim",
+      "sessionFile": "/home/kiyama/.pi/agent/sessions/--home-kiyama-.config-nvim--/2026-07-17T03-43-49-363Z_019f6e2c-5e73-7e1c-93e1-902aa1889fa3.jsonl",
+      "updatedAt": "2026-07-17T03:43:50.067Z"
+    },
+    "019f6e33-a03a-7685-a950-701de7716ca4": {
+      "sessionId": "019f6e33-a03a-7685-a950-701de7716ca4",
+      "cwd": "/home/kiyama/.config/nvim",
+      "sessionFile": "/home/kiyama/.pi/agent/sessions/--home-kiyama-.config-nvim--/2026-07-17T03-51-44-955Z_019f6e33-a03a-7685-a950-701de7716ca4.jsonl",
+      "updatedAt": "2026-07-17T03:51:45.649Z"
     }
   }
 }
