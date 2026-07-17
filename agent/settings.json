@@ -2,7 +2,7 @@
   "collapseChangelog": false,
   "defaultModel": "glm-5.2",
   "subagents": {
-    "defaultModel": "composer-2-5:fast",
+    "defaultModel": "cursor/composer-2-5:fast",
     "agentOverrides": {
       "scout": {
         "model": "ollama-cloud/deepseek-v4-flash",
@@ -45,7 +45,7 @@
         ]
       },
       "reviewer": {
-        "model": "cursor/claude-opus-4-8@1m",
+        "model": "cursor/gpt-5.6@1m:medium",
         "thinking": "high",
         "fallbackModels": [
           "cursor/claude-opus-4-8@300k",
@@ -65,14 +65,12 @@
         ]
       },
       "oracle": {
-        "model": "anthropic/claude-fable-5:high",
+        "model": "cursor/Fable-5@1m",
         "thinking": "high",
         "fallbackModels": [
           "cursor/Fable-5@1m",
           "ollama-cloud/glm-5.2",
-          "cursor/claude-opus-4-8@1m",
-          "anthropic/claude-opus-4-8:xhigh",
-          "anthropic/claude-fable-5:high"
+          "cursor/claude-opus-4-8@1m"
         ]
       },
       "delegate": {
@@ -91,25 +89,22 @@
   },
   "defaultProjectTrust": "ask",
   "defaultProvider": "ollama-cloud",
-  "defaultThinkingLevel": "xhigh",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
     "cursor/glm-5.2",
     "cursor/gpt-5.5@1m:slow",
     "cursor/composer-2-5:fast",
-    "kimi-coding/kimi-for-coding",
+    "cursor/claude-opus-4-7@1m",
+    "cursor/claude-sonnet-5@1m",
     "ollama-cloud/deepseek-v4-pro",
     "ollama-cloud/deepseek-v4-flash",
     "ollama-cloud/glm-5.2",
-    "cursor/claude-opus-4-7@1m",
-    "cursor/claude-sonnet-5@1m",
-    "openrouter/openai/gpt-oss-120b:free",
     "ollama-cloud/kimi-k2.7-code",
     "ollama-cloud/minimax-m3",
+    "kimi-coding/kimi-for-coding",
     "anthropic/claude-fable-5",
     "anthropic/claude-opus-4-8",
-    "anthropic/claude-opus-4-7",
     "anthropic/claude-sonnet-5",
-    "anthropic/claude-sonnet-4-6",
     "anthropic/claude-haiku-4-5",
     "openrouter/openrouter/fusion",
     "openrouter/deepseek/deepseek-v4-flash"
