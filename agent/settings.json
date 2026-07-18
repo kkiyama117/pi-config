@@ -109,7 +109,7 @@
     "openrouter/openrouter/fusion",
     "openrouter/deepseek/deepseek-v4-flash"
   ],
-  "lastChangelogVersion": "0.80.7",
+  "lastChangelogVersion": "0.80.10",
   "packages": [
     "npm:pi-subagents",
     "npm:pi-intercom",
