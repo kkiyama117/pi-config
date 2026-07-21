@@ -35,6 +35,10 @@
       "xhigh": {
         "effort": "high",
         "enabled": true
+      },
+      "max": {
+        "effort": "max",
+        "enabled": true
       }
     },
     "thinkingKeep": "all",
@@ -43,15 +47,15 @@
   "tools": {
     "moonshot_search": {
       "enabled": false,
-      "default_collapsed": true
+      "default_collapsed": false
     },
     "moonshot_fetch": {
       "enabled": false,
-      "default_collapsed": true
+      "default_collapsed": false
     },
     "kimi_datasource": {
       "enabled": false,
-      "default_collapsed": true
+      "default_collapsed": false
     }
   },
   "uploads": {
@@ -59,3 +63,4 @@
   },
   "protocol": "openai"
 }
+
