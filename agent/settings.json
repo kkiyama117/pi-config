@@ -1,6 +1,6 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "glm-5.2",
+  "defaultModel": "deepseek-v4-flash",
   "subagents": {
     "defaultModel": "cursor/composer-2-5:fast",
     "agentOverrides": {
