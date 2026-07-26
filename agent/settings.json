@@ -1,6 +1,6 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "composer-2-5:fast",
+  "defaultModel": "deepseek-v4-flash",
   "subagents": {
     "defaultModel": "cursor/composer-2-5:fast",
     "agentOverrides": {
@@ -30,8 +30,8 @@
         "thinking": "high",
         "fallbackModels": [
           "ollama-cloud/deepseek-v4-pro",
-          "cursor/claude-opus-4-8@300k",
-          "anthropic/claude-opus-4-8:high",
+          "cursor/claude-opus-5@300k",
+          "anthropic/claude-opus-5:high",
           "anthropic/claude-sonnet-5:high"
         ]
       },
@@ -48,10 +48,10 @@
         "model": "cursor/gpt-5.6@1m:medium",
         "thinking": "high",
         "fallbackModels": [
-          "cursor/claude-opus-4-8@300k",
+          "cursor/claude-opus-5@300k",
           "ollama-cloud/deepseek-v4-pro",
           "anthropic/claude-sonnet-5:high",
-          "anthropic/claude-opus-4-7:high"
+          "anthropic/claude-opus-5:high"
         ]
       },
       "context-builder": {
@@ -70,7 +70,7 @@
         "fallbackModels": [
           "cursor/Fable-5@1m",
           "ollama-cloud/glm-5.2",
-          "cursor/claude-opus-4-8@1m"
+          "cursor/claude-opus-5@1m"
         ]
       },
       "delegate": {
@@ -88,7 +88,7 @@
     }
   },
   "defaultProjectTrust": "ask",
-  "defaultProvider": "cursor",
+  "defaultProvider": "ollama-cloud",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "cursor/glm-5.2",
