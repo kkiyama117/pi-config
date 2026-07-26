@@ -501,6 +501,62 @@
         }
       },
       {
+        "id": "anthropic/claude-opus-5",
+        "name": "Claude Opus 5",
+        "api": "openai-completions",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "provider": "openrouter",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 5,
+          "output": 25,
+          "cacheRead": 0.5,
+          "cacheWrite": 6.25
+        },
+        "contextWindow": 1000000,
+        "maxTokens": 128000,
+        "compat": {
+          "thinkingFormat": "openrouter",
+          "cacheControlFormat": "anthropic"
+        },
+        "thinkingLevelMap": {
+          "xhigh": "xhigh",
+          "max": "max"
+        }
+      },
+      {
+        "id": "anthropic/claude-opus-5-fast",
+        "name": "Claude Opus 5 (Fast)",
+        "api": "openai-completions",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "provider": "openrouter",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 10,
+          "output": 50,
+          "cacheRead": 1,
+          "cacheWrite": 12.5
+        },
+        "contextWindow": 1000000,
+        "maxTokens": 128000,
+        "compat": {
+          "thinkingFormat": "openrouter",
+          "cacheControlFormat": "anthropic"
+        },
+        "thinkingLevelMap": {
+          "xhigh": "xhigh",
+          "max": "max"
+        }
+      },
+      {
         "id": "anthropic/claude-sonnet-4",
         "name": "Anthropic: Claude Sonnet 4",
         "api": "openai-completions",
@@ -1458,13 +1514,13 @@
           "image"
         ],
         "cost": {
-          "input": 0.1,
-          "output": 0.3,
-          "cacheRead": 0,
+          "input": 0.08,
+          "output": 0.45,
+          "cacheRead": 0.04,
           "cacheWrite": 0
         },
-        "contextWindow": 110000,
-        "maxTokens": 4096,
+        "contextWindow": 131072,
+        "maxTokens": 131072,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -1530,9 +1586,9 @@
           "image"
         ],
         "cost": {
-          "input": 0.12,
-          "output": 0.35,
-          "cacheRead": 0.09,
+          "input": 0.14,
+          "output": 0.4,
+          "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
@@ -1652,6 +1708,29 @@
           "input": 0.01,
           "output": 0.03,
           "cacheRead": 0.002,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 32768,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "thinkingFormat": "openrouter"
+        }
+      },
+      {
+        "id": "inclusionai/ling-3.0-flash:free",
+        "name": "Ling-3.0-flash (free)",
+        "api": "openai-completions",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "provider": "openrouter",
+        "reasoning": true,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
@@ -1951,9 +2030,9 @@
           "text"
         ],
         "cost": {
-          "input": 0.3,
-          "output": 1.2,
-          "cacheRead": 0.03,
+          "input": 0.255,
+          "output": 1.02,
+          "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 204800,
@@ -2588,7 +2667,7 @@
         "cost": {
           "input": 0.82,
           "output": 3.75,
-          "cacheRead": 0.16,
+          "cacheRead": 0.15,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
@@ -4026,13 +4105,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.03,
-          "output": 0.13,
-          "cacheRead": 0.03,
+          "input": 0.029,
+          "output": 0.14,
+          "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 131072,
-        "maxTokens": 131072,
+        "maxTokens": 4096,
         "compat": {
           "thinkingFormat": "openrouter"
         }
@@ -5013,9 +5092,9 @@
           "text"
         ],
         "cost": {
-          "input": 0.15,
-          "output": 1.2,
-          "cacheRead": 0,
+          "input": 0.1,
+          "output": 1.1,
+          "cacheRead": 0.07,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
@@ -5252,13 +5331,13 @@
           "image"
         ],
         "cost": {
-          "input": 0.26,
-          "output": 2.6,
+          "input": 0.195,
+          "output": 1.56,
           "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 81920,
+        "maxTokens": 65536,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -5420,13 +5499,13 @@
           "image"
         ],
         "cost": {
-          "input": 0.6,
-          "output": 3.6,
-          "cacheRead": 0.12,
+          "input": 0.288,
+          "output": 2.4,
+          "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 262144,
+        "maxTokens": 4096,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -5726,13 +5805,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.14,
-          "output": 0.58,
-          "cacheRead": 0.035,
+          "input": 0.132,
+          "output": 0.528,
+          "cacheRead": 0.033,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 262144,
+        "maxTokens": 128000,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -6153,8 +6232,8 @@
           "cacheRead": 0.119,
           "cacheWrite": 0
         },
-        "contextWindow": 202752,
-        "maxTokens": 202752,
+        "contextWindow": 204800,
+        "maxTokens": 131072,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -6217,9 +6296,9 @@
           "text"
         ],
         "cost": {
-          "input": 0.798,
-          "output": 2.508,
-          "cacheRead": 0.1482,
+          "input": 0.7826,
+          "output": 2.4596,
+          "cacheRead": 0.14534,
           "cacheWrite": 0
         },
         "contextWindow": 1048576,
@@ -6501,7 +6580,8 @@
         }
       }
     ],
-    "checkedAt": 1784811018623
+    "checkedAt": 1785053810475,
+    "lastModified": 1784920538000
   },
   "deepseek": {
     "models": [
@@ -6570,7 +6650,8 @@
         }
       }
     ],
-    "checkedAt": 1784811018470
+    "checkedAt": 1785053810453,
+    "lastModified": 1784920513000
   },
   "moonshotai-cn": {
     "models": [
@@ -6867,7 +6948,8 @@
         }
       }
     ],
-    "checkedAt": 1784811018268
+    "checkedAt": 1785053810454,
+    "lastModified": 1784920529000
   },
   "moonshotai": {
     "models": [
@@ -7164,7 +7246,8 @@
         }
       }
     ],
-    "checkedAt": 1784811018463
+    "checkedAt": 1785053810474,
+    "lastModified": 1784920528000
   },
   "kimi-coding": {
     "models": [
@@ -7182,15 +7265,6 @@
           "forceAdaptiveThinking": true
         },
         "reasoning": true,
-        "thinkingLevelMap": {
-          "off": null,
-          "minimal": null,
-          "low": "low",
-          "medium": null,
-          "high": "high",
-          "xhigh": null,
-          "max": "max"
-        },
         "input": [
           "text",
           "image"
@@ -7202,7 +7276,51 @@
           "cacheWrite": 0
         },
         "contextWindow": 1048576,
-        "maxTokens": 131072
+        "maxTokens": 131072,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": null,
+          "high": "high",
+          "xhigh": null,
+          "max": "max"
+        }
+      },
+      {
+        "id": "k3-256k",
+        "name": "Kimi K3-256K",
+        "api": "anthropic-messages",
+        "provider": "kimi-coding",
+        "baseUrl": "https://api.kimi.com/coding",
+        "headers": {
+          "User-Agent": "KimiCLI/1.5"
+        },
+        "compat": {
+          "forceAdaptiveThinking": true
+        },
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 131072,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": null,
+          "high": "high",
+          "xhigh": null,
+          "max": "max"
+        }
       },
       {
         "id": "kimi-for-coding",
@@ -7258,6 +7376,7 @@
         "maxTokens": 32768
       }
     ],
-    "checkedAt": 1784690052341
+    "checkedAt": 1785053810460,
+    "lastModified": 1784920522000
   }
 }
