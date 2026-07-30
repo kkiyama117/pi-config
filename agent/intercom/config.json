@@ -1,0 +1,4 @@
+{
+  "brokerCommand": "npx",
+  "brokerArgs": ["--yes", "tsx"]
+}
