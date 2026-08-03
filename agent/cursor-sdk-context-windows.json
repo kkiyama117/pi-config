@@ -3,6 +3,7 @@
     "claude-opus-4-8@1m": 300000,
     "claude-opus-5@1m": 300000,
     "claude-opus-5@300k:slow": 300000,
+    "claude-sonnet-5@1m": 300000,
     "fable-5@1m": 300000,
     "gpt-5.5@1m": 1000000,
     "gpt-5.5@1m:slow": 272000

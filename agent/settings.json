@@ -1,6 +1,6 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "deepseek-v4-flash",
+  "defaultModel": "deepseek-v4-flash:0731",
   "subagents": {
     "defaultModel": "cursor/composer-2-5:fast",
     "agentOverrides": {
@@ -89,25 +89,26 @@
   },
   "defaultProjectTrust": "ask",
   "defaultProvider": "ollama-cloud",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "xhigh",
   "enabledModels": [
+    "ollama-cloud/deepseek-v4-flash:0731",
+    "cursor/composer-2-5:fast",
     "cursor/glm-5.2",
     "cursor/gpt-5.5@1m:slow",
-    "cursor/composer-2-5:fast",
     "cursor/claude-opus-5@1m",
     "cursor/claude-sonnet-5@1m",
-    "ollama-cloud/deepseek-v4-pro",
-    "ollama-cloud/deepseek-v4-flash",
-    "ollama-cloud/glm-5.2",
-    "ollama-cloud/kimi-k2.7-code",
-    "ollama-cloud/minimax-m3",
     "kimi-coding/kimi-for-coding",
-    "openrouter/anthropic/claude-fable-5",
-    "openrouter/anthropic/claude-sonnet-5",
+    "kimi-coding/kimi-for-coding-highspeed",
+    "kimi-coding/k3",
+    "ollama-cloud/glm-5.2",
+    "ollama-cloud/kimi-k3",
+    "ollama-cloud/kimi-k2.7-code",
+    "ollama-cloud/deepseek-v4-pro",
+    "deepseek/deepseek-v4-flash",
     "openrouter/openrouter/fusion",
-    "openrouter/deepseek/deepseek-v4-flash"
+    "openrouter/anthropic/claude-sonnet-5"
   ],
-  "lastChangelogVersion": "0.82.0",
+  "lastChangelogVersion": "0.83.0",
   "packages": [
     "npm:pi-subagents",
     "npm:pi-intercom",
