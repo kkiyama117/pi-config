@@ -2,87 +2,57 @@
   "collapseChangelog": false,
   "defaultModel": "deepseek-v4-flash:0731",
   "subagents": {
-    "defaultModel": "cursor/composer-2-5:fast",
+    "defaultModel": "deepseek-v4-flash:0731",
     "agentOverrides": {
       "scout": {
-        "model": "ollama-cloud/deepseek-v4-flash",
+        "model": "cursor/composer-2-5:fast",
         "thinking": "medium",
         "fallbackModels": [
-          "ollama-cloud/deepseek-v4-pro",
-          "cursor/composer-2-5:fast",
-          "anthropic/claude-haiku-4.5:low",
-          "anthropic/claude-sonnet-4-6:low"
+          "ollama-cloud/deepseek-v4-flash"
         ]
       },
       "researcher": {
         "model": "cursor/composer-2-5:fast",
-        "thinking": "medium",
-        "fallbackModels": [
-          "ollama-cloud/glm-5.2",
-          "ollama-cloud/deepseek-v4-pro",
-          "ollama-cloud/minimax-m3",
-          "anthropic/claude-sonnet-5:medium",
-          "anthropic/claude-sonnet-4-6:medium"
-        ]
-      },
-      "planner": {
-        "model": "ollama-cloud/glm-5.2",
         "thinking": "high",
         "fallbackModels": [
-          "ollama-cloud/deepseek-v4-pro",
-          "cursor/claude-opus-5@300k",
-          "anthropic/claude-opus-5:high",
-          "anthropic/claude-sonnet-5:high"
+          "cursor/composer-2-5:fast"
         ]
       },
       "worker": {
-        "model": "kimi-coding/kimi-for-coding",
-        "thinking": "medium",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "thinking": "xhigh",
         "fallbackModels": [
           "cursor/composer-2-5:fast",
-          "ollama-cloud/deepseek-v4-flash",
-          "anthropic/claude-sonnet-4-6:medium"
+          "anthropic/claude-sonnet-5:medium"
         ]
       },
       "reviewer": {
-        "model": "cursor/gpt-5.6@1m:medium",
-        "thinking": "high",
+        "model": "kimi-coding/k3",
+        "thinking": "medium",
         "fallbackModels": [
-          "cursor/claude-opus-5@300k",
-          "ollama-cloud/deepseek-v4-pro",
-          "anthropic/claude-sonnet-5:high",
-          "anthropic/claude-opus-5:high"
+          "cursor/gpt-5.6@1m:slow"
         ]
       },
       "context-builder": {
-        "model": "ollama-cloud/minimax-m3",
-        "thinking": "medium",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "thinking": "xhigh",
         "fallbackModels": [
-          "ollama-cloud/deepseek-v4-flash",
-          "cursor/sonnet-5@1m",
-          "anthropic/claude-sonnet-5:medium",
-          "anthropic/claude-haiku-4-5:medium"
+          "cursor/composer-2-5:fast"
+        ]
+      },
+      "planner": {
+        "model": "kimi-coding/k3",
+        "thinking": "high",
+        "fallbackModels": [
+          "cursor/gpt-5.6@1m:slow"
         ]
       },
       "oracle": {
-        "model": "cursor/Fable-5@1m",
-        "thinking": "high",
-        "fallbackModels": [
-          "cursor/Fable-5@1m",
-          "ollama-cloud/glm-5.2",
-          "cursor/claude-opus-5@1m"
-        ]
-      },
-      "delegate": {
-        "model": "ollama-cloud/deepseek-v4-flash",
+        "model": "cursor/Fable-5@1m:slow",
         "thinking": "medium",
         "fallbackModels": [
-          "cursor/composer-2-5:fast",
-          "cursor/claude-sonnet-4-6@1m",
-          "ollama-cloud/minimax-m3",
-          "anthropic/claude-haiku-4-5:medium",
-          "anthropic/claude-sonnet-4-6:medium",
-          "deepseek/deepseek-v4-flash"
+          "cursor/gpt-5.6@1m:slow",
+          "kimi-coding/k3"
         ]
       }
     }
@@ -94,7 +64,7 @@
     "ollama-cloud/deepseek-v4-flash:0731",
     "cursor/composer-2-5:fast",
     "cursor/glm-5.2",
-    "cursor/gpt-5.5@1m:slow",
+    "cursor/gpt-5.6@1m:slow",
     "cursor/claude-opus-5@1m",
     "cursor/claude-sonnet-5@1m",
     "kimi-coding/kimi-for-coding",
@@ -127,5 +97,6 @@
   "terminal": {
     "clearOnShrink": true,
     "showTerminalProgress": true
-  }
+  },
+  "editorPaddingX": 0
 }
