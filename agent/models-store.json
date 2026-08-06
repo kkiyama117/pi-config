@@ -2131,12 +2131,12 @@
           "text"
         ],
         "cost": {
-          "input": 0.25,
-          "output": 1,
-          "cacheRead": 0.05,
+          "input": 0.27,
+          "output": 1.08,
+          "cacheRead": 0.054,
           "cacheWrite": 0
         },
-        "contextWindow": 196608,
+        "contextWindow": 204800,
         "maxTokens": 131072,
         "compat": {
           "supportsDeveloperRole": false,
@@ -2486,12 +2486,12 @@
           "image"
         ],
         "cost": {
-          "input": 0.075,
-          "output": 0.2,
+          "input": 0.09375,
+          "output": 0.25,
           "cacheRead": 0,
           "cacheWrite": 0
         },
-        "contextWindow": 128000,
+        "contextWindow": 256000,
         "maxTokens": 16384,
         "compat": {
           "supportsDeveloperRole": false,
@@ -5855,7 +5855,7 @@
       },
       {
         "id": "x-ai/grok-4.20",
-        "name": "xAI: Grok 4.20",
+        "name": "SpaceXAI: Grok 4.20",
         "api": "openai-completions",
         "baseUrl": "https://openrouter.ai/api/v1",
         "provider": "openrouter",
@@ -5879,7 +5879,7 @@
       },
       {
         "id": "x-ai/grok-4.3",
-        "name": "xAI: Grok 4.3",
+        "name": "SpaceXAI: Grok 4.3",
         "api": "openai-completions",
         "baseUrl": "https://openrouter.ai/api/v1",
         "provider": "openrouter",
@@ -5903,7 +5903,7 @@
       },
       {
         "id": "x-ai/grok-4.5",
-        "name": "xAI: Grok 4.5",
+        "name": "SpaceXAI: Grok 4.5",
         "api": "openai-completions",
         "baseUrl": "https://openrouter.ai/api/v1",
         "provider": "openrouter",
@@ -5927,7 +5927,7 @@
       },
       {
         "id": "x-ai/grok-build-0.1",
-        "name": "xAI: Grok Build 0.1",
+        "name": "SpaceXAI: Grok Build 0.1",
         "api": "openai-completions",
         "baseUrl": "https://openrouter.ai/api/v1",
         "provider": "openrouter",
@@ -6555,9 +6555,9 @@
         }
       }
     ],
-    "checkedAt": 1785907053031,
-    "lastModified": 1785841811000,
-    "etag": "W/\"7a43c94f218e342fb2d5cb959dbe1c51\""
+    "checkedAt": 1786002169390,
+    "lastModified": 1785917088000,
+    "etag": "W/\"96fa16c25540c2700d4f834baec68246\""
   },
   "deepseek": {
     "models": [
@@ -6626,7 +6626,7 @@
         }
       }
     ],
-    "checkedAt": 1785907053027,
+    "checkedAt": 1786002169435,
     "lastModified": 1785415990000,
     "etag": "W/\"15596aeadbdb5757401fcd2de812dcda\""
   },
@@ -6925,7 +6925,7 @@
         }
       }
     ],
-    "checkedAt": 1785907053017,
+    "checkedAt": 1786002169399,
     "lastModified": 1785416003000,
     "etag": "W/\"b6bb22c1d1f7ad7ef58529c125535a4d\""
   },
@@ -7224,7 +7224,7 @@
         }
       }
     ],
-    "checkedAt": 1785907053033,
+    "checkedAt": 1786002169391,
     "lastModified": 1785416002000,
     "etag": "W/\"afb16fb1ea6c24c1a16a7acfcb4c5bea\""
   },
@@ -7355,7 +7355,7 @@
         "maxTokens": 32768
       }
     ],
-    "checkedAt": 1785907053016,
+    "checkedAt": 1786002169395,
     "lastModified": 1785415998000,
     "etag": "W/\"a5e501e93019dfc26a0076a002bd616a\""
   }
