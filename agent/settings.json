@@ -1,14 +1,14 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "deepseek-v4-flash",
+  "defaultModel": "deepseek-v4-flash:0731",
   "subagents": {
-    "defaultModel": "deepseek-v4-flash",
+    "defaultModel": "ollama-cloud/deepseek-v4-flash:0731",
     "agentOverrides": {
       "scout": {
         "model": "cursor/composer-2-5:fast",
         "thinking": "medium",
         "fallbackModels": [
-          "ollama-cloud/deepseek-v4-flash"
+          "ollama-cloud/deepseek-v4-flash:0731"
         ]
       },
       "researcher": {
@@ -19,7 +19,7 @@
         ]
       },
       "worker": {
-        "model": "ollama-cloud/deepseek-v4-flash",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
         "thinking": "xhigh",
         "fallbackModels": [
           "cursor/composer-2-5:fast",
@@ -34,7 +34,7 @@
         ]
       },
       "context-builder": {
-        "model": "ollama-cloud/deepseek-v4-flash",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
         "thinking": "xhigh",
         "fallbackModels": [
           "cursor/composer-2-5:fast"
@@ -61,7 +61,7 @@
   "defaultProvider": "ollama-cloud",
   "defaultThinkingLevel": "xhigh",
   "enabledModels": [
-    "ollama-cloud/deepseek-v4-flash",
+    "ollama-cloud/deepseek-v4-flash:0731",
     "cursor/composer-2-5:fast",
     "cursor/glm-5.2",
     "cursor/gpt-5.6@1m:slow",
@@ -100,4 +100,3 @@
   },
   "editorPaddingX": 0
 }
-
