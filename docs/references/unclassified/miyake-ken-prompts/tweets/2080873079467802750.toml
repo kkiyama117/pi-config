@@ -1,0 +1,27 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080873079467802750"
+status_id = "2080873079467802750"
+export_batch = "remaining"
+export_batch_index = 63
+
+[author]
+name = "connect24h"
+handle = "connect24h"
+
+[metadata]
+posted_at = "Sat Jul 25 04:29:37 +0000 2026"
+
+[content]
+text = """
+Claude Cookbook、開発標準に格上げでいい。
+HN287点・154コメント。RAGからtool use、evals、agent patternsまで、Anthropic公式の再利用できる実装例が揃っている。正直、読み物で終わらせるのは惜しすぎる。
+
+新しいAI機能は、近いrecipeを起点に差分だけ実装し、evalをCIへ載せる。これで担当者ごとのprompt職人芸が減り、レビューも「動いた」から「再現できる」に変わる。現場で効くのはここだ。
+
+ただしsampleは本番要件ではない。tool権限、secret、入力検証は別で締める。保存して、次の設計レビューから叩き台にしてほしい。 #AI駆動開発
+ソース: https://platform.claude.com/cookbook/
+"""

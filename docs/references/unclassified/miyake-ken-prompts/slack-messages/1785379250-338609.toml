@@ -1,0 +1,12 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "slack-message"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+posted_at = "2026-07-30 02:40:50 UTC"
+slack_ts = "1785379250.338609"
+index = 52
+message_type = "text"
+
+[content]
+text = "leanable neovim plugin and configs"

@@ -1,0 +1,25 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2081249303620890982"
+status_id = "2081249303620890982"
+export_batch = "remaining"
+export_batch_index = 54
+
+[author]
+name = "おしお"
+handle = "shio_shoppaize"
+
+[metadata]
+posted_at = "Sun Jul 26 05:24:36 +0000 2026"
+
+[content]
+text = """
+ループエンジニアリングの解説、ぜんぶコードを書く人向けだったので、コードを書かない仕事——調査・文書づくり・受信箱の処理・定例の準備——を半年Claude Codeのループに載せてみた結果を書いた。
+
+結論:回る。ただし、一番重要な部品はループの中になかった。
+
+https://x.com/shio_shoppaize/status/2080854963430002741
+"""

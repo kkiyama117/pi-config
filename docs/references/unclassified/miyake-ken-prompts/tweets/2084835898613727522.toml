@@ -1,0 +1,23 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2084835898613727522"
+status_id = "2084835898613727522"
+export_batch = "next_10"
+export_batch_index = 4
+
+[author]
+name = "キタデ"
+handle = "kobenisikakatan"
+
+[metadata]
+posted_at = "Wed Aug 05 02:56:27 +0000 2026"
+
+[content]
+text = """
+ハーネスやらループやらのコード生成の方法論の前にこういう事業価値目線で語れるようになりたい
+事業価値を生まないコードなら書かないほうがマシ
+https://speakerdeck.com/recruitengineers/fy2026_bootcamp_kuroda?slide=24
+"""

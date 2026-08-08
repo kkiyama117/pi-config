@@ -1,0 +1,12 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "slack-message"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+posted_at = "2026-07-29 04:05:18 UTC"
+slack_ts = "1785297918.301709"
+index = 42
+message_type = "non-x"
+
+[links]
+urls = "https://www.imperialviolet.org/2026/07/26/zstd-lean.html"

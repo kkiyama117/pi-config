@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080316615581688026"
+status_id = "2080316615581688026"
+export_batch = "remaining"
+export_batch_index = 77
+
+[author]
+name = "yasunori🫖@loglass🐳"
+handle = "YKirin0418"
+
+[metadata]
+posted_at = "Thu Jul 23 15:38:26 +0000 2026"
+
+[content]
+text = ""

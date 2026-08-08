@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080490003780739385"
+status_id = "2080490003780739385"
+export_batch = "remaining"
+export_batch_index = 64
+
+[author]
+name = "ころころゴロリ"
+handle = "k0mkc"
+
+[metadata]
+posted_at = "Fri Jul 24 03:07:25 +0000 2026"
+
+[content]
+text = "全部ブログに書いてますhttps://k0mkc.hatenablog.com/entry/2026/07/24/115712"

@@ -1,0 +1,25 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2082164248697069935"
+status_id = "2082164248697069935"
+export_batch = "remaining"
+export_batch_index = 44
+
+[author]
+name = "ClaudeDevs"
+handle = "ClaudeDevs"
+
+[metadata]
+posted_at = "Tue Jul 28 18:00:16 +0000 2026"
+
+[content]
+text = """
+MCP 2026-07-28 is live and it's the largest update to the protocol since launch.
+
+MCP is now stateless, making it easier to deploy and scale remote servers. 
+
+https://claude.com/blog/bringing-mcp-2026-07-28-to-claude
+"""

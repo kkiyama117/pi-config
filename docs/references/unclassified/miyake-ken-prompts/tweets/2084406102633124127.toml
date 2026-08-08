@@ -1,0 +1,30 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2084406102633124127"
+status_id = "2084406102633124127"
+export_batch = "next_10"
+export_batch_index = 7
+
+[author]
+name = "connect24h"
+handle = "connect24h"
+
+[metadata]
+posted_at = "Mon Aug 03 22:28:35 +0000 2026"
+
+[content]
+text = """
+うちの環境もtmuxが、体に合わなくてherderに移行しました。そしたら、コピーペーストのルールがいちいち変わらないので、非常に快適(レベルが低い　
+
+2026/07/21のherdr v0.7.5はClaude Code、Codex、Gemini、Grokなど21のAgent kindをreal PTYで束ね、状態監視、named session、Git worktree、prompt送信と完了待ちまでCLIで回せる。タブを並べるだけのmultiplexerではない。
+
+刺さったのは、Agent自身にherdrを操作させ、別Agentへ仕事を投げて`--wait`後に次工程へ進ませるところ。さらに`worktree.created`をevent hookにしたPluginまで自作できる。一部、agmsgと機能がかぶるんだけど、サブエージェントのメッセージやり取りはagmsgのままにしている。履歴ちゃんと追えるしね。
+
+複数Agentを目視巡回しているなら、この実践記事は読んだ方が良い。
+
+#AI駆動開発
+ソース: https://blog.techscore.com/entry/2026/08/03/080000
+"""

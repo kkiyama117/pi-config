@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2082446956710998379"
+status_id = "2082446956710998379"
+export_batch = "remaining"
+export_batch_index = 38
+
+[author]
+name = "Claude Code研究所|スパルタClaude Code塾"
+handle = "claudecode_lab"
+
+[metadata]
+posted_at = "Wed Jul 29 12:43:39 +0000 2026"
+
+[content]
+text = ""

@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080597715457908865"
+status_id = "2080597715457908865"
+export_batch = "remaining"
+export_batch_index = 71
+
+[author]
+name = "aki.ts🦔"
+handle = "HedgehogPython"
+
+[metadata]
+posted_at = "Fri Jul 24 10:15:25 +0000 2026"
+
+[content]
+text = "AI-DLC V2を導入し、その構成要素を組織に最適化させる https://qiita.com/Syoitu/items/a784d74541fac33f6814 #Qiita @HedgehogPythonより"

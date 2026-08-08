@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2082655936129425559"
+status_id = "2082655936129425559"
+export_batch = "remaining"
+export_batch_index = 35
+
+[author]
+name = "ばんくし王"
+handle = "vaaaaanquish"
+
+[metadata]
+posted_at = "Thu Jul 30 02:34:03 +0000 2026"
+
+[content]
+text = "私は最近Raycastに集約してる"

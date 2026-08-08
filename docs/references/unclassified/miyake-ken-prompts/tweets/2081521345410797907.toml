@@ -1,0 +1,23 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2081521345410797907"
+status_id = "2081521345410797907"
+export_batch = "remaining"
+export_batch_index = 49
+
+[author]
+name = "村本章憲 - Norikazu Muramoto"
+handle = "1amageek"
+
+[metadata]
+posted_at = "Sun Jul 26 23:25:36 +0000 2026"
+
+[content]
+text = """
+https://github.com/google/xls
+
+Googleやってんな。これはハードウエアの設計の自動化を目指してるぞ。
+"""

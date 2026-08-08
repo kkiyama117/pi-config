@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2083962166084804902"
+status_id = "2083962166084804902"
+export_batch = "remaining"
+export_batch_index = 32
+
+[author]
+name = "Daniel Lemire"
+handle = "lemire"
+
+[metadata]
+posted_at = "Sun Aug 02 17:04:33 +0000 2026"
+
+[content]
+text = ""

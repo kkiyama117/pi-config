@@ -1,0 +1,97 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2084542353344282850"
+status_id = "2084542353344282850"
+export_batch = "next_10"
+export_batch_index = 3
+
+[author]
+name = "Suraj Sharma"
+handle = "suraj_sharma14"
+
+[metadata]
+posted_at = "Tue Aug 04 07:30:00 +0000 2026"
+
+[content]
+text = """
+As an AI Engineer, you must build these projects.
+
+Systems that prove you can ship production AI.
+
+1.) Production RAG with Citations
+PDF Q&A bot that cites page numbers, implements hybrid search, reranking, and grounding. 
+Stack: LangGraph + SQLite-vec + cross-encoder.
+
+2.) Cost-Optimized Model Router
+System that routes queries by complexity to cheap/expensive models, tracks spend per request. Stack: LiteLLM + Prometheus + custom router.
+
+3.) Multi-Agent Research System
+Supervisor coordinates researcher, writer, fact-checker with consensus logic and human approval gates. 
+Stack: CrewAI + audit trail.
+
+4.) Automated Eval Harness
+Runs 100+ golden test cases before every deploy, blocks regressions, tracks quality trends. 
+Stack: DeepEval + RAGAS + LangSmith.
+
+5.) Real-Time Observability Dashboard
+Distributed tracing, cost per request, latency percentiles, error rates, alerting on anomalies. 
+Stack: OpenTelemetry + Grafana + Prometheus.
+
+6.) Security Guardrail Middleware
+Detects prompt injection, redacts PII, filters outputs, enforces rate limits, sandboxed execution. 
+Stack: Guardrails AI + custom rules.
+
+7.) Local-First Development Environment
+Ollama + SQLite-vec + FastAPI, zero API costs, offline testing, mirrors production architecture. 
+Stack: Ollama + LanceDB + Docker.
+
+8.) Streaming Copilot UI
+Real-time token streaming, optimistic UI updates, graceful degradation on latency, error recovery. 
+Stack: Next.js + Vercel AI SDK.
+
+9.) Fine-Tuning Pipeline with LoRA
+Dataset preparation, instruction tuning, DPO alignment, evaluation before/after, catastrophic forgetting prevention. 
+Stack: PEFT + Hugging Face.
+
+10.) Multi-Tenant SaaS Agent
+User isolation, per-tenant rate limiting, usage-based billing, data partitioning, audit trails. 
+Stack: Supabase + Stripe + LangGraph.
+
+11.) CI/CD for AI Systems
+GitHub Actions, automated testing, canary deployments, automatic rollback on quality drop, feature flags. 
+Stack: GitHub Actions + ArgoCD.
+
+12.) Vector Database at Scale
+Hybrid search, metadata filtering, embedding caching, index optimization, backup/recovery procedures. 
+Stack: Qdrant or Weaviate.
+
+13.) Agent Memory System
+Short-term buffers, long-term recall, context compression, cross-session sync, memory eviction policies. 
+Stack: Redis + vector DB.
+
+14.) Production Inference Server
+vLLM or SGLang deployment, KV cache optimization, continuous batching, quantization, load balancing. Stack: vLLM + Kubernetes.
+
+15.) Human-in-the-Loop Workflow
+Uncertainty detection, approval UI, pause/resume logic, validated context, full audit trail. 
+Stack: LangGraph + custom UI.
+
+16.) Agentic Automation Pipeline
+Webhooks, async execution, idempotency, dead-letter handling, retry logic with exponential backoff. 
+Stack: FastAPI + Celery.
+
+17.) Domain-Specific Benchmark
+Create eval suite for legal, medical, finance, or code. Public leaderboard, community adoption. 
+Stack: Custom + pytest.
+
+18.) Open Source Contribution
+Extend LangGraph, CrewAI, or LlamaIndex. Fix bug, add feature, write docs, publish benchmarks. 
+Stack: Your choice.
+
+happy building...
+
+Bookmark & Repost!
+"""

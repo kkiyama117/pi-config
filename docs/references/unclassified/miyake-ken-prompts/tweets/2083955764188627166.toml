@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2083955764188627166"
+status_id = "2083955764188627166"
+export_batch = "remaining"
+export_batch_index = 29
+
+[author]
+name = "Let's Get Rusty 🦀"
+handle = "letsgetrusty"
+
+[metadata]
+posted_at = "Sun Aug 02 16:39:06 +0000 2026"
+
+[content]
+text = "How unsafe Rust made Polars 30x times faster than Pandas - https://youtu.be/l6tisoOzTuk"

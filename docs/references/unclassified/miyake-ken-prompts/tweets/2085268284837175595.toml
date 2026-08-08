@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2085268284837175595"
+status_id = "2085268284837175595"
+export_batch = "latest_10"
+export_batch_index = 6
+
+[author]
+name = "小出 孝雄/エイジレスCEO"
+handle = "takoidet"
+
+[metadata]
+posted_at = "Thu Aug 06 07:34:36 +0000 2026"
+
+[content]
+text = "ちなみに指示書はこんな感じ。"

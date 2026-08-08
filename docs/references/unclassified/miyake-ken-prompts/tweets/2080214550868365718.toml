@@ -1,0 +1,22 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080214550868365718"
+status_id = "2080214550868365718"
+export_batch = "remaining"
+export_batch_index = 76
+
+[author]
+name = "ytakano"
+handle = "ytakanoster"
+
+[metadata]
+posted_at = "Thu Jul 23 08:52:52 +0000 2026"
+
+[content]
+text = """
+コーディングエージェント向けの、Rust向けスキル群です。安全、リアルタイムなRust実装を可能とします。カバレッジテスト、C++からRustへの移植/評価、Rust-C FFIの安全な呼び出しにも活用できます。
+https://github.com/ytakano/rust_skills
+"""

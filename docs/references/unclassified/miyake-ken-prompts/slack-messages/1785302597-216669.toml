@@ -1,0 +1,12 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "slack-message"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+posted_at = "2026-07-29 05:23:17 UTC"
+slack_ts = "1785302597.216669"
+index = 45
+message_type = "non-x"
+
+[links]
+urls = "https://community.wolfram.com/groups/-/m/t/3766129"

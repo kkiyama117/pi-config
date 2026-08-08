@@ -1,0 +1,23 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2079723345717891468"
+status_id = "2079723345717891468"
+export_batch = "remaining"
+export_batch_index = 79
+
+[author]
+name = "ようさん"
+handle = "ayousanz"
+
+[metadata]
+posted_at = "Wed Jul 22 00:20:59 +0000 2026"
+
+[content]
+text = """
+https://arxiv.org/pdf/2509.23938
+
+この論文の日本語モデルできた！精度はまぁまぁいいはず
+"""

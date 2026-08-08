@@ -1,0 +1,23 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2084918688332014073"
+status_id = "2084918688332014073"
+export_batch = "latest_10"
+export_batch_index = 5
+
+[author]
+name = "ムンク。"
+handle = "dakaravaz"
+
+[metadata]
+posted_at = "Wed Aug 05 08:25:25 +0000 2026"
+
+[content]
+text = """
+久しぶりにえぐい記事に出会った
+
+「勝手に学ぶ人」と「期待されて学ぶ人」の差が埋められない｜柴田史郎 @4bata #最近の学び https://note.com/4bata/n/nf8fbcb832e91?sub_rt=share_b
+"""

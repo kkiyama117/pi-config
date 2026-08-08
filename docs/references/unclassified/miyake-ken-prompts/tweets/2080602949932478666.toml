@@ -1,0 +1,26 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080602949932478666"
+status_id = "2080602949932478666"
+export_batch = "remaining"
+export_batch_index = 65
+
+[author]
+name = "AM09:21"
+handle = "AM09_21"
+
+[metadata]
+posted_at = "Fri Jul 24 10:36:13 +0000 2026"
+
+[content]
+text = """
+要するに現在のAIベストプラクティスはコレなんだけど残念ながら自分はお金がないので、この動画で言うところの上司AIは私自身で駆動してます。
+後は外部コンテキストとしてarXivやX、その他RSSなどを接続してあげれば情報のキャッチアップの必要もなくなるんだけど、デマかの精査にもお金がかかるので安く済ませるにはやっぱり自力が正義
+
+んまぁ年間1万ドル払えるなら、さっさとこの仕組みを作って指数関数的な知能爆発に全自動で追従していけば良いと思う。
+
+https://youtu.be/GAa7tTPKZeI
+"""
