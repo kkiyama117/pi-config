@@ -31,3 +31,35 @@ when sessions exit.
 uses the generic spawn path and keeps broker startup on Node/npx. Runtime broker
 state (`broker.sock`, `broker.pid`, locks, extension-state) stays gitignored under
 `agent/intercom/`.
+
+## Container image (podman / apptainer)
+
+Every `pi-config-v*` tag push triggers `.github/workflows/release.yml`, which
+
+1. creates a GitHub Release for the tag, and
+2. builds a podman image of this environment (pi + config, packages from
+   `agent/settings.json` pre-installed) and pushes it to
+   `ghcr.io/kkiyama117/pi-config`, tagged with the git tag and `latest`.
+
+The image is secret-free by design — pass provider API keys at runtime.
+
+Pull and run with apptainer (no local podman needed):
+
+```bash
+apptainer pull docker://ghcr.io/kkiyama117/pi-config:pi-config-v2026-07-14-2
+apptainer run --no-home \
+  --env DEEPSEEK_API_KEY=... \
+  pi-config_pi-config-v2026-07-14-2.sif
+```
+
+`--no-home` keeps apptainer from mounting your host `$HOME` over the image's
+`/root/.pi` config; without it the image config is shadowed by your host `~/.pi`.
+
+Local build and run with podman:
+
+```bash
+podman build -t ghcr.io/kkiyama117/pi-config:latest .
+podman run --rm -it -e DEEPSEEK_API_KEY ghcr.io/kkiyama117/pi-config:latest
+```
+
+Pin the pi version at build time with `--build-arg PI_VERSION=0.84.0`.

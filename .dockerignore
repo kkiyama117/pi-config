@@ -1,0 +1,25 @@
+# VCS
+.git
+.gitignore
+
+# pi runtime state — never bake into the image (mirrors .gitignore)
+auth.json
+trust.json
+sessions/
+transcripts/
+logs/
+cache/
+npm/
+git/
+*.log
+pi-acp/session-map.json
+cursor-sdk-model-list.json
+cursor-sdk-model-list.*.json
+run-history.jsonl
+agent/intercom/broker.*
+agent/intercom/broker-launch.vbs
+agent/intercom/broker.port.json
+agent/intercom/broker.spawn.lock
+agent/intercom/extension-state/
+.pi-subagents/
+*.pre-pi-config.*
