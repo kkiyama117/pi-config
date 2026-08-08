@@ -7715,13 +7715,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.6734,
-          "output": 2.1164,
-          "cacheRead": 0.12506,
+          "input": 0.76,
+          "output": 2.42,
+          "cacheRead": 0.14,
           "cacheWrite": 0
         },
-        "contextWindow": 1048576,
-        "maxTokens": 131072,
+        "contextWindow": 262144,
+        "maxTokens": 262144,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -8054,9 +8054,9 @@
         }
       }
     ],
-    "checkedAt": 1786097247510,
-    "lastModified": 1786096915000,
-    "etag": "W/\"27731bce53ded2f8e619bacda72a592e\""
+    "checkedAt": 1786169011197,
+    "lastModified": 1786098940000,
+    "etag": "W/\"302637aba18cf37f73bab0a075c7b804\""
   },
   "deepseek": {
     "models": [
@@ -8125,7 +8125,7 @@
         }
       }
     ],
-    "checkedAt": 1786096328567,
+    "checkedAt": 1786169011228,
     "lastModified": 1785415990000,
     "etag": "W/\"15596aeadbdb5757401fcd2de812dcda\""
   },
@@ -8424,7 +8424,7 @@
         }
       }
     ],
-    "checkedAt": 1786096328140,
+    "checkedAt": 1786169011232,
     "lastModified": 1785416003000,
     "etag": "W/\"b6bb22c1d1f7ad7ef58529c125535a4d\""
   },
@@ -8723,7 +8723,7 @@
         }
       }
     ],
-    "checkedAt": 1786097247484,
+    "checkedAt": 1786169011210,
     "lastModified": 1785416002000,
     "etag": "W/\"afb16fb1ea6c24c1a16a7acfcb4c5bea\""
   },
@@ -8854,7 +8854,7 @@
         "maxTokens": 32768
       }
     ],
-    "checkedAt": 1786096328144,
+    "checkedAt": 1786169011207,
     "lastModified": 1785415998000,
     "etag": "W/\"a5e501e93019dfc26a0076a002bd616a\""
   }
