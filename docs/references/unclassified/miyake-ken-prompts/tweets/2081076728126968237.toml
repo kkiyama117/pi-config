@@ -1,0 +1,85 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2081076728126968237"
+status_id = "2081076728126968237"
+export_batch = "remaining"
+export_batch_index = 61
+
+[author]
+name = "Anatoli Kopadze"
+handle = "AnatoliKopadze"
+
+[metadata]
+posted_at = "Sat Jul 25 17:58:51 +0000 2026"
+
+[content]
+text = """
+This is f*cking gold. 
+
+I've just made the clearest explanation of graph engineering you'll find anywhere.
+
+No jargon, no code, no 2-hour lecture, just the four shapes every agent graph is built from.
+
+Read on, and you'll never build with AI the way you did before.
+
+-------
+
+Shape 0 - Basics
+
+A graph is just a plan for your AI work, drawn out so you can see it - which jobs run and which one waits for which.
+
+Graph engineering is the skill of drawing that plan well, so the work that doesn't depend on anything runs all at once, instead of one slow step at a time.
+
+Get it right and one person can direct a whole fleet of agents. That is why the best engineers jumped on it the moment loops got old.
+
+-------
+
+Shape 1 - The Chain
+
+This is the one everyone builds by default.
+
+Do A, then B, then C, each step waiting politely for the last to finish. It works, and it is the slowest shape there is.
+
+If one step stalls, everything behind it stops. Use it only when the steps genuinely need each other's output.
+
+-------
+
+Shape 2 - The Diamond
+
+This is the workhorse of every serious graph.
+
+You split the job, fan the workers out in parallel, verify what they found, then merge it all into one answer.
+
+Use it the moment the work breaks into pieces that don't read each other. Same shape behind a research report, a market scan, or a code review.
+
+-------
+
+Shape 3 - The Router
+
+Sometimes the next step depends on what you just found.
+
+One node checks a result and picks the path. a small job gets a quick pass, a big one triggers a full audit.
+
+Use it when the work needs to branch. The decision runs the same way every time, because it lives in the structure, not in a guess.
+
+-------
+
+Shape 4 - The Cycle
+
+Some jobs you can't size up front.
+
+A bug sweep where finding one problem reveals three more. So you add a controlled edge back: keep finding, checking, looping until two rounds turn up nothing new, then stop.
+
+Use it for discovery of unknown size. The one rule is a hard limit, or it runs until your budget is gone.
+
+-------
+
+That's the base, now you know the four shapes and when each one fits.
+
+If you want to go deeper, I wrote a full article just for that, it explains everything step by step and breaks down where graph engineering wins and where it breaks.
+
+It also walks you through building your own graph from scratch, read it below.
+"""

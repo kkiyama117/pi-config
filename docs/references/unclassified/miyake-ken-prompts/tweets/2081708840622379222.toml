@@ -1,0 +1,108 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2081708840622379222"
+status_id = "2081708840622379222"
+export_batch = "remaining"
+export_batch_index = 45
+
+[author]
+name = "Mr. Buzzoni"
+handle = "polydao"
+
+[metadata]
+posted_at = "Mon Jul 27 11:50:38 +0000 2026"
+
+[content]
+text = """
+How to run your whole workday on loops instead of prompts
+
+📁 loop-engineering
+┃
+┣📁 Contract
+┃ ┣📁 /claude-md
+┃ ┣📁 /house-rules
+┃ ┣📁 /tone-and-scope
+┃ ┗📁 /stop-conditions
+┃
+┣📁 Loop Types
+┃ ┣📁 /turn-based
+┃ ┣📁 /goal-based
+┃ ┣📁 /time-based
+┃ ┣📁 /proactive
+┃ ┗📁 /auto-mode
+┃
+┣📁 Triggers
+┃ ┣📁 /schedule
+┃ ┣📁 /on-file-change
+┃ ┣📁 /on-pr-open
+┃ ┣📁 /on-ci-fail
+┃ ┣📁 /on-new-issue
+┃ ┗📁 /manual-kickoff
+┃
+┣📁 Verifiers
+┃ ┣📁 /verifier-md
+┃ ┣📁 /adversarial-reviewer
+┃ ┣📁 /fresh-context-grader
+┃ ┣📁 /test-runner
+┃ ┣📁 /lighthouse-check
+┃ ┗📁 /diff-sanity
+┃
+┣📁 Skills
+┃ ┣📁 /skill-creator
+┃ ┣📁 /self-check
+┃ ┣📁 /research-sweep
+┃ ┣📁 /refactor-pass
+┃ ┣📁 /doc-sync
+┃ ┗📁 /skill-scout
+┃
+┣📁 Graph Shapes
+┃ ┣📁 /chain
+┃ ┣📁 /diamond
+┃ ┣📁 /router
+┃ ┣📁 /cycle
+┃ ┗📁 /merge-verify
+┃
+┣📁 Isolation
+┃ ┣📁 /git-worktrees
+┃ ┣📁 /sandbox-run
+┃ ┣📁 /branch-per-loop
+┃ ┗📁 /blast-radius
+┃
+┣📁 Budget
+┃ ┣📁 /turn-cap
+┃ ┣📁 /model-routing
+┃ ┣📁 /cheap-model-first
+┃ ┣📁 /token-report
+┃ ┗📁 /cost-per-run
+┃
+┣📁 Memory
+┃ ┣📁 /company-brain
+┃ ┣📁 /past-runs
+┃ ┣📁 /decisions-log
+┃ ┣📁 /known-failures
+┃ ┗📁 /context-handoff
+┃
+┣📁 Hooks
+┃ ┣📁 /pre-commit
+┃ ┣📁 /post-run
+┃ ┣📁 /on-error
+┃ ┗📁 /notify-me
+┃
+┣📁 Daily Loops
+┃ ┣📁 /ci-babysitter
+┃ ┣📁 /pr-triage
+┃ ┣📁 /inbox-sweep
+┃ ┣📁 /bug-hunt
+┃ ┣📁 /dependency-watch
+┃ ┗📁 /morning-report
+┃
+┗📁 Ops
+  ┣📁 /run-sh
+  ┣📁 /loop-registry
+  ┣📁 /failure-postmortem
+  ┣📁 /pilot-before-scale
+  ┗📁 /weekly-review
+"""

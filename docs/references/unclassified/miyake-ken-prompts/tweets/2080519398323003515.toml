@@ -1,0 +1,23 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080519398323003515"
+status_id = "2080519398323003515"
+export_batch = "remaining"
+export_batch_index = 67
+
+[author]
+name = "iwashi / Yoshimasa Iwase"
+handle = "iwashi86"
+
+[metadata]
+posted_at = "Fri Jul 24 05:04:13 +0000 2026"
+
+[content]
+text = """
+あとで読む
+
+https://speakerdeck.com/takatorisatoshi/aiezientonotamenojian-suo
+"""

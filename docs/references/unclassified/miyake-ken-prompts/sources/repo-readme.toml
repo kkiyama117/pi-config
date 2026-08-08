@@ -1,0 +1,24 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "repository-readme"
+path = "README.md"
+
+[content]
+markdown = """
+# prompts
+
+Reusable Cursor / Cloud Agent prompts and how-tos.
+
+## Contents
+
+| Path | Description |
+|------|-------------|
+| [`prompts/hermes-home-tweet-export.prompt.md`](prompts/hermes-home-tweet-export.prompt.md) | Copy-paste prompt to export X/Twitter post text from `#hermes_home` |
+| [`docs/hermes-home-tweet-export.md`](docs/hermes-home-tweet-export.md) | Step-by-step how-to for the export flow |
+| [`exports/hermes_home_latest_10_tweets.txt`](exports/hermes_home_latest_10_tweets.txt) | Sample export: latest 10 X posts from `#hermes_home` |
+| [`exports/hermes_home_next_10_tweets.txt`](exports/hermes_home_next_10_tweets.txt) | Next batch: posts 11–20 from `#hermes_home` |
+| [`exports/hermes_home_remaining_tweets.txt`](exports/hermes_home_remaining_tweets.txt) | Remaining batch: posts 21–83 (63 tweets) from latest 100 Slack messages |
+| [`exports/hermes_home_non_x_urls.txt`](exports/hermes_home_non_x_urls.txt) | Non-X links (URL only; 8 unique URLs) |
+| [`exports/hermes_home_messages_from_2026-06-22.txt`](exports/hermes_home_messages_from_2026-06-22.txt) | Message index from 2026-06-22 (oldest available: 2026-07-22) |
+
+"""

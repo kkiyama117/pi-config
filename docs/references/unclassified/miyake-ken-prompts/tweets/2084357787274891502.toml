@@ -1,0 +1,27 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2084357787274891502"
+status_id = "2084357787274891502"
+export_batch = "remaining"
+export_batch_index = 26
+
+[author]
+name = "Arnav Gupta"
+handle = "championswimmer"
+
+[metadata]
+posted_at = "Mon Aug 03 19:16:36 +0000 2026"
+
+[content]
+text = """
+Because Claude and Codex and Gemini throw in "web search" for free as a bundled tool, most people have yet to find out the alpha of hooking up agents to proper search engines. 
+
+Some still use very inefficient processes like agent browser like stuff. 
+
+Once you connect something like Exa (or Parallel) to your agentic workflow, it totally changes the game. 
+
+I'd been using Perplexity/Exa/Parallel all three, now I just use Exa. It is the best in terms of speed, cost and quality for me these days.
+"""

@@ -1,0 +1,34 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2084768844615413960"
+status_id = "2084768844615413960"
+export_batch = "next_10"
+export_batch_index = 5
+
+[author]
+name = "iwashi / Yoshimasa Iwase"
+handle = "iwashi86"
+
+[metadata]
+posted_at = "Tue Aug 04 22:30:00 +0000 2026"
+
+[content]
+text = """
+AIでCOBOLからJavaへコード移植する方法の提案論文。
+
+・レガシーなCOBOLからJavaへの移行は、テストデータ不足で隅々まで検証するのが難しい
+・そこで Locksmith Loop と呼ばれるAIエージェントによるテスト生成手法を提案
+
+・COBOLと生成されたJavaの双方にモックを組み込んで実行環境を用意
+・エージェントが入力値の探索と変異を反復し、プログラムの条件分岐の奥深くまで入り込む
+・探索がブロックされた条件を特定して突破することで、カバレッジを広げていく
+
+・今回は、430〜4,114行規模の3つのCOBOLプログラムでケーススタディを実施した
+・結果として、オープンソースのプログラム2つではほぼ完全な網羅率に到達
+・実稼働相当の内製プログラムでも91.90%の分岐カバレッジを達成した
+
+https://arxiv.org/abs/2607.28271
+"""

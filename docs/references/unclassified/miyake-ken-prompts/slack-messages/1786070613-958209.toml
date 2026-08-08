@@ -1,0 +1,12 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "slack-message"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+posted_at = "2026-08-07 02:43:33 UTC"
+slack_ts = "1786070613.958209"
+index = 95
+message_type = "text"
+
+[content]
+text = "<@U0BEF0AFNS2> could you check this files and add to `miyake-ken/prompts` repo?"

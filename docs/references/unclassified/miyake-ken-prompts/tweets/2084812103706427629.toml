@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2084812103706427629"
+status_id = "2084812103706427629"
+export_batch = "latest_10"
+export_batch_index = 4
+
+[author]
+name = "にも｜AIによって爆誕"
+handle = "ai_ai_ailover"
+
+[metadata]
+posted_at = "Wed Aug 05 01:21:54 +0000 2026"
+
+[content]
+text = "待って！！！すごいAI社員できた！！！クライアントも可視化できるやつ！！！おおお！！！"

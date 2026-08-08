@@ -1,0 +1,35 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2081017726261199185"
+status_id = "2081017726261199185"
+export_batch = "remaining"
+export_batch_index = 62
+
+[author]
+name = "Codez"
+handle = "0xCodez"
+
+[metadata]
+posted_at = "Sat Jul 25 14:04:24 +0000 2026"
+
+[content]
+text = """
+Anthropic engineer just released a 2-hour workshop on "Graph Engineering" for agentic systems:
+
+“80% of our engineers are using self-improving loops. Now everyone is building agentic graphs.”
+
+• 00:00 - Introduction to RAG & Graphs
+• 06:39 - Core of "Graph Engineering" (state, nodes)
+• 14:29 - 3 feedback loops of Graph agents
+• 23:06 - Agent evaluation with Graphs
+• 36:29 - Agent cycles in graphs
+• 1:15:22 - Agentic RAG & agent context
+• 1:41:20 - Evaluation datasets based on Graphs
+
+This 2-hour workshop will replace 10 paid courses on agentic engineering.
+
+Watch it today, then learn how to become a Graph Engineer in the article below.
+"""

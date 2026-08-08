@@ -1,0 +1,19 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080208599431950701"
+status_id = "2080208599431950701"
+export_batch = "remaining"
+export_batch_index = 78
+
+[author]
+name = "mizchi"
+handle = "mizchi"
+
+[metadata]
+posted_at = "Thu Jul 23 08:29:13 +0000 2026"
+
+[content]
+text = "https://tabularis.dev/blog/why-tabularis-runs-on-tauri?ref=dailydev"

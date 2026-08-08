@@ -1,0 +1,134 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "howto"
+path = "docs/hermes-home-tweet-export.md"
+title = "How to: Export #hermes_home X/Twitter post text"
+
+[content]
+markdown = """
+# How to: Export `#hermes_home` X/Twitter post text
+
+This documents the flow used to list Slack posts in `#hermes_home`, extract X/Twitter URLs, fetch tweet text, and write it to a `.txt` file. Use it with a Cursor Composer / Cloud Agent that has Slack tools enabled.
+
+## Goal
+
+From `#hermes_home` (newest first):
+
+1. List posts and extract **URLs only** (do not fetch linked page content yet).
+2. For X/Twitter status links, fetch the **tweet text**.
+3. Write results to a text file under `exports/`.
+4. Start small (e.g. latest 10), then expand if asked.
+
+## Prerequisites
+
+- Cursor agent with **Cursor Slack Tools** MCP available.
+- Bot must be a **member** of the target Slack channel (membership is required to read messages; channel listing alone is not enough).
+- Outbound network access to fetch tweet text (e.g. `https://api.fxtwitter.com/`).
+
+## Channel reference
+
+| Name | ID |
+|------|----|
+| `#hermes_home` | `C0BBHF3REDS` |
+
+Prefer the channel ID when calling `read_slack_messages`.
+
+## Step-by-step flow
+
+### 1. Read recent channel posts
+
+Use Slack MCP:
+
+- `list_slack_channels` (optional discovery)
+- `read_slack_messages` with `channel: C0BBHF3REDS` and `limit` up to `100`
+
+Messages come back **newest first**.
+
+### 2. Extract URLs from posts (not page contents)
+
+From each top-level message body, collect embedded URLs such as:
+
+- Slack autolink: `<https://x.com/i/status/2085283330090758257>`
+- Or markdown-style links for Zenn / GitHub / etc.
+
+**Do this first.** Do not fetch or summarize the destination pages yet.
+
+Typical X URL shapes:
+
+- `https://x.com/i/status/<id>`
+- `https://twitter.com/<user>/status/<id>`
+
+Skip non-content noise when listing:
+
+- bot join messages
+- gateway shutdown notices
+- agent conversation threads (unless the user asks for everything)
+
+### 3. Select the batch
+
+Default starter batch:
+
+- Take the **latest 10 X/Twitter status posts**
+- Skip non-X posts (Zenn, GitHub-only, plain text) unless the user asks for all post types
+
+### 4. Fetch tweet text
+
+For each status id, call FxTwitter (worked reliably in practice):
+
+```bash
+curl -fsSL "https://api.fxtwitter.com/status/<STATUS_ID>" -o "/tmp/tweets/<STATUS_ID>.json"
+```
+
+From the JSON, extract:
+
+- author name / screen name
+- created_at
+- tweet text (`tweet.text`)
+
+Other options if FxTwitter fails: Twitter oEmbed (`publish.twitter.com/oembed`) or another public unfurl API. Direct `x.com` HTML fetch is usually blocked/login-walled.
+
+### 5. Write a text file
+
+Recommended path in this repo:
+
+```text
+exports/hermes_home_latest_10_tweets.txt
+```
+
+Recommended record format:
+
+```text
+=== N. https://x.com/i/status/<STATUS_ID> ===
+Author: <Name> (@<handle>)
+Date: <created_at>
+
+<tweet text>
+```
+
+Newest first. Separate entries with blank lines.
+
+Optional: also copy to `/opt/cursor/artifacts/` for Cloud Agent artifact surfacing. Note that path is **on the agent VM**, not the user’s laptop — paste contents into chat or commit the file if the user needs local access.
+
+### 6. Confirm with the user
+
+Report:
+
+- file path
+- how many tweets exported
+- that non-X posts were skipped (if true)
+- offer the next batch
+
+## Constraints / gotchas
+
+- Slack `read_slack_messages` max `limit` is **100** per call.
+- Listing a channel in `list_slack_channels` does **not** guarantee read access; the bot must be invited.
+- Many `#hermes_home` posts are only X links; a minority are Zenn / GitHub / YouTube / plain text.
+- Do not invent tweet text. If a fetch fails, record the URL and the error, then continue.
+
+## Ready-to-run prompt
+
+Copy-paste prompt for Composer:
+
+→ [`prompts/hermes-home-tweet-export.prompt.md`](../prompts/hermes-home-tweet-export.prompt.md)
+
+"""

@@ -1,0 +1,22 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2081778471085478003"
+status_id = "2081778471085478003"
+export_batch = "remaining"
+export_batch_index = 46
+
+[author]
+name = "mizchi"
+handle = "mizchi"
+
+[metadata]
+posted_at = "Mon Jul 27 16:27:19 +0000 2026"
+
+[content]
+text = """
+後で見る
+https://portswigger.net/blog/introducing-burp-at
+"""

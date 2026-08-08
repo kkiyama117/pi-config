@@ -1,0 +1,12 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "slack-message"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+posted_at = "2026-08-07 02:11:24 UTC"
+slack_ts = "1786068684.469699"
+index = 94
+message_type = "text"
+
+[content]
+text = "<@U0BEF0AFNS2>. Could you list up these channels post? I want to check what they says"

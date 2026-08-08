@@ -78,7 +78,7 @@
     "openrouter/openrouter/fusion",
     "openrouter/anthropic/claude-sonnet-5"
   ],
-  "lastChangelogVersion": "0.83.0",
+  "lastChangelogVersion": "0.84.0",
   "packages": [
     "npm:pi-subagents",
     "npm:pi-intercom",

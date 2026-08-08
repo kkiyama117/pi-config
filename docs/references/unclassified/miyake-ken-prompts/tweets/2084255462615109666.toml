@@ -1,0 +1,65 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2084255462615109666"
+status_id = "2084255462615109666"
+export_batch = "next_10"
+export_batch_index = 10
+
+[author]
+name = "Suraj Sharma"
+handle = "suraj_sharma14"
+
+[metadata]
+posted_at = "Mon Aug 03 12:30:00 +0000 2026"
+
+[content]
+text = """
+If I had 6 months to become an Agentic AI Engineer.
+
+I would do this.
+
+Stage 1: Python and Async Foundations
+asyncio, FastAPI, event-driven architecture, error handling, API integration patterns.
+
+Stage 2: LLM Fundamentals for Agents
+Context management, model routing, token economics, latency tradeoffs, failure modes.
+
+Stage 3: Tool Calling and Structured Outputs
+Pydantic validation, function calling schemas, error recovery, dynamic tool discovery.
+
+Stage 4: Memory and State Management
+Short-term buffers, long-term vector recall, context compression, cross-session sync.
+
+Stage 5: Single Agent Workflows
+ReAct loops, plan-and-execute, self-reflection, iteration limits, graceful degradation.
+
+Stage 6: Multi-Agent Orchestration
+LangGraph or CrewAI, supervisor patterns, message passing, conflict resolution, handoffs.
+
+Stage 7: Human-in-the-Loop Systems
+Uncertainty detection, approval gates, audit trails, resume logic, intervention points.
+
+Stage 8: Evaluation and Quality Assurance
+Automated eval harnesses, LLM-as-a-judge, regression testing, hallucination metrics.
+
+Stage 9: Observability and Tracing
+Distributed tracing, cost dashboards, latency monitoring, alerting, debug pipelines.
+
+Stage 10: Security and Guardrails
+Prompt injection defense, output filtering, PII redaction, sandboxed execution, compliance.
+
+Stage 11: Production Deployment
+vLLM or SGLang, Kubernetes scaling, CI/CD for agents, canary releases, rollback strategies.
+
+Stage 12: Open Source and Portfolio
+Ship autonomous agents publicly, write architecture docs, record demos, contribute to libs.
+
+Most people stay stuck watching tutorials.
+
+Builders get hired.
+
+Bookmark it.
+"""

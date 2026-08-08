@@ -1,0 +1,27 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2081158883662524923"
+status_id = "2081158883662524923"
+export_batch = "remaining"
+export_batch_index = 58
+
+[author]
+name = "Yuichi Uemura"
+handle = "u1"
+
+[metadata]
+posted_at = "Sat Jul 25 23:25:18 +0000 2026"
+
+[content]
+text = """
+昨日1日やってたOpus5の調教成果発表記事書きました
+
+当たり前の事を当たり前にやっただけですが､結果としてはOpus5は自分のメインパートナーとして満足してくれる動きにはなりました
+
+Opus5で妙に思考が浅い･こいつ馬鹿だなと感じることが多い人は参考にしてもらえれば
+
+https://x.com/u1/status/2081158397052035090
+"""

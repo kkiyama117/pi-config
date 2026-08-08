@@ -1,0 +1,25 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2081128869851959365"
+status_id = "2081128869851959365"
+export_batch = "remaining"
+export_batch_index = 56
+
+[author]
+name = "santi"
+handle = "santtiagom_"
+
+[metadata]
+posted_at = "Sat Jul 25 21:26:02 +0000 2026"
+
+[content]
+text = """
+hoy me levanté, me preparé un café y me vi esta charla de 2 horas sobre cómo funcionan los LLMs.
+
+les aseguro que valió cada minuto.
+
+recomendadísima.
+"""

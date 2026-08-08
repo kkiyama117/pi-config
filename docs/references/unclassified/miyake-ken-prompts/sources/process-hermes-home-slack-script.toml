@@ -1,0 +1,141 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "script"
+path = "scripts/process_hermes_home_slack.py"
+language = "python"
+
+[content]
+code = """
+#!/usr/bin/env python3
+"""Parse #hermes_home Slack MCP output into export files."""
+
+import re
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+BOT_IDS = {"U0BEF0AFNS2", "U0BBDR24W6N"}
+X_STATUS = re.compile(
+    r"https?://(?:x\.com/i/status/|twitter\.com/[^/\s<>]+/status/)([0-9]+)",
+    re.I,
+)
+URL = re.compile(r"https?://[^\s<>|\]]+")
+LINE = re.compile(
+    r"^\[(?P<date>[^\]]+)\] \(ts: (?P<ts>[0-9.]+)\) <@(?P<user>[^>]+)>: (?P<body>.*)$"
+)
+FROM_DATE = datetime(2026, 6, 22, tzinfo=timezone.utc)
+
+
+def is_x_url(url: str) -> bool:
+    return bool(X_STATUS.search(url))
+
+
+def classify(urls: list[str]) -> str:
+    if not urls:
+        return "text"
+    if all(is_x_url(u) for u in urls):
+        return "x"
+    return "non-x"
+
+
+def parse(raw: str) -> list[dict]:
+    entries = []
+    for line in raw.splitlines():
+        m = LINE.match(line.strip())
+        if not m:
+            continue
+        user = m.group("user")
+        if user in BOT_IDS:
+            continue
+        dt = datetime.strptime(m.group("date"), "%Y-%m-%d %H:%M:%S UTC").replace(
+            tzinfo=timezone.utc
+        )
+        if dt < FROM_DATE:
+            continue
+        body = m.group("body").strip()
+        urls = URL.findall(body)
+        # Drop trailing punctuation from markdown links
+        urls = [u.rstrip(")") for u in urls]
+        entries.append(
+            {
+                "date": m.group("date"),
+                "ts": m.group("ts"),
+                "user": user,
+                "body": body,
+                "urls": urls,
+                "type": classify(urls),
+            }
+        )
+    return entries
+
+
+def write_non_x_urls(entries: list[dict], out: Path) -> int:
+    seen = set()
+    lines = [
+        "Non-X URLs from #hermes_home (URL only; bot messages skipped)",
+        f"Filtered from {FROM_DATE.date()} onward; source: latest Slack MCP window.",
+        "",
+    ]
+    n = 0
+    for e in entries:
+        for url in e["urls"]:
+            if is_x_url(url) or url in seen:
+                continue
+            seen.add(url)
+            n += 1
+            lines.append(f"=== {n}. [{e['date']}] ===")
+            lines.append(url)
+            lines.append("")
+    out.write_text("\n".join(lines), encoding="utf-8")
+    return n
+
+
+def write_message_index(entries: list[dict], out: Path) -> int:
+    oldest = entries[-1]["date"] if entries else "n/a"
+    newest = entries[0]["date"] if entries else "n/a"
+    lines = [
+        "#hermes_home message index from 2026-06-22",
+        "",
+        "Bot messages skipped (join notices, gateway shutdown, etc.).",
+        "Slack MCP currently returns the latest 100 channel messages only;",
+        f"this index covers {oldest} through {newest}.",
+        "Messages before the oldest available timestamp are not included.",
+        "",
+        f"Total entries: {len(entries)}",
+        "",
+    ]
+    for i, e in enumerate(reversed(entries), 1):
+        lines.append(f"=== {i}. [{e['date']}] (ts: {e['ts']}) ===")
+        lines.append(f"Type: {e['type']}")
+        if e["type"] == "x":
+            for url in e["urls"]:
+                lines.append(f"URL: {url}")
+        elif e["type"] == "non-x":
+            for url in e["urls"]:
+                if not is_x_url(url):
+                    lines.append(f"URL: {url}")
+            # Mixed posts: also list X URLs if present
+            for url in e["urls"]:
+                if is_x_url(url):
+                    lines.append(f"URL (x): {url}")
+        else:
+            lines.append(f"Text: {e['body']}")
+        lines.append("")
+    out.write_text("\n".join(lines), encoding="utf-8")
+    return len(entries)
+
+
+def main() -> None:
+    raw = sys.stdin.read()
+    entries = parse(raw)
+    exports = Path(__file__).resolve().parents[1] / "exports"
+    exports.mkdir(exist_ok=True)
+    non_x_count = write_non_x_urls(entries, exports / "hermes_home_non_x_urls.txt")
+    index_count = write_message_index(entries, exports / "hermes_home_messages_from_2026-06-22.txt")
+    print(f"non_x_urls={non_x_count} index_entries={index_count}")
+
+
+if __name__ == "__main__":
+    main()
+
+"""

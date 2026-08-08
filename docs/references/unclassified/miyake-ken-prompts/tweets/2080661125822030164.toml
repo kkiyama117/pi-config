@@ -1,0 +1,30 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "tweet"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+url = "https://x.com/i/status/2080661125822030164"
+status_id = "2080661125822030164"
+export_batch = "remaining"
+export_batch_index = 70
+
+[author]
+name = "Ben Burtenshaw"
+handle = "ben_burtenshaw"
+
+[metadata]
+posted_at = "Fri Jul 24 14:27:23 +0000 2026"
+
+[content]
+text = """
+You can now train agents in TRL + OpenEnv with a harness of your choice. i.e. open code, pi, codex, claude code. 
+
+This means you can improve the model in the context it is used; it's agent harness. It will learn to use the correct tools for the task, just as codex or claude code are trained.
+
+This is the process
+- take a datasets of tasks.
+- take a harness like open code which will drive the session.
+- take an openenv environment and harness adapter
+- use TRL HarnessRolloutWorker to collect the agent's traces
+- use AsyncGRPOTrainer to orchestrate inference and updating weights verifier returns env_reward
+"""
