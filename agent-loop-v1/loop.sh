@@ -236,6 +236,21 @@ done
 
 mkdir -p "$RUN_DIR" "$MEMORY_DIR"
 touch "$MEMORY_DIR/decisions-log.md" "$MEMORY_DIR/past-runs.md" "$MEMORY_DIR/known-failures.md"
+
+# ---------------------------------------------------------------------------
+# Concurrency guard: one loop per repo (flock-based; auto-released on exit,
+# even on kill — no stale-lock cleanup needed).
+# ---------------------------------------------------------------------------
+LOCK_DIR="${LOCK_DIR:-$LOOP_HOME/locks}"
+mkdir -p "$LOCK_DIR"
+LOCK_FILE="$LOCK_DIR/$(printf '%s' "$REPO" | md5sum | cut -d' ' -f1).lock"
+exec 9>"$LOCK_FILE"
+if ! flock -n 9; then
+  die "another agent-loop is already running for $REPO (lock: $LOCK_FILE)"
+fi
+printf '%s\n' "pid=$$ started=$(date -Iseconds) repo=$REPO" >&9
+log "acquired repo lock: $LOCK_FILE"
+
 log "run $RUN_ID repo=$REPO dry_run=$DRY_RUN"
 record_run "start run=$RUN_ID repo=$REPO task=${TASK:0:120}"
 

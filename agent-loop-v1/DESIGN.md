@@ -146,6 +146,12 @@ cheap-model-first, token-report).
 
 ## Failure & stop conditions (no silent failures)
 
+- **Concurrency guard**: one loop per repo. A `flock`-based lock file
+  (`locks/<repo-md5>.lock`) is acquired at startup; a second loop for the
+  same repo is refused immediately. The lock auto-releases on process exit
+  (even on kill) — no stale-lock cleanup needed. Known edge case: deleting
+  the lock file while a loop holds it bypasses the guard (manual cleanup
+  only).
 - Any stage failure aborts the loop with a logged reason; nothing is retried
   silently.
 - Bounded retry cycle: max **3** implement→verify→review cycles per iteration
