@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "missionId": "ff481e73-c149-458e-91a4-80d4325aeadb",
+  "projectRoot": "/home/kiyama/.pi",
+  "recordPath": "/home/kiyama/.pi/.pi-subagents/missions/ff481e73-c149-458e-91a4-80d4325aeadb.json",
+  "title": "You are designing the FIRST agent loop (v1) for this machine, with a human-in-the-loop (HITL) pat...",
+  "status": "completed",
+  "updatedAt": "2026-08-09T12:21:36.100Z",
+  "lastRunId": "call_3hz8jsdi"
+}
