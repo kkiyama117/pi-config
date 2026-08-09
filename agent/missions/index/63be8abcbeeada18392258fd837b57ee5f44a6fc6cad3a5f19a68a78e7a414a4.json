@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "missionId": "8b92843a-314f-4a63-810d-110f1dc7dda5",
+  "projectRoot": "/home/kiyama/.pi/agent-loop-v1/worktrees/20260809-222304",
+  "recordPath": "/home/kiyama/.pi/agent-loop-v1/worktrees/20260809-222304/.pi-subagents/missions/8b92843a-314f-4a63-810d-110f1dc7dda5.json",
+  "title": "Fresh adversarial review of the uncommitted diff in /home/kiyama/.pi/agent-loop-v1/worktrees/2026...",
+  "status": "completed",
+  "updatedAt": "2026-08-09T14:18:34.479Z",
+  "lastRunId": "1c4faac0-fb08-46fe-b992-bdda18be8cab"
+}
