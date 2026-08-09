@@ -14,7 +14,8 @@
 #   ./loop.sh --repo /path/to/target --task-file task.md
 #   ./loop.sh --dry-run            # walk the stages without model calls
 #
-# Requires: pi (headless CLI), git. Optional: herdr (host pane + notifications).
+# Requires: pi (headless CLI), git, python3. Optional: herdr (host pane + notifications).
+# Cost tracking parses pi --mode json via pi_usage.py (stdlib only, no jq).
 
 set -euo pipefail
 
@@ -47,11 +48,17 @@ REPO=""
 TASK=""
 TASK_FILE=""
 DRY_RUN=0
+# Run cost totals (accumulated in pi_call; summarized at end of run).
+RUN_CALLS=0
+RUN_TOTAL_TOKENS=0
+RUN_TOTAL_COST=0
 
 # ---------------------------------------------------------------------------
 # Logging / memory (filesystem memory — inspectable, cheap; DESIGN.md)
 # ---------------------------------------------------------------------------
 log()  { printf '[loop %s] %s\n' "$(date +%H:%M:%S)" "$*" | tee -a "$RUN_DIR/loop.log" >&2; }
+# Q1 (approved as planned): abort paths (die) get NO cost summary — the summary
+# is emitted on the success path only (see end of main loop).
 die()  { log "FATAL: $*"; record_failure "$*"; exit 1; }
 
 record() { # append a line to a memory file
@@ -70,12 +77,59 @@ notify() { # herdr notification when a gate is waiting (optional integration)
 }
 
 # ---------------------------------------------------------------------------
-# pi headless call: pi_call <model> <fallback> <prompt-file> <out-file>
+# pi headless call: pi_call <model> <fallback> <prompt-file> <out-file> [thinking] [stage]
 # Normal tasks route cheap-first; thinking tasks route to k3/opus/gpt-5.6.
+# Runs pi in --mode json; records usage to memory/cost-log.md (cost tracking).
 # ---------------------------------------------------------------------------
+PARSER="$LOOP_HOME/pi_usage.py"   # python3 stdlib NDJSON parser (no jq)
+
+stream_status() { # $1=jsonl; "ok" or "error:<reason>" (terminal stopReason must be "stop")
+  python3 "$PARSER" status "$1"
+}
+
+extract_usage() { # $1=jsonl; prints "in out cacheRead cacheWrite totalTokens cost"
+  # Provider-aware (pi_usage.py): cursor = cumulative -> last event; others =
+  # per-turn -> summed (reviewer High, cycle 3).
+  python3 "$PARSER" usage "$1"
+}
+
+record_usage_line() { # $1=usage_line $2=model $3=stage; appends one cost-log.md line + run totals
+  local usage_line="$1" model="$2" stage="$3"
+  local u_input u_output u_cache_read u_cache_write u_total_tokens u_cost
+  read -r u_input u_output u_cache_read u_cache_write u_total_tokens u_cost <<< "$usage_line"
+  if [[ "$u_cost" == "0" || "$u_cost" == "0.0" ]]; then
+    log "cost unavailable (0) for stage=$stage model=$model — tokens recorded, cost not fabricated"
+  fi
+  record "cost-log.md" "run=$RUN_ID stage=$stage model=$model tokens=$u_total_tokens cost=$u_cost"
+  RUN_CALLS=$((RUN_CALLS + 1))
+  RUN_TOTAL_TOKENS=$((RUN_TOTAL_TOKENS + u_total_tokens))
+  RUN_TOTAL_COST="$(awk -v a="$RUN_TOTAL_COST" -v b="$u_cost" 'BEGIN{printf "%.6f", a+b}')"
+}
+
+record_usage_if_any() { # $1=jsonl $2=model $3=stage; record usage from a FAILED call
+  # before retrying/aborting (reviewer Medium: failed calls must not lose usage).
+  # Tolerant: pi_usage.py skips malformed lines; no valid usage -> exit 1 -> nothing to record.
+  local usage_line
+  usage_line="$(extract_usage "$1" 2>/dev/null)" || return 0
+  [[ -n "$usage_line" ]] || return 0
+  record_usage_line "$usage_line" "$2" "$3"
+}
+
+run_pi() { # $1=model $2=prompt_file $3=jsonl; remaining args = extra pi flags.
+  # Returns 0 only if the process exits 0 AND the stream is ok (terminal stop).
+  # pi exits 0 even on quota/403 — the error only shows in the stream
+  # (reviewer High: inspect the JSON result before deciding on the fallback).
+  local m="$1" prompt_file="$2" jsonl="$3"; shift 3
+  if ! timeout "$STAGE_TIMEOUT_S" pi -p --mode json --model "$m" "$@" \
+        "$(cat "$prompt_file")" > "$jsonl" 2>>"$RUN_DIR/pi.stderr"; then
+    return 1
+  fi
+  [[ "$(stream_status "$jsonl")" == "ok" ]]
+}
+
 pi_call() {
   local model="$1" fallback="$2" prompt_file="$3" out_file="$4"
-  local thinking="${5:-}"
+  local thinking="${5:-}" stage="${6:-unknown}"
   local args=()
   [[ -n "$thinking" ]] && args+=(--thinking "$thinking")
   if [[ "$DRY_RUN" == "1" ]]; then
@@ -84,16 +138,27 @@ pi_call() {
     return 0
   fi
   log "pi call: model=$model (fallback=$fallback) thinking=${thinking:-default} timeout=${STAGE_TIMEOUT_S}s"
-  # TODO: add --mode json and parse usage for the token-report (Budget: token-report).
-  # TODO(Q12): wire a cost manager like ccusage into the token-report.
-  if ! timeout "$STAGE_TIMEOUT_S" pi -p --model "$model" "${args[@]}" \
-        "$(cat "$prompt_file")" > "$out_file" 2>>"$RUN_DIR/pi.stderr"; then
-    log "primary model failed/timeout, retrying with fallback=$fallback"
-    timeout "$STAGE_TIMEOUT_S" pi -p --model "$fallback" "${args[@]}" \
-      "$(cat "$prompt_file")" > "$out_file" 2>>"$RUN_DIR/pi.stderr" \
-      || die "both models failed for stage (see $RUN_DIR/pi.stderr)"
+  local used_model="$model"
+  if ! run_pi "$model" "$prompt_file" "$out_file.jsonl" "${args[@]}"; then
+    log "primary model failed (exit or provider error), retrying with fallback=$fallback"
+    record_usage_if_any "$out_file.jsonl" "$model" "$stage"   # keep usage incurred before the failure
+    used_model="$fallback"
+    if ! run_pi "$fallback" "$prompt_file" "$out_file.jsonl" "${args[@]}"; then
+      record_usage_if_any "$out_file.jsonl" "$fallback" "$stage"
+      die "both models failed for stage=$stage (see $RUN_DIR/pi.stderr) — stop and ask"
+    fi
   fi
-  record_run "stage pi_call model=$model ok out=$out_file"
+  # Reconstruct readable final assistant text (gate display contract: plain
+  # text, no JSON). Whitespace-only output is a failure (reviewer Medium).
+  python3 "$PARSER" text "$out_file.jsonl" > "$out_file" 2>>"$RUN_DIR/pi.stderr" \
+    || die "no non-whitespace assistant text in $out_file.jsonl — stop and ask"
+  local usage_line
+  usage_line="$(extract_usage "$out_file.jsonl")" \
+    || die "usage extraction failed for $out_file.jsonl — stop and ask"
+  [[ -n "$usage_line" ]] \
+    || die "no assistant message_end usage in $out_file.jsonl — stop and ask"
+  record_usage_line "$usage_line" "$used_model" "$stage"
+  record_run "stage pi_call model=$used_model ok out=$out_file"
 }
 
 # ---------------------------------------------------------------------------
@@ -186,7 +251,7 @@ EOF
     echo "Human redirect feedback (must be incorporated):" >> "$RUN_DIR/plan.prompt.md"
     echo "$feedback" >> "$RUN_DIR/plan.prompt.md"
   fi
-  pi_call "$MODEL_PLAN" "$MODEL_PLAN_FALLBACK" "$RUN_DIR/plan.prompt.md" "$RUN_DIR/plan.md"
+  pi_call "$MODEL_PLAN" "$MODEL_PLAN_FALLBACK" "$RUN_DIR/plan.prompt.md" "$RUN_DIR/plan.md" "" "plan"
 }
 
 stage_implement() {
@@ -202,7 +267,7 @@ stage_implement() {
     [[ -n "$feedback" ]] && { echo "Human redirect feedback:"; echo "$feedback"; }
     [[ -f "$RUN_DIR/review.md" ]] && { echo "Reviewer findings to address:"; cat "$RUN_DIR/review.md"; }
   } > "$RUN_DIR/implement.prompt.md"
-  pi_call "$model" "$fb" "$RUN_DIR/implement.prompt.md" "$RUN_DIR/implement.out.md"
+  pi_call "$model" "$fb" "$RUN_DIR/implement.prompt.md" "$RUN_DIR/implement.out.md" "" "implement"
 }
 
 stage_review() {
@@ -213,7 +278,7 @@ stage_review() {
     echo "Report only concrete findings with file/line refs and smallest safe fixes."
     echo "Do not edit files. Verdict line: PASS or FAIL: <reason>."
   } > "$RUN_DIR/review.prompt.md"
-  pi_call "$MODEL_REVIEW" "$MODEL_REVIEW_FALLBACK" "$RUN_DIR/review.prompt.md" "$RUN_DIR/review.md" "$THINKING_REVIEW"
+  pi_call "$MODEL_REVIEW" "$MODEL_REVIEW_FALLBACK" "$RUN_DIR/review.prompt.md" "$RUN_DIR/review.md" "$THINKING_REVIEW" "review"
 }
 
 # ---------------------------------------------------------------------------
@@ -233,9 +298,14 @@ done
 [[ -n "$REPO" ]] || usage
 [[ -d "$REPO/.git" ]] || die "not a git repo: $REPO"
 [[ -n "$TASK_FILE" ]] && TASK="$(cat "$TASK_FILE")"
+# Cost tracking requires python3 (stdlib only; skipped for --dry-run, which
+# never invokes pi or parses usage).
+if [[ "$DRY_RUN" != "1" ]]; then
+  command -v python3 >/dev/null 2>&1 || die "python3 is required for cost tracking (see Requires:)"
+fi
 
 mkdir -p "$RUN_DIR" "$MEMORY_DIR"
-touch "$MEMORY_DIR/decisions-log.md" "$MEMORY_DIR/past-runs.md" "$MEMORY_DIR/known-failures.md"
+touch "$MEMORY_DIR/decisions-log.md" "$MEMORY_DIR/past-runs.md" "$MEMORY_DIR/known-failures.md" "$MEMORY_DIR/cost-log.md"
 
 # ---------------------------------------------------------------------------
 # Concurrency guard: one loop per repo (flock-based; auto-released on exit,
@@ -251,6 +321,16 @@ fi
 printf '%s\n' "pid=$$ started=$(date -Iseconds) repo=$REPO" >&9
 log "acquired repo lock: $LOCK_FILE"
 
+# Q1 (approved): cost summary on ANY exit with calls>0 (complete accounting) —
+# runs that die at GATE-1/GATE-2 still get their summary line.
+emit_cost_summary() {
+  if (( RUN_CALLS > 0 )); then
+    record_run "run=$RUN_ID total_tokens=$RUN_TOTAL_TOKENS total_cost=$RUN_TOTAL_COST calls=$RUN_CALLS"
+    log "cost summary: run=$RUN_ID total_tokens=$RUN_TOTAL_TOKENS total_cost=$RUN_TOTAL_COST calls=$RUN_CALLS"
+  fi
+}
+trap emit_cost_summary EXIT
+
 log "run $RUN_ID repo=$REPO dry_run=$DRY_RUN"
 record_run "start run=$RUN_ID repo=$REPO task=${TASK:0:120}"
 
@@ -260,8 +340,17 @@ stage_plan
 gate "GATE-1 plan approval" "$RUN_DIR/plan.md"
 case "$GATE_ACTION" in
   reject)   die "plan rejected at GATE-1" ;;
-  # Q7: plan-gate redirect -> feedback goes to the PLANNER.
-  redirect) stage_plan "$GATE_FEEDBACK" ;;
+  # Q7: plan-gate redirect -> feedback goes to the PLANNER, then the revised
+  # plan is shown again for a fresh human decision (never auto-continue).
+  redirect)
+    stage_plan "$GATE_FEEDBACK"
+    GATE_FEEDBACK=""
+    gate "GATE-1 plan approval (revised)" "$RUN_DIR/plan.md"
+    case "$GATE_ACTION" in
+      reject)   die "plan rejected at GATE-1 (revised)" ;;
+      redirect) die "second redirect at GATE-1 not supported in v1 — abort" ;;
+    esac
+    ;;
 esac
 
 BRANCH="loop/$RUN_ID"
