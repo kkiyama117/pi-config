@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "missionId": "055e51a0-7469-44e6-bfdb-2b1874cf8cad",
+  "projectRoot": "/tmp",
+  "recordPath": "/tmp/.pi-subagents/missions/055e51a0-7469-44e6-bfdb-2b1874cf8cad.json",
+  "title": "Investigate and fix a broken rclone FUSE mount. Context: an `rclone mount sp:/LARGE0/gr10641/kkiy...",
+  "status": "failed",
+  "updatedAt": "2026-08-09T02:44:14.829Z",
+  "lastRunId": "3ef217b5"
+}
