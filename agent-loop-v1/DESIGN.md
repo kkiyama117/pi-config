@@ -111,13 +111,18 @@ Redirect policy (decided):
 
 Exact IDs from `agent/settings.json` enabledModels:
 
-| Role | Route | Fallback | Why |
-|------|-------|----------|-----|
-| Intake/contract formatting | `ollama-cloud/deepseek-v4-flash:0731` | `deepseek/deepseek-v4-flash` | normal task, cheap-first |
-| Worker (implement) | `ollama-cloud/deepseek-v4-flash:0731` | `cursor/composer-2-5:fast` | normal task |
-| Plan | `kimi-coding/k3` | `ollama-cloud/kimi-k3` | thinking task |
-| Review (adversarial) | `cursor/gpt-5.6@1m:slow` (thinking `high`/`xhigh`) | `cursor/claude-opus-5@1m` | thinking + **must differ from worker model family** (eval-engineering rule); decided by human (Q8) — cursor provider, not openrouter |
-| Escalation (worker stuck) | `cursor/gpt-5.6@1m:slow` | `kimi-coding/k3` | thinking, max 2 escalations/iteration |
+| Role | Route | Fallback | Thinking | Why |
+|------|-------|----------|----------|-----|
+| Intake/contract formatting | `ollama-cloud/deepseek-v4-flash:0731` | `deepseek/deepseek-v4-flash` | — | normal task, cheap-first |
+| Worker (implement) | `ollama-cloud/deepseek-v4-flash:0731` | `cursor/composer-2-5:fast` | `medium` (`THINKING_IMPLEMENT`) | normal task |
+| Plan | `kimi-coding/k3` | `ollama-cloud/kimi-k3` | `high` (`THINKING_PLAN`) | thinking task |
+| Review (adversarial) | `cursor/gpt-5.6@1m:slow` | `cursor/claude-opus-5@1m` | `high` (`THINKING_REVIEW`) | thinking + **must differ from worker model family** (eval-engineering rule); decided by human (Q8) — cursor provider, not openrouter |
+| Escalation (worker stuck) | `cursor/gpt-5.6@1m:slow` | `kimi-coding/k3` | `high` (`THINKING_ESCALATE`) | thinking, max 2 escalations/iteration |
+
+> Thinking levels are pinned per stage (v2): no stage relies on pi's
+> `defaultThinkingLevel` (settings.json), which can drift. All four knobs are
+> env-overridable: `THINKING_PLAN` / `THINKING_IMPLEMENT` / `THINKING_REVIEW` /
+> `THINKING_ESCALATE`.
 
 > Note: when the worker escalates to `cursor/gpt-5.6@1m:slow`, the reviewer
 > must use its fallback (`cursor/claude-opus-5@1m`) so the reviewer never

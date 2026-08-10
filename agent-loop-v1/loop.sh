@@ -31,6 +31,11 @@ MODEL_PLAN_FALLBACK="${MODEL_PLAN_FALLBACK:-ollama-cloud/kimi-k3}"
 MODEL_REVIEW="${MODEL_REVIEW:-cursor/gpt-5.6@1m:slow}"
 MODEL_REVIEW_FALLBACK="${MODEL_REVIEW_FALLBACK:-cursor/claude-opus-5@1m}"
 THINKING_REVIEW="${THINKING_REVIEW:-high}"   # high | xhigh (Q8)
+# Concrete thinking per stage (v2: no implicit "default" — settings.json
+# defaultThinkingLevel can drift; pin each stage explicitly).
+THINKING_PLAN="${THINKING_PLAN:-high}"             # plan = thinking task (k3)
+THINKING_IMPLEMENT="${THINKING_IMPLEMENT:-medium}" # normal worker task
+THINKING_ESCALATE="${THINKING_ESCALATE:-high}"     # escalated worker = gpt-5.6 family
 MODEL_ESCALATE="${MODEL_ESCALATE:-cursor/gpt-5.6@1m:slow}"
 
 MAX_CYCLES="${MAX_CYCLES:-3}"          # bounded retry cycle (graph Shape 4 hard limit)
@@ -260,14 +265,14 @@ EOF
     echo "Human redirect feedback (must be incorporated):" >> "$RUN_DIR/plan.prompt.md"
     echo "$feedback" >> "$RUN_DIR/plan.prompt.md"
   fi
-  pi_call "$MODEL_PLAN" "$MODEL_PLAN_FALLBACK" "$RUN_DIR/plan.prompt.md" "$RUN_DIR/plan.md" "" "plan"
+  pi_call "$MODEL_PLAN" "$MODEL_PLAN_FALLBACK" "$RUN_DIR/plan.prompt.md" "$RUN_DIR/plan.md" "$THINKING_PLAN" "plan"
 }
 
 stage_implement() {
   local feedback="${1:-}"
   log "stage: implement (normal model, worker) cycle=$CYCLE escalation=$ESCALATIONS"
-  local model="$MODEL_NORMAL" fb="$MODEL_NORMAL_FALLBACK"
-  if (( ESCALATIONS > 0 )); then model="$MODEL_ESCALATE"; fb="$MODEL_PLAN"; fi
+  local model="$MODEL_NORMAL" fb="$MODEL_NORMAL_FALLBACK" thinking="$THINKING_IMPLEMENT"
+  if (( ESCALATIONS > 0 )); then model="$MODEL_ESCALATE"; fb="$MODEL_PLAN"; thinking="$THINKING_ESCALATE"; fi
   {
     echo "You are the WORKER. Implement the approved plan in $REPO."
     echo "Plan:"; cat "$RUN_DIR/plan.md"
@@ -276,7 +281,7 @@ stage_implement() {
     [[ -n "$feedback" ]] && { echo "Human redirect feedback:"; echo "$feedback"; }
     [[ -f "$RUN_DIR/review.md" ]] && { echo "Reviewer findings to address:"; cat "$RUN_DIR/review.md"; }
   } > "$RUN_DIR/implement.prompt.md"
-  pi_call "$model" "$fb" "$RUN_DIR/implement.prompt.md" "$RUN_DIR/implement.out.md" "" "implement"
+  pi_call "$model" "$fb" "$RUN_DIR/implement.prompt.md" "$RUN_DIR/implement.out.md" "$thinking" "implement"
 }
 
 escalate_worker() { # $1=reason; escalates the worker model if the cap allows.
