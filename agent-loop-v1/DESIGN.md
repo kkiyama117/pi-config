@@ -81,7 +81,7 @@ the corpus (`docs/agents_docs_v1/`) or the pi-subagents runtime primitives.
 | 5 | Review | pi headless | thinking (gpt-5.6-luna, high/xhigh) | fresh-context adversarial review of the diff; findings with file/line. |
 | — | **GATE 2** | human | — | approve / reject / redirect. Before *any* commit. Redirect → feedback to the **worker**; plan-level rejection → redo from **planner**. |
 | 6 | Commit or rollback | script (+human) | — | v1: loop commits to `develop`/sub-branches after GATE-2; `main` is protected; no merge/push. Rollback = drop branch. |
-| 7 | Record | script | — | append to `memory/decisions-log.md`, `past-runs.md`; failures to `known-failures.md`. |
+| 7 | Record | script | — | append to `memory/decisions-log.md`, `past-runs.md`, `cost-log.md` (one line per pi call: run/stage/model/tokens/cost); failures to `known-failures.md`. Cost summary is emitted by an **EXIT trap** so aborted runs still get complete accounting (Q1-approved). |
 
 ## HITL gates
 
@@ -103,7 +103,7 @@ Gate surface options (decision for the human — see QUESTIONS):
 
 Redirect policy (decided):
 
-- **GATE-1 redirect** → feedback is fed into the **planner** prompt; plan is regenerated.
+- **GATE-1 redirect** → feedback is fed into the **planner** prompt; plan is regenerated **and shown again at GATE-1** (revised plans are never auto-approved — the re-gate was added after a redirect fell through to implementation without re-approval; fixed before task-002 and exercised in production during task-004).
 - **GATE-2 redirect** → feedback is fed into the **worker** prompt; next cycle re-implements.
 - **GATE-2 reject with plan-level problems** (e.g. worker found huge bugs, scope drift) → redo from the **planner**, not the worker.
 
@@ -122,10 +122,13 @@ Exact IDs from `agent/settings.json` enabledModels:
 > Note: when the worker escalates to `cursor/gpt-5.6@1m:slow`, the reviewer
 > must use its fallback (`cursor/claude-opus-5@1m`) so the reviewer never
 > grades its own model family (eval-engineering rule).
+> **Implemented** in `stage_review()` (task-002 lesson; exercised in task-003
+> cycles 2–3: worker on gpt-5.6, reviewer on claude-opus-5).
 
 Cheap-model-first with explicit escalation; every stage logs model + token
-usage into `past-runs.md` (`03-loop.md` Budget: turn-cap, model-routing,
-cheap-model-first, token-report).
+usage (`memory/cost-log.md`, one line per pi call) and wall-clock durations
+(`stage <name> took <N>s`, `pi attempt model=<model> took <N>s stage=<stage>`,
+`gate <name> waited <N>s` — tasks 002–004).
 
 ## herdr + pi-subagents integration (user rule 1)
 
@@ -156,6 +159,11 @@ cheap-model-first, token-report).
   silently.
 - Bounded retry cycle: max **3** implement→verify→review cycles per iteration
   (graph Shape 4 hard limit); then forced human escalation.
+- The max-cycles guard only fires on **genuine exhaustion** (`DONE` flag set
+  on the GATE-2 approve path). Without the flag, a successful commit on the
+  3rd cycle still died with "FATAL: max cycles reached" — found by the
+  task-003 validation run, reproduced by a regression test (fake-pi stub),
+  fixed in `9050a6c`.
 - Max **2** model escalations (normal → thinking) per iteration. Escalation
   triggers on **verify failure OR review failure** (review-fail escalation
   added after task-002: 3 review FAILs burned all cycles on the same worker
@@ -169,7 +177,11 @@ cheap-model-first, token-report).
   agent is observed not stopping. The `STAGE_TIMEOUT_S` variable exists but
   defaults to 0 (disabled).
 - Cost: no hard budget in v1 (decided Q12); providers enforce their own rate
-  limits. TODO: wire a cost manager like `ccusage` into the token-report.
+  limits. **Cost recording is implemented** (task-002): `pi_usage.py` parses
+  `pi --mode json` NDJSON — provider-aware (cursor reports cumulative totals →
+  last event; other providers report per-turn → summed), tolerant of
+  truncated/malformed lines, no jq. A cost *guard* (abort above a budget)
+  remains a later step.
 
 ## Isolation
 
@@ -180,6 +192,15 @@ cheap-model-first, token-report).
 - The loop commits to `develop` and sub-branches only after GATE-2 approval;
   `main` is protected (refuse to create a loop branch from `main`).
   No merge/push in v1 (decided Q13/Q14).
+
+## Implemented & operational history (2026-08-10)
+
+| Task | What shipped | Outcome / lesson |
+|------|--------------|------------------|
+| task-001 | Add `kimi-coding/k3` + `cursor/gpt-5.6@1m:slow` to `agent/settings.json` | First real loop run; review PASS, committed on loop branch, merged to develop |
+| task-002 | Cost tracking: `pi_usage.py` (stdlib, no jq), `cost-log.md`, EXIT-trap summary, provider-aware usage aggregation | Reviewer FAIL x3 → forced human escalation → escalation gap found: worker never escalated on *review* failures. Fixed: `escalate_worker()` shared by verify+review paths |
+| task-003 | Per-stage timing: `stage <name> took <N>s`, `gate <name> waited <N>s` | Validation run found the max-cycles-after-commit bug (DONE flag, `9050a6c`); regression-tested with a fake-pi stub |
+| task-004 | Per-attempt attribution: `pi attempt model=<model> took <N>s stage=<stage>` | Real GATE-1 redirect exercised the re-gate fix in production; fallback path proven by stub test (primary fail + fallback success → 2 attempt lines + 2 cost-log lines) |
 
 ## What v1 deliberately excludes
 
