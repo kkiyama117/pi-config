@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "missionId": "829e2172-e21b-4876-b000-39355392ec81",
+  "projectRoot": "/home/kiyama/.pi",
+  "recordPath": "/home/kiyama/.pi/.pi-subagents/missions/829e2172-e21b-4876-b000-39355392ec81.json",
+  "title": "Read the classified AI-agent-coding articles and build a documentation tree.",
+  "status": "completed",
+  "updatedAt": "2026-08-09T11:48:15.452Z",
+  "lastRunId": "fad286c4"
+}

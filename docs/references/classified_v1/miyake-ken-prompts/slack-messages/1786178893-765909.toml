@@ -1,0 +1,12 @@
+[source]
+repository = "https://github.com/miyake-ken/prompts"
+kind = "slack-message"
+channel = "#hermes_home"
+channel_id = "C0BBHF3REDS"
+posted_at = "2026-08-08 08:48:13 UTC"
+slack_ts = "1786178893.765909"
+index = 96
+message_type = "x"
+
+[links]
+urls = "https://x.com/i/status/2085860526052315310"
