@@ -26,3 +26,4 @@ agent/intercom/broker.spawn.lock
 agent/intercom/extension-state/
 .pi-subagents/
 *.pre-pi-config.*
+agent/extensions/herdr-agent-state.ts
