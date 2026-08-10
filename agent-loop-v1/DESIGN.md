@@ -115,7 +115,7 @@ Exact IDs from `agent/settings.json` enabledModels:
 |------|-------|----------|-----|
 | Intake/contract formatting | `ollama-cloud/deepseek-v4-flash:0731` | `deepseek/deepseek-v4-flash` | normal task, cheap-first |
 | Worker (implement) | `ollama-cloud/deepseek-v4-flash:0731` | `cursor/composer-2-5:fast` | normal task |
-| Plan | `kimi-coding/k3` | `ollama-cloud/glm-5.2` | thinking task |
+| Plan | `kimi-coding/k3` | `ollama-cloud/kimi-k3` | thinking task |
 | Review (adversarial) | `cursor/gpt-5.6@1m:slow` (thinking `high`/`xhigh`) | `cursor/claude-opus-5@1m` | thinking + **must differ from worker model family** (eval-engineering rule); decided by human (Q8) — cursor provider, not openrouter |
 | Escalation (worker stuck) | `cursor/gpt-5.6@1m:slow` | `kimi-coding/k3` | thinking, max 2 escalations/iteration |
 

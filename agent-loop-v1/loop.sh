@@ -25,7 +25,7 @@ set -euo pipefail
 MODEL_NORMAL="${MODEL_NORMAL:-ollama-cloud/deepseek-v4-flash:0731}"
 MODEL_NORMAL_FALLBACK="${MODEL_NORMAL_FALLBACK:-cursor/composer-2-5:fast}"
 MODEL_PLAN="${MODEL_PLAN:-kimi-coding/k3}"
-MODEL_PLAN_FALLBACK="${MODEL_PLAN_FALLBACK:-ollama-cloud/glm-5.2}"
+MODEL_PLAN_FALLBACK="${MODEL_PLAN_FALLBACK:-ollama-cloud/kimi-k3}"
 # Reviewer MUST differ from the worker model family (eval-engineering rule).
 # Decided (Q8): gpt-5.6 via cursor (not openrouter), high/xhigh thinking.
 MODEL_REVIEW="${MODEL_REVIEW:-cursor/gpt-5.6@1m:slow}"
