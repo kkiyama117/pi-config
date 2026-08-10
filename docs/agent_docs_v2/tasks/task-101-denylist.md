@@ -19,42 +19,59 @@ fix both.
 Human redirect (2026-08-10, run 20260810-112247): fix the implementation with
 the NORMAL worker model (ollama-cloud/deepseek-v4-flash:0731), no escalation.
 
-## Reviewer findings to address (run 20260810-112247, cycle 3 — all must be
+## Reviewer findings — round 1 (run 20260810-112247): RESOLVED
+
+Fixed and verified by the reviewer in run 20260810-122118 (CRLF/indent
+normalization, malformed-ERE fail-closed, DENYLIST immutability incl.
+committed-edit and empty-base cases, rename source+destination, committed
+denied files via base-ref diff, review diff surfacing untracked files).
+Keep the fixes; the round-2 findings below are the remaining holes.
+
+## Reviewer findings — round 2 (run 20260810-122118, cycle 3 — all must be
 fixed; the reviewer FAILed on these)
 
-1. **High — CRLF `DENYLIST` silently disables every rule (fail-open).**
-   The blank/comment filter never strips `\r`, so each rule becomes `...$\r`
-   and matches nothing. Fix: strip trailing `\r` in the same pipeline that
-   filters blank/comment lines.
-2. **High — a worker commit bypasses both the denylist and the review.**
-   Changed paths come only from `git status`; the review diffs only against
-   `HEAD`. A worker that commits (it is asked not to, but nothing enforces
-   it) makes both gates see nothing. Fix: capture `BASE_SHA` (the branch
-   point) when the worktree is created, and use it for the changed-path
-   detection AND the review diff (`git diff "${BASE_SHA:-HEAD}" --`).
-3. **High — inlining untracked files can make the review stage unrunnable.**
-   The review prompt dumps every untracked file in full; the prompt is passed
-   as one argv element, and Linux caps one argument at 131072 bytes (E2BIG).
-   A large untracked text file makes `pi` fail to exec for both models.
-   Fix: cap per-file output in the review prompt (e.g. emit
-   `git diff --no-index --stat` instead of full content when a file exceeds
-   ~64 KB).
-4. **Medium — an indented rule is silently inert.** Leading whitespace is
-   tolerated on blank/comment lines, so an author assumes indentation is
-   insignificant, but `  ^denied/` is passed to `grep -E` intact and never
-   matches. Fix: strip leading whitespace in the same `sed` as finding 1.
-5. **Low — the "empty DENYLIST" log is misleading, and the file becomes
-   permanently uneditable.** The immutability check runs before the
-   empty-pattern check, so a comment-only `DENYLIST` hard-rejects any edit
-   to itself while never printing the "present but empty — skipping" line.
-   Fix: reword the message; keep fail-closed as the default.
-6. **Low — a bare `exit` in the untracked-diff path kills the run without
-   diagnostics** (no log, no die, no record_failure). Fix: log + skip over
-   a bare exit.
-7. **Low, already documented — `.gitignore` evasion.** A denied path added
-   to `.gitignore` drops out of untracked coverage; impact is limited
-   because GATE-2's `git add -A` also skips ignored files. No fix required;
-   keep the existing comment.
+1. **High — `--ignored=matching` collapses ignored directories, defeating
+   the evasion it was added to stop.** Git reports a directory matching an
+   ignore pattern as a single entry with a trailing slash (`!! cache/`), so
+   files under it are never handed to the matcher: `cache/credentials.json`
+   and a worker-written `.gitignore` with `stuff/` + `stuff/secrets.tar`
+   both pass. The test matrix misses this because every ignore test uses a
+   FILE pattern (`agent/auth.json`, `secrets.txt`), which `matching` does
+   report individually. Fix: use `--ignored=traditional` (reports individual
+   files) for the in-worktree pass.
+2. **High — a committed DENYLIST makes the baseline contract check fail on
+   a pristine tree.** `git status --ignored` lists every ignored file
+   PRESENT, not every ignored file changed, so pre-existing ignored files
+   are treated as worker-changed paths. On `~/.pi`: `agent/auth.json` is
+   ignored (`.gitignore:3`) and DENYLIST:7 is `^agent/auth\.json$` —
+   reproduced: clean tree → `DENYLIST violation: agent/auth.json`, rc=1.
+   The moment DENYLIST is committed, every future run dies at the contract
+   check. Fix: restrict the ignored scan to the in-worktree pass (only when
+   `BASE_SHA` is set); a fresh worktree has no ignored files, so nothing is
+   lost. (Reviewer-verified fix: `local ignored_opt=(); [[ -n
+   "${BASE_SHA:-}" ]] && ignored_opt=(--ignored=traditional)` — 30/30
+   tests still pass, both High cases fail closed.)
+3. **Medium — a review-diff failure yields an empty diff block, and the
+   reviewer PASSes a review of nothing.** Every degradation path (failed
+   mktemp, unresolvable BASE_SHA, untracked-listing failure, per-file
+   skips) reports only through `log` (stderr/loop.log); nothing reaches
+   `review.prompt.md`, so the reviewer sees an empty fenced block and
+   answers PASS. Fix: print a marker on stdout so it lands in the prompt,
+   e.g. `printf '### REVIEW-DIFF INCOMPLETE: tracked diff unavailable
+   (rc=%s)\n' "$rc"` alongside each `log` call in the review-diff
+   functions.
+4. **Medium — full contents of gitignored files are now sent to the
+   reviewer model.** `git ls-files --ignored` enumerates individual files
+   and `emit_untracked_for_review` dumps each under 64 KiB verbatim — on
+   this repo the ignored set is the local-secret set (auth.json, trust.json,
+   sessions/, transcripts/, run-history.jsonl) and the prompt goes to
+   gpt-5.6/claude-opus-5. Fix: keep ignored paths in the listing but route
+   them through the stat-only branch (pass a flag to
+   `emit_untracked_for_review` for the second `ls-files` stream).
+5. **Low — the unresolvable-base branch logs "skipping" but does not
+   skip.** Control falls through; correct today only because the following
+   conditions happen to leave `denylist_present=0`. Fix: add `return 0`
+   after that log so the stated behavior is the actual behavior.
 
 ## Completion condition (BFV Kernel)
 
