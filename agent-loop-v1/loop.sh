@@ -131,10 +131,12 @@ pi_call() {
   local model="$1" fallback="$2" prompt_file="$3" out_file="$4"
   local thinking="${5:-}" stage="${6:-unknown}"
   local args=()
+  local t0=$SECONDS   # stage wall-clock start (bash builtin, kernel rule 3)
   [[ -n "$thinking" ]] && args+=(--thinking "$thinking")
   if [[ "$DRY_RUN" == "1" ]]; then
     log "DRY-RUN: would call pi -p --model $model ${args[*]} < $prompt_file"
     echo "[dry-run output for $model]" > "$out_file"
+    log "stage $stage took $((SECONDS - t0))s"
     return 0
   fi
   log "pi call: model=$model (fallback=$fallback) thinking=${thinking:-default} timeout=${STAGE_TIMEOUT_S}s"
@@ -145,6 +147,7 @@ pi_call() {
     used_model="$fallback"
     if ! run_pi "$fallback" "$prompt_file" "$out_file.jsonl" "${args[@]}"; then
       record_usage_if_any "$out_file.jsonl" "$fallback" "$stage"
+      log "stage $stage failed after $((SECONDS - t0))s"
       die "both models failed for stage=$stage (see $RUN_DIR/pi.stderr) — stop and ask"
     fi
   fi
@@ -159,6 +162,7 @@ pi_call() {
     || die "no assistant message_end usage in $out_file.jsonl — stop and ask"
   record_usage_line "$usage_line" "$used_model" "$stage"
   record_run "stage pi_call model=$used_model ok out=$out_file"
+  log "stage $stage took $((SECONDS - t0))s"
 }
 
 # ---------------------------------------------------------------------------
@@ -170,6 +174,7 @@ GATE_ACTION=""
 GATE_FEEDBACK=""
 gate() {
   local name="$1" artifact="${2:-}"
+  local g0=$SECONDS
   notify "GATE $name waiting for human decision (run $RUN_ID)"
   echo
   echo "==================== HITL GATE: $name ===================="
@@ -186,6 +191,7 @@ gate() {
     esac
   done
   record_decision "gate=$name action=$GATE_ACTION feedback=${GATE_FEEDBACK:-none}"
+  log "gate $name waited $((SECONDS - g0))s"
   # Alt surface (in-Pi): pi-subagents checkpoint —
   #   subagent({action:"append-step", id, step:{checkpoint:"gate1", message:"..."}})
   #   subagent({action:"approve-checkpoint"|"reject-checkpoint", id})
