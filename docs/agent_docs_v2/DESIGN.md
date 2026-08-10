@@ -20,6 +20,7 @@
 | 採否規則 | ゲートは場当たりの人間判断 | **全タスクに Acceptance rules 節**(TASK_TEMPLATE で必須化) |
 | worktree | 成功後も残置(手動削除) | commit 後に自動 remove、branch は保持(task-106) |
 | 自律ティア | 固定 L2 形状 | L1 report-only → スケジュール → ティア枠組み → 自己更新(Phase D) |
+| ゴール範囲 | `~/.pi` 自己更新のみ | 自己更新 → スキル基盤(Phase E)→ 他プロジェクト適用(Phase F)の 3 段(2026-08-10 拡張、`BACKLOG_PHASE_EF.md`) |
 
 ## 2. suggest_v1 からの変更点(better way)と根拠
 
@@ -91,8 +92,15 @@ GitHub Actions は pi-config をリモートで回す将来の選択肢として
 
 ## 3. Phase D — 自己更新ループの形(設計スケッチ)
 
-最終目標「`~/.pi` が自分で自分を更新する」の v2 での到達形。詳細ブリーフは
-`BACKLOG.md`、タスク化は TASK_TEMPLATE に従いプランナー agent が行う。
+最終目標は 2026-08-10 に 3 段へ拡張された(`BACKLOG_PHASE_EF.md` §0):
+
+1. **Phase A〜C**: ループ自体の安全装置・予算・計測(本計画の前半)
+2. **Phase D**: `~/.pi` が自分で自分を更新する(下記スケッチ)
+3. **Phase E**: 外部スキル/プロンプトの評価・取込基盤(task-3XX)
+4. **Phase F**: 他プロジェクトへの適用(`/data/dotfiles3` パイロット、task-4XX)
+
+Phase D の到達形(詳細ブリーフは `BACKLOG.md`、タスク化は TASK_TEMPLATE に従い
+プランナー agent が行う):
 
 ```
 [systemd user timer(task-202)]
