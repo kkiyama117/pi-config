@@ -191,7 +191,7 @@ gate() {
     esac
   done
   record_decision "gate=$name action=$GATE_ACTION feedback=${GATE_FEEDBACK:-none}"
-  log "gate $name waited $((SECONDS - g0))s"
+  log "gate '$name' waited $((SECONDS - g0))s"   # quoted: $name is multi-word (reviewer nit, task-003)
   # Alt surface (in-Pi): pi-subagents checkpoint —
   #   subagent({action:"append-step", id, step:{checkpoint:"gate1", message:"..."}})
   #   subagent({action:"approve-checkpoint"|"reject-checkpoint", id})
@@ -388,7 +388,7 @@ mkdir -p "$LOOP_HOME/worktrees"
   || die "cannot create loop worktree/branch"
 REPO="$WT_DIR"   # all subsequent stages run inside the worktree
 
-CYCLE=0; ESCALATIONS=0
+CYCLE=0; ESCALATIONS=0; DONE=0
 while (( CYCLE < MAX_CYCLES )); do
   CYCLE=$((CYCLE + 1))
   stage_implement "${GATE_FEEDBACK:-}"
@@ -426,6 +426,7 @@ while (( CYCLE < MAX_CYCLES )); do
         log "committed on $BRANCH (worktree $WT_DIR)"
       fi
       record_decision "gate=GATE-2 approved run=$RUN_ID branch=$BRANCH committed"
+      DONE=1
       break
       ;;
     reject)
@@ -451,7 +452,13 @@ while (( CYCLE < MAX_CYCLES )); do
       continue ;;
   esac
 done
-(( CYCLE >= MAX_CYCLES )) && die "max cycles ($MAX_CYCLES) reached — forced human escalation"
+# Only die on cycle exhaustion when the run did NOT complete successfully
+# (task-003 run: GATE-2 approve + commit on the 3rd cycle hit this guard and
+# reported FATAL after a successful commit — break must be distinguishable
+# from exhaustion).
+if (( DONE != 1 && CYCLE >= MAX_CYCLES )); then
+  die "max cycles ($MAX_CYCLES) reached — forced human escalation"
+fi
 
 record_run "done run=$RUN_ID branch=$BRANCH cycles=$CYCLE"
 log "iteration complete. Review $RUN_DIR for artifacts; memory in $MEMORY_DIR"
