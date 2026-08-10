@@ -86,61 +86,64 @@ Fixed and verified by the reviewer in run 20260810-141720 (stdin transport
 confirmed live against a real model, worker suite 36/36). Keep the fixes;
 the round-4 findings below are the remaining holes.
 
-## Reviewer findings — round 4 (run 20260810-141720, GATE-2 reject — all
-must be fixed; the reviewer FAILed on these)
+## Reviewer findings — round 4 (run 20260810-141720): RESOLVED
 
-1. **High — an embedded git repo bypasses the DENYLIST entirely.**
-   `git status --untracked-files=all` cannot descend into a nested
-   repository: it reports the whole thing as a single `dir/` entry, so
-   every denied file inside is invisible to the matcher (reproduced:
-   `vendor/pkg/` with `.env` + `credentials.json` inside → PASS). The
-   review path is blind too: `git diff --no-index -- /dev/null vendor/pkg/`
-   exits 1 and the rc>1 check misses it, so no INCOMPLETE marker is
-   emitted. Fix: with `-uall`, a trailing `/` on a porcelain path is a
-   reliable signal git could not enumerate the directory — fail closed on
-   it in the changed-path loop (`if [[ "$path" == */ ]]` → log
-   `DENYLIST violation: unenumerable directory $path (embedded git repo)`
-   → return 1), and mirror an INCOMPLETE marker in
-   `emit_untracked_for_review` for the same case.
-2. **High — `--dry-run` now always ends in FATAL.** `pi_call` writes
-   `[dry-run output for $model]` into review.md, which contains no `^PASS`
-   line, so the new gate rejects every cycle and the documented
-   `--dry-run` usage can never reach GATE-2. Fix: skip the gate in dry-run
-   (`if [[ "$DRY_RUN" != "1" ]] && ! review_gate_passes ...`).
-3. **Medium — degraded review input is handed to the worker, which cannot
-   fix it.** The appended `FAIL: deterministic gate rejected ...` text
-   lands in review.md and `stage_implement` feeds review.md to the worker
-   as "Reviewer findings to address"; harness conditions (tracked diff
-   unavailable, capped listing) are not worker-fixable, and it costs two
-   escalated cycles + a second reviewer call before a human is consulted.
-   Fix: on `! review_input_is_complete`, skip `escalate_worker` and go
-   straight to the human gate; ideally evaluate completeness right after
-   review.diff is built and skip the reviewer `pi_call` entirely.
-4. **Medium — any untracked file over 64 KiB is an unpassable gate.**
-   The stat-only header is treated as degraded input, so a task whose
-   deliverable is a single file > 64 KiB can never pass. Fix: make both
-   limits overridable while keeping fail-closed defaults
-   (`REVIEW_UNTRACKED_LIMIT` / `REVIEW_UNTRACKED_MAX_BYTES`).
-5. **Medium — `BASE_SHA` is inherited from the caller's environment.**
-   The baseline `verify_repo` (contract check) relies on `BASE_SHA` being
-   unset; an exported `BASE_SHA` switches on `--ignored=traditional`
-   against the main checkout and kills the run. Fix: add `BASE_SHA=""`
-   to the globals block so only the loop can set it.
-6. **Low — verdict anchoring is brittle.** `grep -q '^PASS'` / `'^FAIL'`
-   require the verdict at column 0 with no decoration; `**PASS**` or
-   `PASS.` costs a full cycle plus an escalation (and a bolded `**FAIL**`
-   escaped the old `^FAIL` gate in run 20260810-141720, showing GATE-2
-   with a FAILed review). Fix: anchor loosely, e.g. `^[*_ ]*PASS` /
-   `^[*_ ]*FAIL`.
-7. **Low — `sed` BRE alternation `\|` is a GNU extension** (fails
-   silently off GNU). Fix: `sed -E -e 's/\r$//' -e 's/^[[:space:]]*//'
-   -e '/^[[:space:]]*($|#)/d'`.
-8. **Low — `emit_untracked_for_review` is invoked twice, each with its
-   own `ignored_count` budget** (real cap 400, marker says 200). Fix:
-   share one counter across both invocations.
-9. **Low, note only — the porcelain scan walks the entire ignored tree
-   (`node_modules`, build output) on every cycle.** Worth knowing before
-   this lands in a big target repo; no fix required now.
+Fixed and verified by the reviewer in run 20260810-150636 (worker suite
+75/75; verdict regexes, rename slicing, ls-tree parsing, stdin transport,
+malformed-ERE all confirmed sound). Keep the fixes; the round-5 findings
+below are the remaining holes.
+
+## Reviewer findings — round 5 (run 20260810-150636, ESCALATION reject —
+all must be fixed; the reviewer FAILed on these)
+
+1. **Blocker — `diff.external` can silence the entire review diff.** The
+   worktree shares `.git/config` with the main checkout, so one worker
+   shell command (`git config diff.external /bin/true`) makes every review
+   diff empty with rc=0 — no INCOMPLETE marker, `review_input_is_complete`
+   reports complete, the gate PASSes on nothing. Untracked content is
+   blinded the same way (`git diff --no-index` honors it too, rc=1 which is
+   not `> 1`). Fix: add `--no-ext-diff` and `--no-textconv` to the three
+   review-diff commands, and prefer `git -c core.attributesFile=/dev/null`
+   (textconv can be pointed at an invisible attributes file). Verified:
+   `git diff --no-ext-diff` restores full output with `diff.external`
+   still set. `git diff --check` / `--name-only` / `--quiet` are NOT
+   affected — this is a review-stage-only hole.
+2. **High — a gitignored directory that is a git checkout hard-fails
+   verify forever.** `--ignored=traditional` + `-uall` collapses an
+   ignored dir that is itself a git repo to a trailing-slash record
+   (`!! node_modules/leftpad/`), which hits the embedded-repo branch →
+   verify fails on every cycle, the worker cannot fix it, and the loop
+   burns all cycles with a misleading "DENYLIST violation" message.
+   Triggers are ordinary (npm/pnpm git deps, cargo/go checkouts, pip -e
+   from git). Fix: keep the hard failure for `??` records (untracked,
+   committable); for `!!` trailing-slash records enumerate instead
+   (`find "$repo/$dir" -type f` mapped to repo-relative paths), failing
+   closed only if `find` fails.
+3. **High — files past the 200-path cap vanish from review entirely, yet
+   the input is still called complete.** The cap breaks out of the loop
+   without naming the remaining paths; a payload file sorting last in
+   `ls-files` order is trivially targetable, and GATE-2's `git add -A`
+   commits a file the reviewer never saw a byte or even the name of.
+   Fix: when the budget is exhausted, continue emitting path-only lines
+   for the remainder (cheap, bounded) and cap only content; or promote
+   the truncation marker to `### REVIEW-DIFF INCOMPLETE:` so it routes to
+   the human gate.
+4. **Medium — no aggregate byte budget on the reviewer prompt.** The two
+   caps are per-file (64 KiB) and per-count (200) — worst case ~12.8 MB
+   of untracked content assembled into review.prompt.md. Fix: add a
+   running total alongside the count and stop emitting content once
+   exceeded.
+5. **Medium — the incomplete-input gate cats the entire review diff to the
+   terminal** (megabytes scroll the human's decision prompt away). Fix:
+   pass a truncated excerpt or a file containing just the `###` marker
+   lines.
+6. **Medium — in the bootstrap case a vacuous policy silently disables
+   the feature.** The snapshot is taken after stage_implement, so the
+   worker's first-cycle DENYLIST is authoritative; if it contains only
+   comments/blank lines, patterns is empty, matching is skipped for the
+   whole run, and verify passes. Fix: make an empty pattern set in the
+   bootstrap path (as distinct from a tracked-at-base policy) a verify
+   failure.
 
 ## Completion condition (BFV Kernel)
 
