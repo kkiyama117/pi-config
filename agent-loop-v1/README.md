@@ -16,6 +16,19 @@ script. Design rationale: `DESIGN.md`; Q&A: `QUESTIONS.md`.
 | `locks/` | flock-based per-repo concurrency locks (gitignored) |
 | `worktrees/` | Branch-per-loop git worktrees (gitignored) |
 
+## Operational doctrine (applies to ALL agent orchestration)
+
+1. **USE HERDR** — every long-lived/model-driven agent runs in a herdr pane (visible,
+   steerable, gates reachable). Never `nohup`/detached background for agent work.
+2. **When calling a wiser model, I write the prompt and it delegates** — the wise model
+   plans/orchestrates/reviews; its OWN subagents do the implementation. It is never a
+   lone worker implementing the full task, never a headless implementer.
+3. **I orchestrate** — decompose → prompt (wise model) → gate → wise model delegates
+   to its subagents → deterministic verify → wise model reviews as oracle.
+
+Global rules live in `~/.pi/agent/AGENTS.md` (loaded every pi session); full
+doctrine: `~/.agents/skills/orchestrate-agents/SKILL.md`.
+
 ## Run a task
 
 ```bash
