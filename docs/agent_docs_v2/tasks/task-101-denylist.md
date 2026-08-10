@@ -16,6 +16,46 @@ so newly created files are always untracked; (b) it mixes glob patterns
 (`**/.env`) with `grep -E` regex matching. The completion conditions below
 fix both.
 
+Human redirect (2026-08-10, run 20260810-112247): fix the implementation with
+the NORMAL worker model (ollama-cloud/deepseek-v4-flash:0731), no escalation.
+
+## Reviewer findings to address (run 20260810-112247, cycle 3 — all must be
+fixed; the reviewer FAILed on these)
+
+1. **High — CRLF `DENYLIST` silently disables every rule (fail-open).**
+   The blank/comment filter never strips `\r`, so each rule becomes `...$\r`
+   and matches nothing. Fix: strip trailing `\r` in the same pipeline that
+   filters blank/comment lines.
+2. **High — a worker commit bypasses both the denylist and the review.**
+   Changed paths come only from `git status`; the review diffs only against
+   `HEAD`. A worker that commits (it is asked not to, but nothing enforces
+   it) makes both gates see nothing. Fix: capture `BASE_SHA` (the branch
+   point) when the worktree is created, and use it for the changed-path
+   detection AND the review diff (`git diff "${BASE_SHA:-HEAD}" --`).
+3. **High — inlining untracked files can make the review stage unrunnable.**
+   The review prompt dumps every untracked file in full; the prompt is passed
+   as one argv element, and Linux caps one argument at 131072 bytes (E2BIG).
+   A large untracked text file makes `pi` fail to exec for both models.
+   Fix: cap per-file output in the review prompt (e.g. emit
+   `git diff --no-index --stat` instead of full content when a file exceeds
+   ~64 KB).
+4. **Medium — an indented rule is silently inert.** Leading whitespace is
+   tolerated on blank/comment lines, so an author assumes indentation is
+   insignificant, but `  ^denied/` is passed to `grep -E` intact and never
+   matches. Fix: strip leading whitespace in the same `sed` as finding 1.
+5. **Low — the "empty DENYLIST" log is misleading, and the file becomes
+   permanently uneditable.** The immutability check runs before the
+   empty-pattern check, so a comment-only `DENYLIST` hard-rejects any edit
+   to itself while never printing the "present but empty — skipping" line.
+   Fix: reword the message; keep fail-closed as the default.
+6. **Low — a bare `exit` in the untracked-diff path kills the run without
+   diagnostics** (no log, no die, no record_failure). Fix: log + skip over
+   a bare exit.
+7. **Low, already documented — `.gitignore` evasion.** A denied path added
+   to `.gitignore` drops out of untracked coverage; impact is limited
+   because GATE-2's `git add -A` also skips ignored files. No fix required;
+   keep the existing comment.
+
 ## Completion condition (BFV Kernel)
 
 1. `verify_repo()` in `agent-loop-v1/loop.sh` enforces `<repo>/DENYLIST` when
