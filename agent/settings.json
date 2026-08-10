@@ -76,7 +76,8 @@
     "ollama-cloud/deepseek-v4-pro",
     "deepseek/deepseek-v4-flash",
     "openrouter/openrouter/fusion",
-    "openrouter/anthropic/claude-sonnet-5"
+    "openrouter/anthropic/claude-sonnet-5",
+    "cursor/grok-4.5"
   ],
   "lastChangelogVersion": "0.84.1",
   "packages": [
