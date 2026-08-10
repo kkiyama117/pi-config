@@ -156,7 +156,11 @@ cheap-model-first, token-report).
   silently.
 - Bounded retry cycle: max **3** implement→verify→review cycles per iteration
   (graph Shape 4 hard limit); then forced human escalation.
-- Max **2** model escalations (normal → thinking) per iteration.
+- Max **2** model escalations (normal → thinking) per iteration. Escalation
+  triggers on **verify failure OR review failure** (review-fail escalation
+  added after task-002: 3 review FAILs burned all cycles on the same worker
+  model while the reviewer's findings were valid). Escalation cap reached →
+  forced human gate.
 - Refuse to start: dirty git tree, failing baseline verifier, missing
   completion condition.
 - Any unapproved product/scope/architecture decision that surfaces mid-loop →
