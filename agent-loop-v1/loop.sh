@@ -270,15 +270,35 @@ stage_implement() {
   pi_call "$model" "$fb" "$RUN_DIR/implement.prompt.md" "$RUN_DIR/implement.out.md" "" "implement"
 }
 
+escalate_worker() { # $1=reason; escalates the worker model if the cap allows.
+  # Used on BOTH verify and review failures (task-002: review FAIL x3 burned
+  # all cycles on the same model — reviewer findings were valid, worker never
+  # got a stronger model to fix them).
+  if (( ESCALATIONS >= MAX_ESCALATIONS )); then
+    log "escalation cap ($MAX_ESCALATIONS) reached after $1 failures"
+    return 1
+  fi
+  ESCALATIONS=$((ESCALATIONS + 1))
+  log "escalating worker model ($ESCALATIONS/$MAX_ESCALATIONS) after $1 failure"
+  return 0
+}
+
 stage_review() {
   log "stage: review (thinking model, adversarial, different family from worker)"
+  local rv="$MODEL_REVIEW" fb="$MODEL_REVIEW_FALLBACK"
+  if (( ESCALATIONS > 0 )); then
+    # Worker escalated to the gpt-5.6 family — the reviewer must leave it
+    # (eval-engineering rule: reviewer family != worker family).
+    log "worker escalated — reviewer switches to $MODEL_REVIEW_FALLBACK (family separation)"
+    rv="$MODEL_REVIEW_FALLBACK"; fb="$MODEL_REVIEW"
+  fi
   {
     echo "You are the REVIEWER. Fresh, adversarial review of the worker's diff in $REPO."
     echo "Diff:"; echo '```'; ( cd "$REPO" && git diff ); echo '```'
     echo "Report only concrete findings with file/line refs and smallest safe fixes."
     echo "Do not edit files. Verdict line: PASS or FAIL: <reason>."
   } > "$RUN_DIR/review.prompt.md"
-  pi_call "$MODEL_REVIEW" "$MODEL_REVIEW_FALLBACK" "$RUN_DIR/review.prompt.md" "$RUN_DIR/review.md" "$THINKING_REVIEW" "review"
+  pi_call "$rv" "$fb" "$RUN_DIR/review.prompt.md" "$RUN_DIR/review.md" "$THINKING_REVIEW" "review"
 }
 
 # ---------------------------------------------------------------------------
@@ -370,11 +390,7 @@ while (( CYCLE < MAX_CYCLES )); do
   if ! verify_repo "$REPO"; then
     log "verify FAILED (cycle $CYCLE)"
     record_failure "verify-fail run=$RUN_ID cycle=$CYCLE"
-    if (( ESCALATIONS < MAX_ESCALATIONS )); then
-      ESCALATIONS=$((ESCALATIONS + 1))
-      log "escalating worker model ($ESCALATIONS/$MAX_ESCALATIONS)"
-      continue
-    fi
+    escalate_worker verify && continue
     gate "ESCALATION verify keeps failing" "$RUN_DIR/implement.out.md"
     [[ "$GATE_ACTION" == "reject" ]] && die "aborted by human after verify failures"
     continue
@@ -383,6 +399,10 @@ while (( CYCLE < MAX_CYCLES )); do
   stage_review
   if grep -q '^FAIL' "$RUN_DIR/review.md"; then
     log "review FAIL (cycle $CYCLE) — looping with findings"
+    record_failure "review-fail run=$RUN_ID cycle=$CYCLE"
+    escalate_worker review && continue
+    gate "ESCALATION review keeps failing" "$RUN_DIR/review.md"
+    [[ "$GATE_ACTION" == "reject" ]] && die "aborted by human after review failures"
     continue
   fi
 
