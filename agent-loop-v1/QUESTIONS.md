@@ -12,7 +12,7 @@ All 15 questions were answered by the human. Decisions are recorded in
 | 5 | Granularity | 2 gates (plan + apply) |
 | 6 | Timeout | Wait forever (until reviewers/human answer) |
 | 7 | Redirect | Plan gate → planner; apply gate → worker; plan-level rejection → redo from planner |
-| 8 | Reviewer model | **gpt-5.6** (`cursor/gpt-5.6@1m:slow`) with `high`/`xhigh` thinking (cursor provider, not openrouter) |
+| 8 | Reviewer model | **gpt-5.6** (`cursor/gpt-5.6-luna@1m:slow`) with `high`/`xhigh` thinking (cursor provider, not openrouter). **Corrected 2026-08-10**: the alias `gpt-5.6` in the cursor SDK list resolves to **Sol**; the human re-specified **Luna** (xhigh thinking). Escalation target changed to `cursor/claude-sonnet-5@1m` (family `claude` ≠ reviewer's `gpt` — the reviewer stays Luna; the old Sol escalation collided with the reviewer family and demoted the reviewer to Opus 5) |
 | 9 | Escalation | Auto-escalate normal→thinking, max 2× |
 | 10 | Verifiers | Per-repo `VERIFIERS` file |
 | 11 | Iteration cap | 3 cycles; no wall-clock cap now (add if agent doesn't stop) |

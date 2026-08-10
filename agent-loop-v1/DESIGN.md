@@ -116,19 +116,23 @@ Exact IDs from `agent/settings.json` enabledModels:
 | Intake/contract formatting | `ollama-cloud/deepseek-v4-flash:0731` | `deepseek/deepseek-v4-flash` | — | normal task, cheap-first |
 | Worker (implement) | `ollama-cloud/deepseek-v4-flash:0731` | `cursor/composer-2-5:fast` | `medium` (`THINKING_IMPLEMENT`) | normal task |
 | Plan | `kimi-coding/k3` | `cursor/grok-4.5` | `high` (`THINKING_PLAN`) | thinking task |
-| Review (adversarial) | `cursor/gpt-5.6@1m:slow` | `cursor/claude-opus-5@1m` | `high` (`THINKING_REVIEW`) | thinking + **must differ from worker model family** (eval-engineering rule); decided by human (Q8) — cursor provider, not openrouter |
-| Escalation (worker stuck) | `cursor/gpt-5.6@1m:slow` | `kimi-coding/k3` | `high` (`THINKING_ESCALATE`) | thinking, max 2 escalations/iteration |
+| Review (adversarial) | `cursor/gpt-5.6-luna@1m:slow` | `cursor/claude-opus-5@1m` | `xhigh` (`THINKING_REVIEW`) | thinking + **must differ from worker model family** (eval-engineering rule); decided by human (Q8, corrected 2026-08-10 — LUNA, not Sol) |
+| Escalation (worker stuck) | `cursor/claude-sonnet-5@1m` | `kimi-coding/k3` | `high` (`THINKING_ESCALATE`) | mid-tier thinking, **family ≠ reviewer** so the reviewer stays Luna; max 2 escalations/iteration |
 
 > Thinking levels are pinned per stage (v2): no stage relies on pi's
 > `defaultThinkingLevel` (settings.json), which can drift. All four knobs are
 > env-overridable: `THINKING_PLAN` / `THINKING_IMPLEMENT` / `THINKING_REVIEW` /
 > `THINKING_ESCALATE`.
 
-> Note: when the worker escalates to `cursor/gpt-5.6@1m:slow`, the reviewer
-> must use its fallback (`cursor/claude-opus-5@1m`) so the reviewer never
-> grades its own model family (eval-engineering rule).
-> **Implemented** in `stage_review()` (task-002 lesson; exercised in task-003
-> cycles 2–3: worker on gpt-5.6, reviewer on claude-opus-5).
+> Model routing corrected 2026-08-10 (human): the alias `gpt-5.6` in the
+> cursor SDK list resolves to **GPT-5.6 Sol**; Q8's "gpt-5.6" was
+> re-interpreted as **GPT-5.6 Luna** for the reviewer (strongest tier, xhigh
+> thinking). The old escalation target (Sol) collided with the reviewer's
+> family, so the family rule demoted the reviewer to Opus 5 while Sol
+> implemented — inverted strength hierarchy. Now: escalated worker =
+> sonnet-5 (family `claude` ≠ `gpt`), reviewer stays Luna; the
+> reviewer-switch in `stage_review()` is **family-aware** (`model_family()`)
+> and only fires when the escalated worker shares the reviewer's family.
 
 Cheap-model-first with explicit escalation; every stage logs model + token
 usage (`memory/cost-log.md`, one line per pi call) and wall-clock durations

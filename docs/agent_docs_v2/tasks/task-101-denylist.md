@@ -93,8 +93,43 @@ Fixed and verified by the reviewer in run 20260810-150636 (worker suite
 malformed-ERE all confirmed sound). Keep the fixes; the round-5 findings
 below are the remaining holes.
 
-## Reviewer findings — round 5 (run 20260810-150636, ESCALATION reject —
+## Reviewer findings — round 5 (run 20260810-150636): RESOLVED
+
+Fixed and verified by the reviewer in run 20260810-155129 (worker suite
+107/107; stdin transport confirmed live; staged-evil + `assume-unchanged`
+variant is NOT a commit-injection path). Keep the fixes; the round-6
+findings below are the remaining holes.
+
+## Reviewer findings — round 6 (run 20260810-155129, ESCALATION reject —
 all must be fixed; the reviewer FAILed on these)
+
+1. **High — past the shared cap, ignored files emit a `PARTIAL` marker
+   even though nothing is withheld, which permanently disables the
+   reviewer stage.** The ignored stream is path-only by design (ignored
+   files cannot reach the commit — GATE-2's `git add -A` skips them), and
+   the cap-branch line is byte-identical to the uncapped branch, so no
+   content is lost — but the `PARTIAL` marker classifies the input as
+   degraded, `stage_review` skips the reviewer `pi_call` and opens a human
+   gate on EVERY cycle for any worktree with more than 200 ignored files
+   (`__pycache__`, `build/`, `.venv`, `node_modules` — this repo's main
+   checkout has 7921). Fix: make the content cap apply only to the
+   content-bearing stream
+   (`if (( ignored_path_only == 0 && REVIEW_EMIT_COUNT >= ignored_limit ))`)
+   and bound the ignored stream with a non-marker summary
+   (`### untracked (ignored): N further paths omitted`).
+2. **Medium — a completely empty review input is classified as complete,
+   so the reviewer is asked to review nothing.** `review_input_is_complete`
+   only looks for markers; a zero-byte review.diff returns complete, a
+   plausible PASS satisfies the gate, and the run reaches GATE-2.
+   Reachable via `git update-index --assume-unchanged` (hides worker edits
+   from both porcelain and `git diff HEAD`; the commit dies later at
+   `git add -A`, but the harness anomaly should take the degraded-input
+   path). Fix: right after building review.diff, add
+   `[[ -s "$review_diff" ]] || printf '### REVIEW-DIFF INCOMPLETE: no
+   changes captured\n' >> "$review_diff"`; and in
+   `collect_changed_paths` fail closed on
+   `git ls-files -v | grep -q '^[a-z]'` (flags `assume-unchanged` /
+   `skip-worktree` entries), next to the gitlink scan.
 
 1. **Blocker — `diff.external` can silence the entire review diff.** The
    worktree shares `.git/config` with the main checkout, so one worker
