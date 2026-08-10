@@ -27,6 +27,13 @@ committed-edit and empty-base cases, rename source+destination, committed
 denied files via base-ref diff, review diff surfacing untracked files).
 Keep the fixes; the round-2 findings below are the remaining holes.
 
+## Reviewer findings — round 2 (run 20260810-122118): RESOLVED
+
+Fixed and verified by the reviewer in run 20260810-133054 (stdin transport
+confirmed live, `--ignored=traditional` + `--untracked-files=all` expands
+nested ignored dirs individually, worker suite 29/29). Keep the fixes; the
+round-3 findings below are the remaining holes.
+
 ## Reviewer findings — round 2 (run 20260810-122118, cycle 3 — all must be
 fixed; the reviewer FAILed on these)
 
@@ -72,6 +79,40 @@ fixed; the reviewer FAILed on these)
    skip.** Control falls through; correct today only because the following
    conditions happen to leave `denylist_present=0`. Fix: add `return 0`
    after that log so the stated behavior is the actual behavior.
+
+## Reviewer findings — round 3 (run 20260810-133054, cycle 3 — all must be
+fixed; the reviewer FAILed on these)
+
+1. **High — reviewer prompt injection via untracked filename.** The path
+   header lines print the filename unquoted (`printf '### untracked: %s\n'
+   "$f"` at 4 sites). `git ls-files -z` preserves newlines in filenames, so
+   a worker-created file whose name contains a newline breaks out of the
+   fence in `review.prompt.md` and can inject instructions that suppress
+   the `^FAIL` line the loop gates on (structural verdict parse). The
+   ignored path-only branch has the same hole. Fix: use bash `%q` on all
+   four emission sites (`printf '### untracked: %q\n' "$f"`) — ordinary
+   paths stay byte-identical, newline-bearing names render as a single
+   `$'...'` token.
+2. **Medium — non-ignored untracked emission is unbounded.** The
+   `ignored_count`/`ignored_limit` cap is only consulted inside the
+   `ignored_path_only == 1` branch; the content branch has a 64 KiB
+   per-file cap but no count cap (measured: 3000 files → 504 KB prompt).
+   Load-bearing because the stdin transport removed the argv ceiling that
+   used to fail loudly. Fix: hoist the counter check above the
+   `if (( ignored_path_only == 1 ))` test so both branches share the cap,
+   emitting the existing `### REVIEW-DIFF TRUNCATED` marker.
+3. **Low — DENYLIST matching is skipped, not failed, when the base ref
+   will not resolve.** The `denied` computation lives entirely inside the
+   `git rev-parse --verify "$base_sha"` success branch, so an unresolvable
+   base means a present, valid DENYLIST enforces nothing (fail-open in a
+   fail-closed control). Fix: move the `denied` block out of the `if`;
+   keep only the `base_diff` union inside it.
+4. **Low — `getline src` is unguarded** in the rename/copy record
+   handling; prints stale/empty `src` on a truncated record. Fix:
+   `if ((getline src) > 0) print src`.
+5. **Low — `stat -c%s` does not dereference symlinks** (untracked symlink
+   reports link-target length, always takes the inline branch). Benign
+   (git diffs the link text); no fix required, note only.
 
 ## Completion condition (BFV Kernel)
 
