@@ -71,6 +71,7 @@ asserts, and its expected exit code (0 on pass, non-zero on fail).
 3. One task = one feature = one loop run = one small diff. If a draft needs
    two unrelated diffs, split it.
 4. File naming: `tasks/task-NNN-<kebab-slug>.md`. Numbers: 1XX = Phase A-C
-   (this plan), 2XX = Phase D (drafted from BACKLOG.md).
-5. After drafting a 2XX task from BACKLOG.md, list it in README.md's task
-   index (status: 未着手) in the same change.
+   (this plan), 2XX = Phase D (drafted from BACKLOG.md), 3XX = Phase E and
+   4XX = Phase F (both drafted from BACKLOG_PHASE_EF.md).
+5. After drafting a 2XX/3XX/4XX task from its backlog file, list it in
+   README.md's task index (status: 未着手) in the same change.

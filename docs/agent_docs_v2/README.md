@@ -16,6 +16,7 @@
 | `TASK_TEMPLATE.md` | タスク起草者(人間 or プランナー agent) | v2 タスクの必須構造(採否規則を含む) |
 | `tasks/task-1XX-*.md` | worker / reviewer モデル | loop.sh がそのまま読む契約形式タスク(英語) |
 | `BACKLOG.md` | プランナー agent | Phase D のブリーフ。TASK_TEMPLATE に従い task-2XX に展開する |
+| `BACKLOG_PHASE_EF.md` | プランナー agent | Phase E/F のブリーフ。task-3XX / task-4XX に展開する |
 
 言語規約: 人間向けドキュメントは日本語、モデルが直接消費するタスクファイルと
 テンプレートは英語(v1 の task-001..004 と同じ)。
@@ -28,11 +29,16 @@
 | **B: 予算と停止** | コスト/トークンガード・LOOP.md(停止条件の正本) | task-103, task-104 | P1-1, P1-2 |
 | **C: メタループ厳密化** | 集計器・worktree 掃除(採否規則はテンプレートに組込済) | task-105, task-106 | P2-1〜P2-3 |
 | **D: 自律化(v2 本体)** | report-only モード → systemd timer → ティア → 自己更新ループ | BACKLOG(task-2XX) | §8 v2 候補 |
+| **E: スキル取込** | 外部スキル/プロンプトの台帳・採用ルーブリック・移植規約・パイロット取込 | BACKLOG_PHASE_EF(task-3XX) | —(ゴール拡張 2026-08-10) |
+| **F: 他プロジェクト適用** | repo プロファイル・成果物別受入条件・dotfiles3 パイロット・汎化手順 | BACKLOG_PHASE_EF(task-4XX) | —(ゴール拡張 2026-08-10) |
 
 順序: **101 → 102 → 103 → 104 → 105 → 106**。
 104 は 102/103 の実装値を文書化するため後。106 は 101 以降ならいつでも可。
 Phase D は Phase A〜C 完了かつ 105 の指標で成功率を確認してから着手する
 (pilot-before-scale)。
+Phase E は Phase A〜C 完了後、Phase D と並行可。Phase F は Phase E の
+パイロット取込(task-304)と task-201(report-only)完了後
+(前提の詳細: `BACKLOG_PHASE_EF.md` 冒頭)。
 
 ## タスク索引と状態
 
@@ -48,6 +54,8 @@ Phase D は Phase A〜C 完了かつ 105 の指標で成功率を確認してか
 | [task-105](tasks/task-105-metrics.md) | metrics.py(run 集計・成功率・コスト比較) | 未着手 |
 | [task-106](tasks/task-106-worktree-cleanup.md) | 成功時の worktree 自動クリーンアップ | 未着手 |
 | task-2XX | Phase D(BACKLOG.md のブリーフから展開) | 未起草 |
+| task-3XX | Phase E(BACKLOG_PHASE_EF.md のブリーフから展開) | 未起草 |
+| task-4XX | Phase F(BACKLOG_PHASE_EF.md のブリーフから展開) | 未起草 |
 
 ## 実行プロトコル(サブエージェント向け)
 

@@ -16,11 +16,14 @@
 
 ## 0. 既存文書への反映(タスク化不要、オーケストレータ作業)
 
-- [ ] README.md: ロードマップ表に Phase E/F 行を追加、使い方表に本書を追記
+- [x] README.md: ロードマップ表に Phase E/F 行を追加、使い方表に本書を追記
+      (2026-08-10 反映済み。タスク索引に task-3XX/4XX 行、順序の節に
+      E/F の着手条件も追記)
 - [ ] DESIGN.md: 最終目標の記述を「`~/.pi` 自己更新」から「自己更新 →
       スキル基盤 → 他プロジェクト適用」の 3 段に拡張(§1 差分表にも行追加)
-- [ ] TASK_TEMPLATE.md Drafting rules 4: 番号帯に 3XX(Phase E)/
-      4XX(Phase F)を追記
+- [x] TASK_TEMPLATE.md Drafting rules 4-5: 番号帯に 3XX(Phase E)/
+      4XX(Phase F)と BACKLOG_PHASE_EF.md からの展開規則を追記
+      (2026-08-10 反映済み)
 
 ## Phase E — 外部スキル/プロンプトの取込基盤
 
