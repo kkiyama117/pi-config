@@ -115,15 +115,17 @@ record_usage_if_any() { # $1=jsonl $2=model $3=stage; record usage from a FAILED
   record_usage_line "$usage_line" "$2" "$3"
 }
 
-run_pi() { # $1=model $2=prompt_file $3=jsonl; remaining args = extra pi flags.
+run_pi() { # $1=model $2=prompt_file $3=jsonl $4=stage; remaining args = extra pi flags.
   # Returns 0 only if the process exits 0 AND the stream is ok (terminal stop).
   # pi exits 0 even on quota/403 — the error only shows in the stream
   # (reviewer High: inspect the JSON result before deciding on the fallback).
-  local m="$1" prompt_file="$2" jsonl="$3"; shift 3
-  if ! timeout "$STAGE_TIMEOUT_S" pi -p --mode json --model "$m" "$@" \
-        "$(cat "$prompt_file")" > "$jsonl" 2>>"$RUN_DIR/pi.stderr"; then
-    return 1
-  fi
+  local m="$1" prompt_file="$2" jsonl="$3" stage="$4"; shift 4
+  local a0=$SECONDS   # per-attempt wall-clock start (bash builtin, kernel rule 3)
+  local rc=0
+  timeout "$STAGE_TIMEOUT_S" pi -p --mode json --model "$m" "$@" \
+        "$(cat "$prompt_file")" > "$jsonl" 2>>"$RUN_DIR/pi.stderr" || rc=$?
+  log "pi attempt model=$m took $((SECONDS - a0))s stage=$stage"
+  [[ $rc -eq 0 ]] || return 1
   [[ "$(stream_status "$jsonl")" == "ok" ]]
 }
 
@@ -135,17 +137,18 @@ pi_call() {
   [[ -n "$thinking" ]] && args+=(--thinking "$thinking")
   if [[ "$DRY_RUN" == "1" ]]; then
     log "DRY-RUN: would call pi -p --model $model ${args[*]} < $prompt_file"
+    log "pi attempt model=$model took 0s stage=$stage"
     echo "[dry-run output for $model]" > "$out_file"
     log "stage $stage took $((SECONDS - t0))s"
     return 0
   fi
   log "pi call: model=$model (fallback=$fallback) thinking=${thinking:-default} timeout=${STAGE_TIMEOUT_S}s"
   local used_model="$model"
-  if ! run_pi "$model" "$prompt_file" "$out_file.jsonl" "${args[@]}"; then
+  if ! run_pi "$model" "$prompt_file" "$out_file.jsonl" "$stage" "${args[@]}"; then
     log "primary model failed (exit or provider error), retrying with fallback=$fallback"
     record_usage_if_any "$out_file.jsonl" "$model" "$stage"   # keep usage incurred before the failure
     used_model="$fallback"
-    if ! run_pi "$fallback" "$prompt_file" "$out_file.jsonl" "${args[@]}"; then
+    if ! run_pi "$fallback" "$prompt_file" "$out_file.jsonl" "$stage" "${args[@]}"; then
       record_usage_if_any "$out_file.jsonl" "$fallback" "$stage"
       log "stage $stage failed after $((SECONDS - t0))s"
       die "both models failed for stage=$stage (see $RUN_DIR/pi.stderr) — stop and ask"
