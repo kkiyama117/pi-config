@@ -1,0 +1,12 @@
+# DENYLIST — agent-loop structural path denylist (see agent-loop-v1/loop.sh, verify_repo).
+# Format: one POSIX ERE per line, matched with grep -E against repo-relative
+# paths changed in the loop worktree (modified tracked + untracked + committed
+# since the loop's base commit; ignored files included in the worktree pass).
+# Blank lines and lines starting with # are ignored. Leading whitespace and
+# trailing CR are stripped before matching.
+# This file is immutable during a loop run; edit it on the main checkout.
+^agent/auth\.json$
+(^|/)\.env(\..*)?$
+(^|/)credentials[^/]*$
+(^|/)secrets[^/]*$
+^DENYLIST$
