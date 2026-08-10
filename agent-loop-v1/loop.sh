@@ -76,8 +76,7 @@ record_failure()  { record "known-failures.md" "run=$RUN_ID $*"; }
 
 notify() { # herdr notification when a gate is waiting (optional integration)
   if command -v herdr >/dev/null 2>&1; then
-    # TODO(herdr): choose the right notification subcommand for your setup.
-    herdr notification send "agent-loop: $*" 2>/dev/null || true
+    herdr notification show "agent-loop: $*" 2>/dev/null || true
   fi
 }
 
