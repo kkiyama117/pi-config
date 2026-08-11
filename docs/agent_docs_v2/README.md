@@ -49,7 +49,7 @@ Phase E は Phase A〜C 完了後、Phase D と並行可。Phase F は Phase E �
 
 | タスク | 内容 | 状態 |
 |---|---|---|
-| [task-101](tasks/task-101-denylist.md) | DENYLIST の構造的強制(verify_repo) | 未着手 |
+| [task-101](tasks/task-101-denylist.md) | DENYLIST の構造的強制(verify_repo) | 完了 (2026-08-10, round-7 まで折込済・テスト 156 PASS) |
 | [task-102](tasks/task-102-stage-timeout.md) | STAGE_TIMEOUT_S 既定 900s 有効化 | 未着手 |
 | [task-103](tasks/task-103-cost-guard.md) | コスト/トークンガード(80% 警告 + 超過 abort) | 未着手 |
 | [task-104](tasks/task-104-loop-md.md) | LOOP.md 停止条件チャーター + 同期チェック | 未着手 |
