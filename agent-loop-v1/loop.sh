@@ -55,9 +55,17 @@ model_family() { # $1=model id -> vendor family token (gpt|claude|deepseek|grok|
 
 MAX_CYCLES="${MAX_CYCLES:-3}"          # bounded retry cycle (graph Shape 4 hard limit)
 MAX_ESCALATIONS="${MAX_ESCALATIONS:-2}" # normal -> thinking escalations per iteration
-# Q11: no wall-clock cap in v1 (0 = disabled). Set STAGE_TIMEOUT_S if the agent
-# is observed not stopping.
-STAGE_TIMEOUT_S="${STAGE_TIMEOUT_S:-0}"
+# Per-stage wall-clock cap (task-102): default 900s, 0 = disabled (coreutils
+# `timeout 0` disables). A killed attempt exits 124 and is logged separately
+# as "TIMEOUT after <N>s" in run_pi.
+STAGE_TIMEOUT_S="${STAGE_TIMEOUT_S:-900}"
+# Run budget guards (task-103): warn once per budget type at BUDGET_WARN_PCT%,
+# die at >= 100% of a non-zero budget. Cursor-family models report cost 0
+# (QUESTIONS.md "Observed costs") so the token guard is the real backstop;
+# 0 disables a guard. Never fires on --dry-run (no usage is recorded there).
+MAX_RUN_COST_USD="${MAX_RUN_COST_USD:-2.0}"
+MAX_RUN_TOKENS="${MAX_RUN_TOKENS:-3000000}"
+BUDGET_WARN_PCT="${BUDGET_WARN_PCT:-80}"
 
 # Every git invocation in this script — including `( cd "$repo" && git ... )`
 # subshells — must be immune to replace refs: a worker can `git replace`
@@ -80,6 +88,8 @@ BASE_SHA=""   # set once at worktree setup; never inherited from a caller export
 RUN_CALLS=0
 RUN_TOTAL_TOKENS=0
 RUN_TOTAL_COST=0
+BUDGET_WARNED_COST=0   # warn-once flags per budget type (task-103)
+BUDGET_WARNED_TOKENS=0
 # Shared untracked-emit budget across both emit_untracked_for_review calls
 # (round-4 H8) and the degraded-review incomplete flag (round-4 H3).
 REVIEW_EMIT_COUNT=0
@@ -149,6 +159,38 @@ record_usage_line() { # $1=usage_line $2=model $3=stage; appends one cost-log.md
   RUN_CALLS=$((RUN_CALLS + 1))
   RUN_TOTAL_TOKENS=$((RUN_TOTAL_TOKENS + u_total_tokens))
   RUN_TOTAL_COST="$(awk -v a="$RUN_TOTAL_COST" -v b="$u_cost" 'BEGIN{printf "%.6f", a+b}')"
+  budget_guard
+}
+
+budget_guard() { # warn once at BUDGET_WARN_PCT%, die at >= 100% of a non-zero budget
+  # Runs after every recorded usage (task-103). Float compare via awk (bash
+  # cannot); tokens are integers. die() aborts the run, but the EXIT trap
+  # still emits the cost summary (Q1-approved accounting). The guard also
+  # fires from record_usage_if_any's salvage path — the original failure is
+  # already logged there, so the budget stop is the correct hard stop.
+  local pct
+  if awk -v b="$MAX_RUN_COST_USD" 'BEGIN{exit !(b > 0)}'; then
+    if awk -v t="$RUN_TOTAL_COST" -v b="$MAX_RUN_COST_USD" 'BEGIN{exit !(t >= b)}'; then
+      die "run budget exceeded: cost $RUN_TOTAL_COST > $MAX_RUN_COST_USD — stop and ask"
+    fi
+    pct="$(awk -v t="$RUN_TOTAL_COST" -v b="$MAX_RUN_COST_USD" 'BEGIN{printf "%d", t/b*100}')"
+    if (( BUDGET_WARNED_COST == 0 && pct >= BUDGET_WARN_PCT )); then
+      BUDGET_WARNED_COST=1
+      log "budget warning: cost at ${pct}% of $MAX_RUN_COST_USD"
+      notify "budget warning: cost at ${pct}% of $MAX_RUN_COST_USD"
+    fi
+  fi
+  if (( MAX_RUN_TOKENS > 0 )); then
+    if (( RUN_TOTAL_TOKENS >= MAX_RUN_TOKENS )); then
+      die "run budget exceeded: tokens $RUN_TOTAL_TOKENS > $MAX_RUN_TOKENS — stop and ask"
+    fi
+    pct=$(( RUN_TOTAL_TOKENS * 100 / MAX_RUN_TOKENS ))
+    if (( BUDGET_WARNED_TOKENS == 0 && pct >= BUDGET_WARN_PCT )); then
+      BUDGET_WARNED_TOKENS=1
+      log "budget warning: tokens at ${pct}% of $MAX_RUN_TOKENS"
+      notify "budget warning: tokens at ${pct}% of $MAX_RUN_TOKENS"
+    fi
+  fi
 }
 
 record_usage_if_any() { # $1=jsonl $2=model $3=stage; record usage from a FAILED call
@@ -172,6 +214,9 @@ run_pi() { # $1=model $2=prompt_file $3=jsonl $4=stage; remaining args = extra p
   timeout "$STAGE_TIMEOUT_S" pi -p --mode json --model "$m" "$@" \
         < "$prompt_file" > "$jsonl" 2>>"$RUN_DIR/pi.stderr" || rc=$?
   log "pi attempt model=$m took $((SECONDS - a0))s stage=$stage"
+  if [[ $rc -eq 124 ]]; then
+    log "pi attempt model=$m TIMEOUT after $((SECONDS - a0))s stage=$stage"
+  fi
   [[ $rc -eq 0 ]] || return 1
   [[ "$(stream_status "$jsonl")" == "ok" ]]
 }
@@ -1328,6 +1373,9 @@ while (( CYCLE < MAX_CYCLES )); do
         ( cd "$REPO" && git commit -m "agent-loop($RUN_ID): $TASK" ) \
           || die "commit failed on $BRANCH"
         log "committed on $BRANCH (worktree $WT_DIR)"
+        # task-106: the commit lives on the branch; the worktree is disposable.
+        ( cd "$MAIN_REPO" && git worktree remove --force "$WT_DIR" ) || true
+        log "worktree removed; branch $BRANCH kept — merge with: git merge $BRANCH"
       fi
       record_decision "gate=GATE-2 approved run=$RUN_ID branch=$BRANCH committed"
       DONE=1
@@ -1366,4 +1414,6 @@ fi
 
 record_run "done run=$RUN_ID branch=$BRANCH cycles=$CYCLE"
 log "iteration complete. Review $RUN_DIR for artifacts; memory in $MEMORY_DIR"
-log "worktree left at $WT_DIR — remove with: git worktree remove --force $WT_DIR"
+if [[ -d "$WT_DIR" ]]; then
+  log "worktree left at $WT_DIR — remove with: git worktree remove --force $WT_DIR"
+fi

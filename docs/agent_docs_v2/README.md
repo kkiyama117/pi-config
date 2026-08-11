@@ -1,5 +1,7 @@
 # agent_docs_v2 — agent-loop v1 → v2 実行計画
 
+- 全ドキュメント索引: `~/.pi/docs/agent-loop-index.md`
+
 - 作成: 2026-08-10
 - 正本(提案元): `~/.pi/suggest_v1.md`(三記事統合 + P0/P1/P2 ギャップ提案)
 - 本ディレクトリ = その提案を**実行可能なタスク群**に落とした計画。設計判断と
@@ -50,11 +52,11 @@ Phase E は Phase A〜C 完了後、Phase D と並行可。Phase F は Phase E �
 | タスク | 内容 | 状態 |
 |---|---|---|
 | [task-101](tasks/task-101-denylist.md) | DENYLIST の構造的強制(verify_repo) | 完了 (2026-08-10, round-7 まで折込済・テスト 156 PASS) |
-| [task-102](tasks/task-102-stage-timeout.md) | STAGE_TIMEOUT_S 既定 900s 有効化 | 未着手 |
-| [task-103](tasks/task-103-cost-guard.md) | コスト/トークンガード(80% 警告 + 超過 abort) | 未着手 |
-| [task-104](tasks/task-104-loop-md.md) | LOOP.md 停止条件チャーター + 同期チェック | 未着手 |
-| [task-105](tasks/task-105-metrics.md) | metrics.py(run 集計・成功率・コスト比較) | 未着手 |
-| [task-106](tasks/task-106-worktree-cleanup.md) | 成功時の worktree 自動クリーンアップ | 未着手 |
+| [task-102](tasks/task-102-stage-timeout.md) | STAGE_TIMEOUT_S 既定 900s 有効化 | 完了 (2026-08-11, テスト 8 PASS) |
+| [task-103](tasks/task-103-cost-guard.md) | コスト/トークンガード(80% 警告 + 超過 abort) | 完了 (2026-08-11, テスト 12 PASS) |
+| [task-104](tasks/task-104-loop-md.md) | LOOP.md 停止条件チャーター + 同期チェック | 完了 (2026-08-11, VERIFIERS 組込済) |
+| [task-105](tasks/task-105-metrics.md) | metrics.py(run 集計・成功率・コスト比較) | 完了 (2026-08-11, unittest 3 件 PASS) |
+| [task-106](tasks/task-106-worktree-cleanup.md) | 成功時の worktree 自動クリーンアップ | 完了 (2026-08-11, テスト 11 PASS) |
 | task-2XX | Phase D(BACKLOG.md のブリーフから展開) | 未起草 |
 | task-3XX | Phase E(BACKLOG_PHASE_EF.md のブリーフから展開) | 未起草 |
 | task-4XX | Phase F(BACKLOG_PHASE_EF.md のブリーフから展開) | 未起草 |

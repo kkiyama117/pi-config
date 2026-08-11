@@ -20,3 +20,6 @@ jq -e 'to_entries | all(.[].value.models; ([.[].id] | unique | length) == (lengt
 
 # 4. No trailing whitespace in managed markdown
 ! grep -rn '[[:blank:]]$' README.md agent/prompts/ 2>/dev/null
+
+# 5. LOOP.md <-> loop.sh env-default sync (task-104)
+agent-loop-v1/tests/test_loop_md_sync.sh

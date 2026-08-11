@@ -12,7 +12,7 @@ script. Design rationale: `DESIGN.md`; Q&A: `QUESTIONS.md`.
 | `task-00X.md` | Task files — one per loop task, with completion condition (BFV Kernel) + non-negotiables |
 | `DESIGN.md` | Design decisions (all 15 Q&A folded in) + implemented-features log |
 | `QUESTIONS.md` | Original Q&A + resolved-in-practice lessons |
-| `memory/` | Filesystem memory (gitignored): `decisions-log.md`, `past-runs.md`, `cost-log.md`, `known-failures.md`, `runs/<run-id>/` artifacts |
+| `memory/` | Filesystem memory (gitignored): `decisions-log.md`, `past-runs.md`, `cost-log.md`, `known-failures.md`, `external-patterns.md`, `runs/<run-id>/` artifacts |
 | `locks/` | flock-based per-repo concurrency locks (gitignored) |
 | `worktrees/` | Branch-per-loop git worktrees (gitignored) |
 
@@ -39,7 +39,13 @@ doctrine: `~/.agents/skills/orchestrate-agents/SKILL.md`.
 ```
 
 Environment knobs: `MAX_CYCLES` (default 3), `MAX_ESCALATIONS` (2),
-`STAGE_TIMEOUT_S` (0 = no timeout).
+`STAGE_TIMEOUT_S` (default 900, 0 = no timeout; a timeout-killed attempt logs
+`TIMEOUT after <N>s`), `MAX_RUN_COST_USD` (default 2.0, 0 = disabled),
+`MAX_RUN_TOKENS` (default 3000000, 0 = disabled), `BUDGET_WARN_PCT` (default
+80; warn once per budget type, abort at 100%). The token guard exists because
+cursor-family models report cost 0 — a cost-only guard would sail past any
+USD budget on escalated runs (QUESTIONS.md "Observed costs"). Stop-condition
+values are documented in `LOOP.md` (sync-checked by the VERIFIERS gate).
 
 ## Flow
 

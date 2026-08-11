@@ -9,6 +9,7 @@ cache/
 npm/
 git/
 *.log
+__pycache__/
 
 # Cache of `pi-acp`
 pi-acp/session-map.json
