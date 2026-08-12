@@ -27,18 +27,19 @@
 
 ## ロードマップ
 
-| Phase | 内容 | タスク | suggest_v1 対応 |
-|---|---|---|---|
-| **A: 構造的安全** | denylist 強制・ステージタイムアウト | task-101, task-102 | P0-1, P0-2 |
-| **B: 予算と停止** | コスト/トークンガード・LOOP.md(停止条件の正本) | task-103, task-104 | P1-1, P1-2 |
-| **C: メタループ厳密化** | 集計器・worktree 掃除(採否規則はテンプレートに組込済) | task-105, task-106 | P2-1〜P2-3 |
-| **D: 自律化(v2 本体)** | report-only モード → systemd timer → ティア → 自己更新ループ | BACKLOG(task-2XX) | §8 v2 候補 |
-| **E: スキル取込** | 外部スキル/プロンプトの台帳・採用ルーブリック・移植規約・パイロット取込 | BACKLOG_PHASE_EF(task-3XX) | —(ゴール拡張 2026-08-10) |
-| **F: 他プロジェクト適用** | repo プロファイル・成果物別受入条件・dotfiles3 パイロット・汎化手順 | BACKLOG_PHASE_EF(task-4XX) | —(ゴール拡張 2026-08-10) |
+| Phase | 内容 | タスク | 状態 | suggest_v1 対応 |
+|---|---|---|---|---|
+| **A: 構造的安全** | denylist 強制・ステージタイムアウト | task-101, task-102 | 完了(未レビュー) | P0-1, P0-2 |
+| **B: 予算と停止** | コスト/トークンガード・LOOP.md(停止条件の正本) | task-103, task-104 | 完了(未レビュー) | P1-1, P1-2 |
+| **C: メタループ厳密化** | 集計器・worktree 掃除(採否規則はテンプレートに組込済) | task-105, task-106 | 完了(未レビュー) | P2-1〜P2-3 |
+| **D: 自律化(v2 本体)** | report-only モード → systemd timer → ティア → 自己更新ループ | BACKLOG(task-2XX) | 未着手 | §8 v2 候補 |
+| **E: スキル取込** | 外部スキル/プロンプトの台帳・採用ルーブリック・移植規約・パイロット取込 | BACKLOG_PHASE_EF(task-3XX) | 未着手 | —(ゴール拡張 2026-08-10) |
+| **F: 他プロジェクト適用** | repo プロファイル・成果物別受入条件・dotfiles3 パイロット・汎化手順 | BACKLOG_PHASE_EF(task-4XX) | 未着手 | —(ゴール拡張 2026-08-10) |
 
 順序: **101 → 102 → 103 → 104 → 105 → 106**。
 104 は 102/103 の実装値を文書化するため後。106 は 101 以降ならいつでも可。
-Phase D は Phase A〜C 完了かつ 105 の指標で成功率を確認してから着手する
+Phase A〜C は実装完了だが**未レビュー**(ブランチ `createing_agent_loop_v2`、develop 未マージ)。
+Phase D は A〜C のレビュー・マージかつ 105 の指標で成功率を確認してから着手する
 (pilot-before-scale)。
 Phase E は Phase A〜C 完了後、Phase D と並行可。Phase F は Phase E の
 パイロット取込(task-304)と task-201(report-only)完了後
@@ -51,12 +52,12 @@ Phase E は Phase A〜C 完了後、Phase D と並行可。Phase F は Phase E �
 
 | タスク | 内容 | 状態 |
 |---|---|---|
-| [task-101](tasks/task-101-denylist.md) | DENYLIST の構造的強制(verify_repo) | 完了 (2026-08-10, round-7 まで折込済・テスト 156 PASS) |
-| [task-102](tasks/task-102-stage-timeout.md) | STAGE_TIMEOUT_S 既定 900s 有効化 | 完了 (2026-08-11, テスト 8 PASS) |
-| [task-103](tasks/task-103-cost-guard.md) | コスト/トークンガード(80% 警告 + 超過 abort) | 完了 (2026-08-11, テスト 12 PASS) |
-| [task-104](tasks/task-104-loop-md.md) | LOOP.md 停止条件チャーター + 同期チェック | 完了 (2026-08-11, VERIFIERS 組込済) |
-| [task-105](tasks/task-105-metrics.md) | metrics.py(run 集計・成功率・コスト比較) | 完了 (2026-08-11, unittest 3 件 PASS) |
-| [task-106](tasks/task-106-worktree-cleanup.md) | 成功時の worktree 自動クリーンアップ | 完了 (2026-08-11, テスト 11 PASS) |
+| [task-101](tasks/task-101-denylist.md) | DENYLIST の構造的強制(verify_repo) | 完了・未レビュー (2026-08-10, round-7 まで折込済・テスト 156 PASS) |
+| [task-102](tasks/task-102-stage-timeout.md) | STAGE_TIMEOUT_S 既定 900s 有効化 | 完了・未レビュー (2026-08-11, テスト 8 PASS) |
+| [task-103](tasks/task-103-cost-guard.md) | コスト/トークンガード(80% 警告 + 超過 abort) | 完了・未レビュー (2026-08-11, テスト 12 PASS) |
+| [task-104](tasks/task-104-loop-md.md) | LOOP.md 停止条件チャーター + 同期チェック | 完了・未レビュー (2026-08-11, VERIFIERS 組込済) |
+| [task-105](tasks/task-105-metrics.md) | metrics.py(run 集計・成功率・コスト比較) | 完了・未レビュー (2026-08-11, unittest 3 件 PASS) |
+| [task-106](tasks/task-106-worktree-cleanup.md) | 成功時の worktree 自動クリーンアップ | 完了・未レビュー (2026-08-11, テスト 11 PASS) |
 | task-2XX | Phase D(BACKLOG.md のブリーフから展開) | 未起草 |
 | task-3XX | Phase E(BACKLOG_PHASE_EF.md のブリーフから展開) | 未起草 |
 | task-4XX | Phase F(BACKLOG_PHASE_EF.md のブリーフから展開) | 未起草 |

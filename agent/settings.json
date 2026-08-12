@@ -1,6 +1,6 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "deepseek-v4-flash:0731",
+  "defaultModel": "composer-2-5:fast",
   "subagents": {
     "defaultModel": "ollama-cloud/deepseek-v4-flash:0731",
     "agentOverrides": {
@@ -58,7 +58,7 @@
     }
   },
   "defaultProjectTrust": "ask",
-  "defaultProvider": "ollama-cloud",
+  "defaultProvider": "cursor",
   "defaultThinkingLevel": "xhigh",
   "enabledModels": [
     "ollama-cloud/deepseek-v4-flash:0731",
