@@ -19,3 +19,20 @@
    `git diff --check`, …) and report the commands run and their actual
    results — failures included, never embellished.
 
+## 2. Delegation (parent orchestrator session only)
+
+This section applies **only to the parent orchestrator session** (the one that
+owns the `subagent` tool). If you are a child subagent: ignore this section,
+do your assigned task directly, and return results. Never delegate further.
+
+- For any non-trivial implementation, exploration, or parallelizable work,
+  **use `pi-subagents`** (`subagent` tool / `workflowScript`) instead of doing
+  it directly.
+- Keep the parent session as: clarify (`/clarify`), planner, coordinator,
+  verifier, and final reviewer. Child agents do the code changes.
+- Follow `/home/kiyama/.agents/skills/orchestrate-agents/SKILL.md` and
+  `/home/kiyama/.pi/agent/rules/orchestration.md` for multi-agent / wiser-model
+  work.
+- Skip delegation only for trivial one-liners, pure reads, or a single obvious
+  edit.
+
