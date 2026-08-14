@@ -48,8 +48,8 @@ Update this file when a doc is added/moved; delete entries, don't orphan them.
 
 | Path | What |
 |---|---|
-| `~/.pi/docs/references/classified_v1/miyake-ken-prompts/articles/` | hermes_home tweet corpus, classified (loop-engineering, harness-engineering, agent-memory, self-improving-agents, multi-agent-orchestration, …) |
-| `~/.pi/docs/references/SOURCES.md` | Corpus provenance / export flow |
+| `/data/references/AI/` | **New home (2026-08-14).** Searchable AI-agent reference store: TOML corpus (classified), manifest catalog, taxonomy, provenance — see its `README.md` |
+| `~/.pi/docs/references/README.md` | Pointer to the new store (corpus removed from `~/.pi`; recoverable in git history) |
 
 ## Current state (2026-08-11)
 
