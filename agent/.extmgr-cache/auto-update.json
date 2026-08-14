@@ -2,5 +2,13 @@
   "intervalMs": 86400000,
   "enabled": true,
   "displayText": "daily",
-  "nextCheck": 1786645457133
+  "lastCheck": 1786671857086,
+  "nextCheck": 1786758257086,
+  "updatesAvailable": [
+    "npm:pi-subagents",
+    "npm:pi-intercom",
+    "npm:pi-provider-kimi-code",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-i18n"
+  ]
 }

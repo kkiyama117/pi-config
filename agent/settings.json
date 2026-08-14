@@ -1,6 +1,6 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "grok-4.5",
+  "defaultModel": "deepseek-v4-flash:0731",
   "subagents": {
     "defaultModel": "ollama-cloud/deepseek-v4-flash:0731",
     "agentOverrides": {
@@ -58,7 +58,7 @@
     }
   },
   "defaultProjectTrust": "ask",
-  "defaultProvider": "cursor",
+  "defaultProvider": "ollama-cloud",
   "defaultThinkingLevel": "xhigh",
   "enabledModels": [
     "ollama-cloud/deepseek-v4-flash:0731",
@@ -77,7 +77,7 @@
     "deepseek/deepseek-v4-flash",
     "openrouter/openrouter/fusion",
     "openrouter/anthropic/claude-sonnet-5",
-    "cursor/grok-4.5",
+    "cursor/grok-4.6",
     "cursor/gpt-5.6-luna@1m:slow"
   ],
   "lastChangelogVersion": "0.84.1",
