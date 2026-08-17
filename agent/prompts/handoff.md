@@ -11,9 +11,7 @@ fluff.
 - `git branch --show-current` and `git status --short` (in the current repo)
 - `git worktree list` if any worktrees exist
 - `git log --oneline -5` for recent history
-- `ps aux | grep -E "loop.sh|pi -p" | grep -v grep` — any running agent-loop or pi processes
-- `ls -t ~/.pi/agent-loop-v1/memory/runs/ 2>/dev/null | head -3` — latest loop runs
-- `tail -3 ~/.pi/agent-loop-v1/memory/decisions-log.md 2>/dev/null` — recent gate decisions
+- `ps aux | grep -E "pi -p" | grep -v grep` — any running pi processes
 
 ## Step 2 — write the summary with these sections
 

@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "packages": {
+    "pi-subagents": {
+      "name": "pi-subagents",
+      "timestamp": 1786556795606,
+      "size": 3445862,
+      "fieldTimestamps": {
+        "size": 1786556795606
+      }
+    },
+    "pi-intercom": {
+      "name": "pi-intercom",
+      "timestamp": 1786556796080,
+      "description": "<p>   <img src=\"banner.png\" alt=\"pi-intercom\" width=\"1100\"> </p>",
+      "fieldTimestamps": {
+        "description": 1786556795607,
+        "size": 1786556796080
+      },
+      "size": 353536
+    },
+    "pi-provider-kimi-code": {
+      "name": "pi-provider-kimi-code",
+      "timestamp": 1786556795616,
+      "size": 208648,
+      "fieldTimestamps": {
+        "size": 1786556795616
+      }
+    },
+    "pi-prompt-template-model": {
+      "name": "pi-prompt-template-model",
+      "timestamp": 1786556795628,
+      "size": 1578378,
+      "fieldTimestamps": {
+        "size": 1786556795628
+      }
+    },
+    "pi-ollama-cloud": {
+      "name": "pi-ollama-cloud",
+      "timestamp": 1786556796088,
+      "description": "Ollama Cloud provider plugin for the [Pi](https://pi.dev) coding agent.",
+      "fieldTimestamps": {
+        "description": 1786556795630,
+        "size": 1786556796088
+      },
+      "size": 102867
+    },
+    "pi-cursor-sdk": {
+      "name": "pi-cursor-sdk",
+      "timestamp": 1786556796542,
+      "size": 16118748,
+      "fieldTimestamps": {
+        "size": 1786556796542
+      }
+    },
+    "@benvargas/pi-claude-code-use": {
+      "name": "@benvargas/pi-claude-code-use",
+      "timestamp": 1786556796545,
+      "size": 60818,
+      "fieldTimestamps": {
+        "size": 1786556796545
+      }
+    },
+    "pi-extmgr": {
+      "name": "pi-extmgr",
+      "timestamp": 1786556796552,
+      "size": 296812,
+      "fieldTimestamps": {
+        "size": 1786556796552
+      }
+    },
+    "@spences10/pi-skills": {
+      "name": "@spences10/pi-skills",
+      "timestamp": 1786556796577,
+      "size": 239275,
+      "fieldTimestamps": {
+        "size": 1786556796577
+      }
+    },
+    "@dietrichgebert/ponytail": {
+      "name": "@dietrichgebert/ponytail",
+      "timestamp": 1786557441560,
+      "size": 1219536,
+      "fieldTimestamps": {
+        "size": 1786557441560
+      }
+    },
+    "@dkmnx/pi-clarify": {
+      "name": "@dkmnx/pi-clarify",
+      "timestamp": 1786557442587,
+      "size": 48601,
+      "fieldTimestamps": {
+        "size": 1786557442587
+      }
+    },
+    "pi-web-access": {
+      "name": "pi-web-access",
+      "size": 7393329,
+      "timestamp": 1786558944850,
+      "fieldTimestamps": {
+        "size": 1786558944850
+      }
+    }
+  }
+}

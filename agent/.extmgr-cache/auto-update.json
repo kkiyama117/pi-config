@@ -1,0 +1,13 @@
+{
+  "intervalMs": 86400000,
+  "enabled": true,
+  "displayText": "daily",
+  "lastCheck": 1786932299442,
+  "nextCheck": 1787018699442,
+  "updatesAvailable": [
+    "npm:pi-subagents",
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-i18n"
+  ]
+}

@@ -9,6 +9,7 @@ cache/
 npm/
 git/
 *.log
+__pycache__/
 
 # Cache of `pi-acp`
 pi-acp/session-map.json
@@ -19,11 +20,14 @@ cursor-sdk-model-list.*.json
 
 # Direct-clone runtime state (pi-config is cloned into ~/.pi; these live alongside managed files)
 run-history.jsonl
+agent/missions/*
 agent/intercom/broker.*
 agent/intercom/broker-launch.vbs
 agent/intercom/broker.port.json
 agent/intercom/broker.spawn.lock
 agent/intercom/extension-state/
 .pi-subagents/
+.pi/subagents/
 *.pre-pi-config.*
 agent/extensions/herdr-agent-state.ts
+

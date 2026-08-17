@@ -1,6 +1,6 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "deepseek-v4-flash:0731",
+  "defaultModel": "grok-4.6",
   "subagents": {
     "defaultModel": "ollama-cloud/deepseek-v4-flash:0731",
     "agentOverrides": {
@@ -58,8 +58,8 @@
     }
   },
   "defaultProjectTrust": "ask",
-  "defaultProvider": "ollama-cloud",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "cursor",
+  "defaultThinkingLevel": "xhigh",
   "enabledModels": [
     "ollama-cloud/deepseek-v4-flash:0731",
     "cursor/composer-2-5:fast",
@@ -73,10 +73,12 @@
     "ollama-cloud/glm-5.2",
     "ollama-cloud/kimi-k3",
     "ollama-cloud/kimi-k2.7-code",
-    "ollama-cloud/deepseek-v4-pro",
+    "ollama-cloud/deepseek-v4-pro:preview",
     "deepseek/deepseek-v4-flash",
     "openrouter/openrouter/fusion",
-    "openrouter/anthropic/claude-sonnet-5"
+    "openrouter/anthropic/claude-sonnet-5",
+    "cursor/grok-4.6",
+    "cursor/gpt-5.6-luna@1m:slow"
   ],
   "lastChangelogVersion": "0.84.1",
   "packages": [
@@ -87,7 +89,43 @@
     "npm:pi-provider-kimi-code",
     "npm:@benvargas/pi-claude-code-use",
     "npm:pi-cursor-sdk",
-    "npm:@spences10/pi-skills"
+    "npm:@spences10/pi-skills",
+    "npm:pi-extmgr",
+    "npm:@dietrichgebert/ponytail",
+    "npm:@dkmnx/pi-clarify",
+    "npm:pi-web-access",
+    {
+      "source": "/home/kiyama/.pi/agent/git/github.com/mitsuhiko/agent-stuff",
+      "extensions": [
+        "extensions/notify.ts",
+        "extensions/todos.ts",
+        "extensions/review.ts",
+        "extensions/answer.ts",
+        "extensions/btw.ts",
+        "extensions/goal.ts",
+        "extensions/unified-edit.ts",
+        "extensions/uv.ts",
+        "extensions/whimsical.ts",
+        "extensions/session-breakdown.ts"
+      ],
+      "skills": [
+        "skills/commit",
+        "skills/github",
+        "skills/summarize",
+        "skills/librarian",
+        "skills/pi-share",
+        "skills/uv",
+        "skills/web-browser",
+        "skills/update-changelog",
+        "skills/native-web-search"
+      ],
+      "prompts": [
+        "commands/discuss.md"
+      ],
+      "themes": []
+    },
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-i18n"
   ],
   "showHardwareCursor": true,
   "theme": "dark",
@@ -98,5 +136,8 @@
     "clearOnShrink": true,
     "showTerminalProgress": true
   },
-  "editorPaddingX": 0
+  "editorPaddingX": 0,
+  "npmCommand": [
+    "pnpm"
+  ]
 }
