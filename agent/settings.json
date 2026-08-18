@@ -1,6 +1,6 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "grok-4.6",
+  "defaultModel": "deepseek-v4-flash:0731",
   "subagents": {
     "defaultModel": "ollama-cloud/deepseek-v4-flash:0731",
     "agentOverrides": {
@@ -58,7 +58,7 @@
     }
   },
   "defaultProjectTrust": "ask",
-  "defaultProvider": "cursor",
+  "defaultProvider": "ollama-cloud",
   "defaultThinkingLevel": "xhigh",
   "enabledModels": [
     "ollama-cloud/deepseek-v4-flash:0731",
@@ -99,14 +99,12 @@
       "extensions": [
         "extensions/notify.ts",
         "extensions/todos.ts",
-        "extensions/review.ts",
         "extensions/answer.ts",
         "extensions/btw.ts",
         "extensions/goal.ts",
         "extensions/unified-edit.ts",
         "extensions/uv.ts",
-        "extensions/whimsical.ts",
-        "extensions/session-breakdown.ts"
+        "extensions/whimsical.ts"
       ],
       "skills": [
         "skills/commit",
@@ -125,7 +123,15 @@
       "themes": []
     },
     "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:@juicesharp/rpiv-i18n"
+    "npm:@juicesharp/rpiv-i18n",
+    "npm:@ogulcancelik/pi-session-recall",
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-context-view",
+    "npm:pi-lens",
+    "npm:@plannotator/pi-extension",
+    "git:github.com/earendil-works/pi-review",
+    "git:github.com/earendil-works/pi-transcribe",
+    "npm:pi-mcp-adapter"
   ],
   "showHardwareCursor": true,
   "theme": "dark",

@@ -31,3 +31,9 @@ agent/intercom/extension-state/
 *.pre-pi-config.*
 agent/extensions/herdr-agent-state.ts
 
+
+# Adapter / index caches (regenerable)
+agent/mcp-cache.json
+agent/.extmgr-cache/
+agent/fff/frecency/
+agent/fff/history/
