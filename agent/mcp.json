@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "misakanet": {
+      "command": "python3",
+      "args": ["/home/kiyama/.dsh/skills/misakanet/scripts/mcp_server.py"],
+      "cwd": "/home/kiyama/.dsh/skills/misakanet"
+    }
+  }
+}
