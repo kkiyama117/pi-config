@@ -1,6 +1,6 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "grok-4.6:fast",
+  "defaultModel": "deepseek-v4-flash:0731",
   "subagents": {
     "defaultModel": "ollama-cloud/deepseek-v4-flash:0731",
     "agentOverrides": {
@@ -58,7 +58,7 @@
     }
   },
   "defaultProjectTrust": "ask",
-  "defaultProvider": "cursor",
+  "defaultProvider": "ollama-cloud",
   "defaultThinkingLevel": "xhigh",
   "enabledModels": [
     "ollama-cloud/deepseek-v4-pro:0813",
