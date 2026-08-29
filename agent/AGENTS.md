@@ -35,4 +35,3 @@ do your assigned task directly, and return results. Never delegate further.
   work.
 - Skip delegation only for trivial one-liners, pure reads, or a single obvious
   edit.
-
