@@ -66,7 +66,8 @@
     "ollama-cloud/deepseek-v4-flash:0731",
     "ollama-cloud/kimi-k3",
     "deepseek/deepseek-v4-flash",
-    "openrouter/openrouter/fusion"
+    "openrouter/openrouter/fusion",
+    "openrouter/anthropic/claude-fable-5.1"
   ],
   "lastChangelogVersion": "0.84.4",
   "packages": [
@@ -76,7 +77,6 @@
     "npm:pi-ollama-cloud",
     "npm:pi-provider-kimi-code",
     "npm:@benvargas/pi-claude-code-use",
-    "npm:pi-cursor-sdk",
     "npm:@spences10/pi-skills",
     "npm:pi-extmgr",
     "npm:@dietrichgebert/ponytail",
