@@ -79,78 +79,433 @@
       "models": [
         {
           "id": "anthropic/claude-3-haiku",
+          "name": "Anthropic: Claude 3 Haiku",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": false,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0.25,
+            "output": 1.25,
+            "cacheRead": 0.03,
+            "cacheWrite": 0.3
+          },
+          "contextWindow": 200000,
+          "maxTokens": 4096,
+          "compat": {
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-fable-5",
+          "name": "Anthropic: Claude Fable 5",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 10,
+            "output": 50,
+            "cacheRead": 1,
+            "cacheWrite": 12.5
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "forceAdaptiveThinking": true,
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-fable-5.1",
+          "name": "Anthropic: Claude Fable 5.1",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 10,
+            "output": 50,
+            "cacheRead": 0.25,
+            "cacheWrite": 12.5
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "supportsMidConvoEffort": true,
+            "forceAdaptiveThinking": true,
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-haiku-4.5",
+          "name": "Anthropic: Claude Haiku 4.5",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 1,
+            "output": 5,
+            "cacheRead": 0.1,
+            "cacheWrite": 1.25
+          },
+          "contextWindow": 200000,
+          "maxTokens": 64000,
+          "compat": {
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-opus-4",
+          "name": "Anthropic: Claude Opus 4",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 15,
+            "output": 75,
+            "cacheRead": 1.5,
+            "cacheWrite": 18.75
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000,
+          "compat": {
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-opus-4.1",
+          "name": "Anthropic: Claude Opus 4.1",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 15,
+            "output": 75,
+            "cacheRead": 1.5,
+            "cacheWrite": 18.75
+          },
+          "contextWindow": 200000,
+          "maxTokens": 32000,
+          "compat": {
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-opus-4.5",
+          "name": "Anthropic: Claude Opus 4.5",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cacheRead": 0.5,
+            "cacheWrite": 6.25
+          },
+          "contextWindow": 200000,
+          "maxTokens": 64000,
+          "compat": {
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-opus-4.6",
+          "name": "Anthropic: Claude Opus 4.6",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cacheRead": 0.5,
+            "cacheWrite": 6.25
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "forceAdaptiveThinking": true,
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-opus-4.7",
+          "name": "Anthropic: Claude Opus 4.7",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cacheRead": 0.5,
+            "cacheWrite": 6.25
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "forceAdaptiveThinking": true,
+            "supportsTemperature": false,
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-opus-4.8",
+          "name": "Anthropic: Claude Opus 4.8",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cacheRead": 0.5,
+            "cacheWrite": 6.25
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "forceAdaptiveThinking": true,
+            "supportsTemperature": false,
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-opus-5",
+          "name": "Claude Opus 5",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cacheRead": 0.5,
+            "cacheWrite": 6.25
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "supportsMidConvoEffort": true,
+            "forceAdaptiveThinking": true,
+            "supportsTemperature": false,
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-sonnet-4",
+          "name": "Anthropic: Claude Sonnet 4",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cacheRead": 0.3,
+            "cacheWrite": 3.75
+          },
+          "contextWindow": 200000,
+          "maxTokens": 64000,
+          "compat": {
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-sonnet-4.5",
+          "name": "Anthropic: Claude Sonnet 4.5",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cacheRead": 0.3,
+            "cacheWrite": 3.75
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 64000,
+          "compat": {
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-sonnet-4.6",
+          "name": "Anthropic: Claude Sonnet 4.6",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cacheRead": 0.3,
+            "cacheWrite": 3.75
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "forceAdaptiveThinking": true,
+            "thinkingFormat": "openrouter"
+          }
         },
         {
           "id": "anthropic/claude-sonnet-5",
+          "name": "Anthropic: Claude Sonnet 5",
           "api": "openai-completions",
-          "baseUrl": "https://openrouter.ai/api/v1"
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 2,
+            "output": 10,
+            "cacheRead": 0.2,
+            "cacheWrite": 2.5
+          },
+          "contextWindow": 1000000,
+          "maxTokens": 128000,
+          "compat": {
+            "forceAdaptiveThinking": true,
+            "thinkingFormat": "openrouter"
+          }
         }
       ]
     }
