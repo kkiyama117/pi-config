@@ -18,6 +18,9 @@
 5. **Verify deterministically** (tests, linters, `bash -n`,
    `git diff --check`, …) and report the commands run and their actual
    results — failures included, never embellished.
+6. **Script-ify repeats.** The 2nd time a procedure is needed, turn it into a
+   `uv run` script under the project's `bin/`; thereafter the harness runs the
+   script and the LLM only adjusts it.
 
 ## 2. Delegation (parent orchestrator session only)
 

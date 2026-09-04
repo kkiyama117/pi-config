@@ -26,11 +26,14 @@ unsteerable, was the repeated failure (violated 3+ times).
 - Wiser model role = **planner / orchestrator / oracle (reviewer)** — never a lone
   worker grinding the implementation.
 - Run it **interactively in a herdr pane** (no `-p`, no headless).
+- **Exception (prewalk):** the wiser model may implement the FIRST DAG node only, as a pattern-setting exemplar for the worker; all subsequent nodes go to the worker. First node only — never more.
 
 ## 3. I orchestrate the phases
 Decompose → write the prompt → wise model plans → HITL gate → wise model delegates
 implementation to its subagents → I verify deterministically (tests, `bash -n`,
 `git diff --check`) → wise model reviews the result as oracle → iterate.
+
+Phase chain for planned work: planner writes the DAG as `.pi/todos` → worker `claim`s one node at a time → reviewer runs after the last node (per-node only when the DAG is flagged risky) → promoter runs the `/promote` prompt template.
 
 ## 4. Full doctrine
 Read `/home/kiyama/.agents/skills/orchestrate-agents/SKILL.md` before orchestrating

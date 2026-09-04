@@ -23,7 +23,7 @@
         "thinking": "xhigh",
         "fallbackModels": [
           "ollama-cloud/deepseek-v4-flash:0731",
-          "anthropic/claude-sonnet-5:medium"
+          "openrouter/anthropic/claude-sonnet-5"
         ]
       },
       "reviewer": {

@@ -10,9 +10,17 @@
           "name": "DeepSeek V4 Pro",
           "contextWindow": 1000000,
           "maxTokens": 384000,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "reasoning": true,
-          "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "xhigh": "max" },
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": "high",
+            "xhigh": "max"
+          },
           "cost": {
             "input": 1.74,
             "output": 3.48,
@@ -36,9 +44,17 @@
           "name": "DeepSeek V4 Flash",
           "contextWindow": 1000000,
           "maxTokens": 384000,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "reasoning": true,
-          "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "xhigh": "max" },
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": null,
+            "medium": null,
+            "high": "high",
+            "xhigh": "max"
+          },
           "cost": {
             "input": 0.14,
             "output": 0.28,
@@ -56,6 +72,85 @@
               "xhigh": "max"
             }
           }
+        }
+      ]
+    },
+    "openrouter": {
+      "models": [
+        {
+          "id": "anthropic/claude-3-haiku",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-fable-5",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-fable-5.1",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-haiku-4.5",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-opus-4",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-opus-4.1",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-opus-4.5",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-opus-4.6",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-opus-4.7",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-opus-4.8",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-opus-5",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-sonnet-4",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-sonnet-4.5",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-sonnet-4.6",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
+        },
+        {
+          "id": "anthropic/claude-sonnet-5",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1"
         }
       ]
     }
