@@ -1306,13 +1306,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.25,
-          "output": 0.95,
-          "cacheRead": 0.13,
+          "input": 0.55,
+          "output": 1.65,
+          "cacheRead": 0.55,
           "cacheWrite": 0
         },
-        "contextWindow": 163840,
-        "maxTokens": 32768,
+        "contextWindow": 161000,
+        "maxTokens": 144900,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -1459,9 +1459,9 @@
           "text"
         ],
         "cost": {
-          "input": 0.088606,
-          "output": 0.177212,
-          "cacheRead": 0.017721,
+          "input": 0.0875,
+          "output": 0.175,
+          "cacheRead": 0.0175,
           "cacheWrite": 0
         },
         "contextWindow": 1024000,
@@ -1592,9 +1592,9 @@
           "text"
         ],
         "cost": {
-          "input": 1.04226,
-          "output": 2.08452,
-          "cacheRead": 0.086855,
+          "input": 0.9918,
+          "output": 1.9836,
+          "cacheRead": 0.08265,
           "cacheWrite": 0
         },
         "contextWindow": 1024000,
@@ -1625,9 +1625,9 @@
           "text"
         ],
         "cost": {
-          "input": 1.1154,
-          "output": 3.3462,
-          "cacheRead": 0.03718,
+          "input": 0.57948,
+          "output": 1.73844,
+          "cacheRead": 0.019316,
           "cacheWrite": 0
         },
         "contextWindow": 1024000,
@@ -2689,29 +2689,6 @@
         }
       },
       {
-        "id": "ibm-granite/granite-4.1-8b",
-        "name": "IBM: Granite 4.1 8B",
-        "api": "openai-completions",
-        "baseUrl": "https://openrouter.ai/api/v1",
-        "provider": "openrouter",
-        "reasoning": false,
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 0.05,
-          "output": 0.1,
-          "cacheRead": 0.05,
-          "cacheWrite": 0
-        },
-        "contextWindow": 131072,
-        "maxTokens": 117964,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "thinkingFormat": "openrouter"
-        }
-      },
-      {
         "id": "ibm-granite/granite-4.2-8b",
         "name": "IBM: Granite 4.2 8B",
         "api": "openai-completions",
@@ -2809,7 +2786,7 @@
       },
       {
         "id": "inclusionai/ling-3.0-flash",
-        "name": "Ling-3.0-flash",
+        "name": "inclusionAI: Ling 3.0 Flash",
         "api": "openai-completions",
         "baseUrl": "https://openrouter.ai/api/v1",
         "provider": "openrouter",
@@ -2831,8 +2808,54 @@
         }
       },
       {
+        "id": "inclusionai/ling-3.0-flash-fin",
+        "name": "inclusionAI: Ling 3.0 Flash Fin",
+        "api": "openai-completions",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "provider": "openrouter",
+        "reasoning": true,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0.06,
+          "output": 0.18,
+          "cacheRead": 0.012,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 235929,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "thinkingFormat": "openrouter"
+        }
+      },
+      {
         "id": "inclusionai/ling-3.0-flash-fin:free",
-        "name": "Ling 3.0 Flash Fin (free)",
+        "name": "inclusionAI: Ling 3.0 Flash Fin (free)",
+        "api": "openai-completions",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "provider": "openrouter",
+        "reasoning": true,
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 32768,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "thinkingFormat": "openrouter"
+        }
+      },
+      {
+        "id": "inclusionai/ling-3.0-flash-sante:free",
+        "name": "inclusionAI: Ling 3.0 Flash Sante (free)",
         "api": "openai-completions",
         "baseUrl": "https://openrouter.ai/api/v1",
         "provider": "openrouter",
@@ -3244,7 +3267,7 @@
           "medium": "medium",
           "high": "high",
           "xhigh": "xhigh",
-          "max": null
+          "max": "max"
         },
         "input": [
           "text",
@@ -3277,7 +3300,7 @@
           "medium": "medium",
           "high": "high",
           "xhigh": "xhigh",
-          "max": null
+          "max": "max"
         },
         "input": [
           "text",
@@ -3792,8 +3815,8 @@
           "cacheRead": 0,
           "cacheWrite": 0
         },
-        "contextWindow": 262144,
-        "maxTokens": 209715,
+        "contextWindow": 32768,
+        "maxTokens": 26214,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -4365,13 +4388,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.6,
-          "output": 2.4,
-          "cacheRead": 0.12,
+          "input": 0.625,
+          "output": 3.125,
+          "cacheRead": 0.1875,
           "cacheWrite": 0
         },
-        "contextWindow": 202800,
-        "maxTokens": 182520,
+        "contextWindow": 256000,
+        "maxTokens": 32768,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -7726,13 +7749,13 @@
           "image"
         ],
         "cost": {
-          "input": 0.25,
-          "output": 1.25,
-          "cacheRead": 0.25,
+          "input": 0.08,
+          "output": 0.75,
+          "cacheRead": 0,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 235929,
+        "maxTokens": 16384,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -7894,13 +7917,13 @@
           "image"
         ],
         "cost": {
-          "input": 0.6,
-          "output": 3.6,
-          "cacheRead": 0.12,
+          "input": 0.3,
+          "output": 2,
+          "cacheRead": 0.03,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 235929,
+        "maxTokens": 65536,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
@@ -8157,10 +8180,10 @@
           "image"
         ],
         "cost": {
-          "input": 0.425,
-          "output": 2.55,
+          "input": 0.42,
+          "output": 3,
           "cacheRead": 0.085,
-          "cacheWrite": 0.53125
+          "cacheWrite": 0
         },
         "contextWindow": 1000000,
         "maxTokens": 131072,
@@ -8441,9 +8464,9 @@
           "text"
         ],
         "cost": {
-          "input": 0.132,
-          "output": 0.528,
-          "cacheRead": 0.033,
+          "input": 0.0825,
+          "output": 0.33,
+          "cacheRead": 0.020625,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
@@ -8832,6 +8855,39 @@
           "input": 1.25,
           "output": 2.5,
           "cacheRead": 0.2,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1000000,
+        "maxTokens": 900000,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "thinkingFormat": "openrouter"
+        }
+      },
+      {
+        "id": "x-ai/grok-4.3:batch",
+        "name": "SpaceXAI: Grok 4.3 (batch)",
+        "api": "openai-completions",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "provider": "openrouter",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 1,
+          "output": 2,
+          "cacheRead": 0.16,
           "cacheWrite": 0
         },
         "contextWindow": 1000000,
@@ -9546,13 +9602,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.05,
-          "output": 0.16,
-          "cacheRead": 0.013,
+          "input": 0.04998,
+          "output": 0.09996,
+          "cacheRead": 0.009996,
           "cacheWrite": 0
         },
         "contextWindow": 1048576,
-        "maxTokens": 393216,
+        "maxTokens": 131072,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter",
@@ -9646,9 +9702,9 @@
           "image"
         ],
         "cost": {
-          "input": 2.55,
-          "output": 12.75,
-          "cacheRead": 0.256,
+          "input": 2.5,
+          "output": 14,
+          "cacheRead": 0.29,
           "cacheWrite": 0
         },
         "contextWindow": 1048576,
@@ -9810,22 +9866,22 @@
           "text"
         ],
         "cost": {
-          "input": 1.12,
-          "output": 3.52,
-          "cacheRead": 0.184,
+          "input": 1.15,
+          "output": 3.5,
+          "cacheRead": 0.1,
           "cacheWrite": 0
         },
-        "contextWindow": 1048576,
-        "maxTokens": 943718,
+        "contextWindow": 262144,
+        "maxTokens": 235929,
         "compat": {
           "supportsDeveloperRole": false,
           "thinkingFormat": "openrouter"
         }
       }
     ],
-    "checkedAt": 1788487246102,
-    "lastModified": 1788432051000,
-    "etag": "W/\"7fbf5a8e1be7e64f7076037a204ec6d3\""
+    "checkedAt": 1788611045506,
+    "lastModified": 1788552643000,
+    "etag": "W/\"2b295ddd3a6b0a5e5a927529188b439e\""
   },
   "deepseek": {
     "models": [
@@ -9930,7 +9986,7 @@
         }
       }
     ],
-    "checkedAt": 1788487246102,
+    "checkedAt": 1788611045501,
     "lastModified": 1787659145000,
     "etag": "W/\"c498073149d3b5ff2cd526408548a964\""
   },
@@ -10229,7 +10285,7 @@
         }
       }
     ],
-    "checkedAt": 1788487246102,
+    "checkedAt": 1788611045798,
     "lastModified": 1785416003000,
     "etag": "W/\"b6bb22c1d1f7ad7ef58529c125535a4d\""
   },
@@ -10528,7 +10584,7 @@
         }
       }
     ],
-    "checkedAt": 1788487246102,
+    "checkedAt": 1788611045522,
     "lastModified": 1785416002000,
     "etag": "W/\"afb16fb1ea6c24c1a16a7acfcb4c5bea\""
   },
@@ -10647,15 +10703,15 @@
         "maxTokens": 32768
       }
     ],
-    "checkedAt": 1788487246102,
+    "checkedAt": 1788611045526,
     "lastModified": 1786694661000,
     "etag": "W/\"26180ce4b0215799b9e112ba4783cc2b\""
   },
   "ollama-cloud": {
     "models": [
       {
-        "id": "minimax-m3",
-        "name": "minimax-m3",
+        "id": "gpt-oss:20b",
+        "name": "gpt-oss:20b",
         "reasoning": true,
         "thinkingLevelMap": {
           "off": null,
@@ -10663,429 +10719,19 @@
           "low": "low",
           "medium": "medium",
           "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text",
-          "image"
-        ],
-        "cost": {
-          "input": 0.3,
-          "output": 1.2,
-          "cacheRead": 0.06,
-          "cacheWrite": 0
-        },
-        "contextWindow": 512000,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "glm-5.3-flash",
-        "name": "glm-5.3-flash",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text",
-          "image"
-        ],
-        "cost": {
-          "input": 0,
-          "output": 0,
-          "cacheRead": 0,
-          "cacheWrite": 0
-        },
-        "contextWindow": 1048576,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "deepseek-v4-flash:0731",
-        "name": "deepseek-v4-flash:0731",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 0.14,
-          "output": 0.28,
-          "cacheRead": 0.0028,
-          "cacheWrite": 0
-        },
-        "contextWindow": 1048576,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "gemma4:31b",
-        "name": "gemma4:31b",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text",
-          "image"
-        ],
-        "cost": {
-          "input": 0.1,
-          "output": 0.34,
-          "cacheRead": 0.1,
-          "cacheWrite": 0
-        },
-        "contextWindow": 262144,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "glm-5.1",
-        "name": "glm-5.1",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 1.4,
-          "output": 4.4,
-          "cacheRead": 0.26,
-          "cacheWrite": 0
-        },
-        "contextWindow": 202752,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "glm-5.2",
-        "name": "glm-5.2",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": null,
-          "medium": null,
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 1.4,
-          "output": 4.4,
-          "cacheRead": 0.26,
-          "cacheWrite": 0
-        },
-        "contextWindow": 1048576,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "glm-5.3",
-        "name": "glm-5.3",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 0,
-          "output": 0,
-          "cacheRead": 0,
-          "cacheWrite": 0
-        },
-        "contextWindow": 1048576,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "kimi-k3",
-        "name": "kimi-k3",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text",
-          "image"
-        ],
-        "cost": {
-          "input": 3,
-          "output": 15,
-          "cacheRead": 0.3,
-          "cacheWrite": 0
-        },
-        "contextWindow": 1048576,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "qwen3.5:397b",
-        "name": "qwen3.5:397b",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": null,
-          "medium": "medium",
-          "high": null,
           "xhigh": null
         },
         "input": [
-          "text",
-          "image"
-        ],
-        "cost": {
-          "input": 0.6,
-          "output": 3.6,
-          "cacheRead": 0,
-          "cacheWrite": 0
-        },
-        "contextWindow": 262144,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "nemotron-3-super",
-        "name": "nemotron-3-super",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": "none",
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
           "text"
         ],
         "cost": {
-          "input": 0.2,
-          "output": 0.8,
-          "cacheRead": 0,
+          "input": 0.07,
+          "output": 0.3,
+          "cacheRead": 0.035,
           "cacheWrite": 0
         },
-        "contextWindow": 262144,
-        "maxTokens": 32768,
+        "contextWindow": 131072,
+        "maxTokens": 131072,
         "compat": {
           "supportsDeveloperRole": false,
           "supportsReasoningEffort": true,
@@ -11131,7 +10777,7 @@
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 32768,
+        "maxTokens": 262144,
         "compat": {
           "supportsDeveloperRole": false,
           "supportsReasoningEffort": true,
@@ -11155,8 +10801,8 @@
         "baseUrl": "https://ollama.com/v1"
       },
       {
-        "id": "deepseek-v4-pro:0813",
-        "name": "deepseek-v4-pro:0813",
+        "id": "deepseek-v4-flash:0731",
+        "name": "deepseek-v4-flash:0731",
         "reasoning": true,
         "thinkingLevelMap": {
           "off": "none",
@@ -11170,13 +10816,505 @@
           "text"
         ],
         "cost": {
-          "input": 0,
-          "output": 0,
-          "cacheRead": 0,
+          "input": 0.44,
+          "output": 1.32,
+          "cacheRead": 0.014,
           "cacheWrite": 0
         },
         "contextWindow": 1048576,
-        "maxTokens": 32768,
+        "maxTokens": 65536,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "nemotron-3-nano:30b",
+        "name": "nemotron-3-nano:30b",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0.06,
+          "output": 0.24,
+          "cacheRead": 0.06,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 131072,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "gemma4:31b",
+        "name": "gemma4:31b",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.14,
+          "output": 0.4,
+          "cacheRead": 0.05,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 262144,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "qwen3.5:397b",
+        "name": "qwen3.5:397b",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": null,
+          "medium": "medium",
+          "high": null,
+          "xhigh": null
+        },
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.6,
+          "output": 3.6,
+          "cacheRead": 0.6,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 65536,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "glm-5.1",
+        "name": "glm-5.1",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 1,
+          "output": 3.2,
+          "cacheRead": 0.2,
+          "cacheWrite": 0
+        },
+        "contextWindow": 202752,
+        "maxTokens": 131072,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "glm-5.3-flash",
+        "name": "glm-5.3-flash",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.15,
+          "output": 0.5,
+          "cacheRead": 0.03,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 524288,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "minimax-m2.7",
+        "name": "minimax-m2.7",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0.3,
+          "output": 1.2,
+          "cacheRead": 0.06,
+          "cacheWrite": 0
+        },
+        "contextWindow": 196608,
+        "maxTokens": 131072,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "glm-5.2",
+        "name": "glm-5.2",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": null,
+          "medium": null,
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 1.4,
+          "output": 4.4,
+          "cacheRead": 0.26,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 131072,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "kimi-k3",
+        "name": "kimi-k3",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 3,
+          "output": 15,
+          "cacheRead": 0.3,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 524288,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "gpt-oss:120b",
+        "name": "gpt-oss:120b",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null
+        },
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0.15,
+          "output": 0.6,
+          "cacheRead": 0.014,
+          "cacheWrite": 0
+        },
+        "contextWindow": 131072,
+        "maxTokens": 131072,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "mistral-large-3:675b",
+        "name": "mistral-large-3:675b",
+        "reasoning": false,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.5,
+          "output": 1.5,
+          "cacheRead": 0.5,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 262144,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "nemotron-3-ultra",
+        "name": "nemotron-3-ultra",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 0.1,
+          "output": 3,
+          "cacheRead": 0.1,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 65536,
         "compat": {
           "supportsDeveloperRole": false,
           "supportsReasoningEffort": true,
@@ -11222,7 +11360,7 @@
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 32768,
+        "maxTokens": 262144,
         "compat": {
           "supportsDeveloperRole": false,
           "supportsReasoningEffort": true,
@@ -11246,8 +11384,53 @@
         "baseUrl": "https://ollama.com/v1"
       },
       {
-        "id": "gpt-oss:20b",
-        "name": "gpt-oss:20b",
+        "id": "deepseek-v4-pro:0813",
+        "name": "deepseek-v4-pro:0813",
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "max"
+        },
+        "input": [
+          "text"
+        ],
+        "cost": {
+          "input": 1.32,
+          "output": 3.96,
+          "cacheRead": 0.044,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "compat": {
+          "supportsDeveloperRole": false,
+          "supportsReasoningEffort": true,
+          "supportsStore": false,
+          "maxTokensField": "max_tokens",
+          "supportsUsageInStreaming": true,
+          "requiresToolResultName": false,
+          "requiresAssistantAfterToolResult": false,
+          "requiresThinkingAsText": false,
+          "requiresReasoningContentOnAssistantMessages": false,
+          "thinkingFormat": "openai",
+          "supportsStrictMode": false,
+          "sendSessionAffinityHeaders": false,
+          "supportsLongCacheRetention": false,
+          "zaiToolStream": false,
+          "openRouterRouting": {},
+          "vercelGatewayRouting": {}
+        },
+        "provider": "ollama-cloud",
+        "api": "openai-completions",
+        "baseUrl": "https://ollama.com/v1"
+      },
+      {
+        "id": "minimax-m3",
+        "name": "minimax-m3",
         "reasoning": true,
         "thinkingLevelMap": {
           "off": null,
@@ -11255,57 +11438,20 @@
           "low": "low",
           "medium": "medium",
           "high": "high",
-          "xhigh": null
+          "xhigh": "max"
         },
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 0.03,
-          "output": 0.13,
-          "cacheRead": 0.03,
-          "cacheWrite": 0
-        },
-        "contextWindow": 131072,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "mistral-large-3:675b",
-        "name": "mistral-large-3:675b",
-        "reasoning": false,
         "input": [
           "text",
           "image"
         ],
         "cost": {
-          "input": 0.5,
-          "output": 1.5,
-          "cacheRead": 0,
+          "input": 0.6,
+          "output": 2.4,
+          "cacheRead": 0.12,
           "cacheWrite": 0
         },
-        "contextWindow": 262144,
-        "maxTokens": 32768,
+        "contextWindow": 512000,
+        "maxTokens": 131072,
         "compat": {
           "supportsDeveloperRole": false,
           "supportsReasoningEffort": true,
@@ -11329,8 +11475,8 @@
         "baseUrl": "https://ollama.com/v1"
       },
       {
-        "id": "nemotron-3-ultra",
-        "name": "nemotron-3-ultra",
+        "id": "nemotron-3-super",
+        "name": "nemotron-3-super",
         "reasoning": true,
         "thinkingLevelMap": {
           "off": "none",
@@ -11344,13 +11490,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.5,
-          "output": 2.5,
-          "cacheRead": 0.15,
+          "input": 0.015,
+          "output": 0.6,
+          "cacheRead": 0.015,
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 32768,
+        "maxTokens": 65536,
         "compat": {
           "supportsDeveloperRole": false,
           "supportsReasoningEffort": true,
@@ -11374,53 +11520,8 @@
         "baseUrl": "https://ollama.com/v1"
       },
       {
-        "id": "gpt-oss:120b",
-        "name": "gpt-oss:120b",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": null,
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": null
-        },
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 0.037,
-          "output": 0.17,
-          "cacheRead": 0,
-          "cacheWrite": 0
-        },
-        "contextWindow": 131072,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "nemotron-3-nano:30b",
-        "name": "nemotron-3-nano:30b",
+        "id": "glm-5.3",
+        "name": "glm-5.3",
         "reasoning": true,
         "thinkingLevelMap": {
           "off": "none",
@@ -11434,58 +11535,13 @@
           "text"
         ],
         "cost": {
-          "input": 0.05,
-          "output": 0.2,
-          "cacheRead": 0.03,
+          "input": 1.4,
+          "output": 4.4,
+          "cacheRead": 0.26,
           "cacheWrite": 0
         },
-        "contextWindow": 262144,
-        "maxTokens": 32768,
-        "compat": {
-          "supportsDeveloperRole": false,
-          "supportsReasoningEffort": true,
-          "supportsStore": false,
-          "maxTokensField": "max_tokens",
-          "supportsUsageInStreaming": true,
-          "requiresToolResultName": false,
-          "requiresAssistantAfterToolResult": false,
-          "requiresThinkingAsText": false,
-          "requiresReasoningContentOnAssistantMessages": false,
-          "thinkingFormat": "openai",
-          "supportsStrictMode": false,
-          "sendSessionAffinityHeaders": false,
-          "supportsLongCacheRetention": false,
-          "zaiToolStream": false,
-          "openRouterRouting": {},
-          "vercelGatewayRouting": {}
-        },
-        "provider": "ollama-cloud",
-        "api": "openai-completions",
-        "baseUrl": "https://ollama.com/v1"
-      },
-      {
-        "id": "minimax-m2.7",
-        "name": "minimax-m2.7",
-        "reasoning": true,
-        "thinkingLevelMap": {
-          "off": null,
-          "minimal": null,
-          "low": "low",
-          "medium": "medium",
-          "high": "high",
-          "xhigh": "max"
-        },
-        "input": [
-          "text"
-        ],
-        "cost": {
-          "input": 0.3,
-          "output": 1.2,
-          "cacheRead": 0.06,
-          "cacheWrite": 0.375
-        },
-        "contextWindow": 196608,
-        "maxTokens": 32768,
+        "contextWindow": 1048576,
+        "maxTokens": 524288,
         "compat": {
           "supportsDeveloperRole": false,
           "supportsReasoningEffort": true,
@@ -11509,6 +11565,517 @@
         "baseUrl": "https://ollama.com/v1"
       }
     ],
-    "checkedAt": 1788487247394
+    "checkedAt": 1788611046708
+  },
+  "google": {
+    "models": [
+      {
+        "id": "deep-research-max-preview-04-2026",
+        "name": "Deep Research Max Preview (Apr-21-2026)",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 2,
+          "output": 12,
+          "cacheRead": 0.2,
+          "cacheWrite": 0
+        },
+        "contextWindow": 131072,
+        "maxTokens": 65536
+      },
+      {
+        "id": "deep-research-preview-04-2026",
+        "name": "Deep Research Preview (Apr-21-2026)",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 2,
+          "output": 12,
+          "cacheRead": 0.2,
+          "cacheWrite": 0
+        },
+        "contextWindow": 131072,
+        "maxTokens": 65536
+      },
+      {
+        "id": "gemini-2.5-computer-use-preview-10-2025",
+        "name": "Gemini 2.5 Computer Use Preview 10-2025",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 1.25,
+          "output": 10,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 131072,
+        "maxTokens": 65536
+      },
+      {
+        "id": "gemini-2.5-flash",
+        "name": "Gemini 2.5 Flash",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.3,
+          "output": 2.5,
+          "cacheRead": 0.03,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536
+      },
+      {
+        "id": "gemini-2.5-flash-lite",
+        "name": "Gemini 2.5 Flash-Lite",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.1,
+          "output": 0.4,
+          "cacheRead": 0.01,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536
+      },
+      {
+        "id": "gemini-2.5-pro",
+        "name": "Gemini 2.5 Pro",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 1.25,
+          "output": 10,
+          "cacheRead": 0.125,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536
+      },
+      {
+        "id": "gemini-3-flash-preview",
+        "name": "Gemini 3 Flash Preview",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.5,
+          "output": 3,
+          "cacheRead": 0.05,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.1-flash-lite",
+        "name": "Gemini 3.1 Flash Lite",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.25,
+          "output": 1.5,
+          "cacheRead": 0.025,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.1-flash-lite-image",
+        "name": "Nano Banana 2 Lite",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.25,
+          "output": 30,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 65536,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.1-flash-lite-preview",
+        "name": "Gemini 3.1 Flash Lite Preview",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.25,
+          "output": 1.5,
+          "cacheRead": 0.025,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.1-flash-live-preview",
+        "name": "Gemini 3.1 Flash Live Preview",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.75,
+          "output": 4.5,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 131072,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.1-pro-preview",
+        "name": "Gemini 3.1 Pro Preview",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 2,
+          "output": 12,
+          "cacheRead": 0.2,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "LOW",
+          "medium": null,
+          "high": "HIGH"
+        }
+      },
+      {
+        "id": "gemini-3.1-pro-preview-customtools",
+        "name": "Gemini 3.1 Pro Preview Custom Tools",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 2,
+          "output": 12,
+          "cacheRead": 0.2,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "LOW",
+          "medium": null,
+          "high": "HIGH"
+        }
+      },
+      {
+        "id": "gemini-3.5-flash",
+        "name": "Gemini 3.5 Flash",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 1.5,
+          "output": 9,
+          "cacheRead": 0.15,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.5-flash-lite",
+        "name": "Gemini 3.5 Flash Lite",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.3,
+          "output": 2.5,
+          "cacheRead": 0.03,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.6-flash",
+        "name": "Gemini 3.6 Flash",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.75,
+          "output": 3.75,
+          "cacheRead": 0.075,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.7-flash",
+        "name": "Gemini 3.7 Flash",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.75,
+          "output": 3.75,
+          "cacheRead": 0.075,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-3.8-flash",
+        "name": "Gemini 3.8 Flash",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.75,
+          "output": 3.75,
+          "cacheRead": 0.075,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-flash-latest",
+        "name": "Gemini Flash Latest",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 1.5,
+          "output": 9,
+          "cacheRead": 0.15,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemini-flash-lite-latest",
+        "name": "Gemini Flash-Lite Latest",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0.25,
+          "output": 1.5,
+          "cacheRead": 0.025,
+          "cacheWrite": 0
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 65536,
+        "thinkingLevelMap": {
+          "off": null
+        }
+      },
+      {
+        "id": "gemma-4-26b-a4b-it",
+        "name": "Gemma 4 26B A4B IT",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 32768,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": "MINIMAL",
+          "low": null,
+          "medium": null,
+          "high": "HIGH"
+        }
+      },
+      {
+        "id": "gemma-4-31b-it",
+        "name": "Gemma 4 31B IT",
+        "api": "google-generative-ai",
+        "provider": "google",
+        "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 0,
+          "output": 0,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "contextWindow": 262144,
+        "maxTokens": 32768,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": "MINIMAL",
+          "low": null,
+          "medium": null,
+          "high": "HIGH"
+        }
+      }
+    ],
+    "checkedAt": 1788611045513,
+    "lastModified": 1788552626000,
+    "etag": "W/\"82d850ac898f9406a8bedcd62f25e6da\""
   }
 }
