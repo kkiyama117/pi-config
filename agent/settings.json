@@ -64,13 +64,17 @@
     "ollama-cloud/glm-5.3",
     "ollama-cloud/deepseek-v4-pro:0813",
     "ollama-cloud/deepseek-v4-flash:0731",
-    "ollama-cloud/kimi-k3",
+    "openai-codex/gpt-6-astra",
     "deepseek/deepseek-v4-flash",
     "openrouter/openrouter/fusion",
     "openrouter/anthropic/claude-fable-5.1",
     "openrouter/openai/gpt-5.6-sol",
     "openrouter/openai/gpt-5.6-sol-pro",
-    "openrouter/openai/gpt-5.6-luna"
+    "openrouter/openai/gpt-5.6-luna",
+    "google/gemini-3.8-flash",
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-luna",
+    "openai/gpt-6-astra"
   ],
   "lastChangelogVersion": "0.85.0",
   "packages": [
