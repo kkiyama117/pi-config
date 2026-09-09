@@ -6,7 +6,7 @@
     "agentOverrides": {
       "scout": {
         "model": "ollama-cloud/glm-5.3-flash",
-        "thinking": "medium",
+        "thinking": "high",
         "fallbackModels": [
           "ollama-cloud/deepseek-v4-flash:0731"
         ]
@@ -28,7 +28,7 @@
       },
       "reviewer": {
         "model": "ollama-cloud/glm-5.3",
-        "thinking": "xhigh",
+        "thinking": "high",
         "fallbackModels": [
           "ollama-cloud/deepseek-v4-pro:0813"
         ]
@@ -48,9 +48,10 @@
         ]
       },
       "oracle": {
-        "model": "openrouter/anthropic/claude-fable-5.1",
+        "model": "openai-codex/gpt-6-astra",
         "thinking": "medium",
         "fallbackModels": [
+          "openrouter/anthropic/claude-fable-5.1",
           "openrouter/openai/gpt-5.6-sol-pro"
         ]
       }
@@ -76,7 +77,7 @@
     "openai-codex/gpt-5.6-luna",
     "openai/gpt-6-astra"
   ],
-  "lastChangelogVersion": "0.85.0",
+  "lastChangelogVersion": "0.85.1",
   "packages": [
     "npm:pi-subagents",
     "npm:pi-intercom",
