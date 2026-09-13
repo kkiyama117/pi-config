@@ -1,28 +1,28 @@
 {
   "collapseChangelog": false,
-  "defaultModel": "ollama-cloud/deepseek-v4.1-flash",
+  "defaultModel": "ollama-cloud/glm-5.3-flash",
   "subagents": {
-    "defaultModel": "ollama-cloud/deepseek-v4.1-flash",
+    "defaultModel": "ollama-cloud/glm-5.3-flash",
     "agentOverrides": {
       "scout": {
-        "model": "ollama-cloud/deepseek-v4.1-flash",
+        "model": "ollama-cloud/glm-5.3-flash",
         "thinking": "high",
         "fallbackModels": [
-        "ollama-cloud/glm-5.3-flash"
+          "ollama-cloud/deepseek-v4-flash:0731"
         ]
       },
       "researcher": {
         "model": "ollama-cloud/glm-5.3-flash",
         "thinking": "high",
         "fallbackModels": [
-          "ollama-cloud/deepseek-v4.1-flash"
+          "ollama-cloud/deepseek-v4-flash:0731"
         ]
       },
       "worker": {
-        "model": "ollama-cloud/deepseek-v4.1-flash",
+        "model": "ollama-cloud/glm-5.3-flash",
         "thinking": "xhigh",
         "fallbackModels": [
-          "ollama-cloud/deepseek-v4.1-flash",
+          "ollama-cloud/deepseek-v4-flash:0731",
           "openrouter/anthropic/claude-sonnet-5"
         ]
       },
@@ -30,7 +30,6 @@
         "model": "ollama-cloud/glm-5.3",
         "thinking": "high",
         "fallbackModels": [
-          "ollama-cloud/deepseek-v4.1-flash",
           "ollama-cloud/deepseek-v4-pro:0813"
         ]
       },
@@ -38,22 +37,19 @@
         "model": "ollama-cloud/glm-5.3",
         "thinking": "xhigh",
         "fallbackModels": [
-          "ollama-cloud/deepseek-v4.1-flash",
           "ollama-cloud/deepseek-v4-pro:0813"
         ]
       },
       "planner": {
-        "model": "openai-codex/gpt-6-astra",
-        "thinking": "medium",
+        "model": "ollama-cloud/glm-5.3",
+        "thinking": "xhigh",
         "fallbackModels": [
-          "openai-codex/gpt-5.6-sol",
-          "ollama-cloud/glm-5.3",
           "ollama-cloud/deepseek-v4-pro:0813"
         ]
       },
       "oracle": {
         "model": "openai-codex/gpt-6-astra",
-        "thinking": "high",
+        "thinking": "medium",
         "fallbackModels": [
           "openrouter/anthropic/claude-fable-5.1",
           "openrouter/openai/gpt-5.6-sol-pro"
@@ -67,12 +63,9 @@
   "enabledModels": [
     "ollama-cloud/glm-5.3-flash",
     "ollama-cloud/glm-5.3",
-    "ollama-cloud/deepseek-v4.1-flash",
     "ollama-cloud/deepseek-v4-pro:0813",
     "ollama-cloud/deepseek-v4-flash:0731",
     "openai-codex/gpt-6-astra",
-    "openai-codex/gpt-5.6-sol",
-    "openai-codex/gpt-5.6-luna",
     "deepseek/deepseek-v4-flash",
     "openrouter/openrouter/fusion",
     "openrouter/anthropic/claude-fable-5.1",
@@ -80,6 +73,8 @@
     "openrouter/openai/gpt-5.6-sol-pro",
     "openrouter/openai/gpt-5.6-luna",
     "google/gemini-3.8-flash",
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-luna",
     "openai/gpt-6-astra"
   ],
   "lastChangelogVersion": "0.85.1",
@@ -132,7 +127,7 @@
     "npm:@plannotator/pi-extension",
     "git:github.com/earendil-works/pi-review",
     "git:github.com/earendil-works/pi-transcribe",
-    "npm:pi-mcp-adapter@2.32.1",
+    "npm:pi-mcp-adapter",
     "npm:pi-loop-police"
   ],
   "showHardwareCursor": true,
