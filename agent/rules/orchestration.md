@@ -1,40 +1,71 @@
-# Domain: Orchestration (multi-agent / model-driven work)
+# Domain: Execution and orchestration
 
-Read when: launching or steering any long-lived / model-driven agent work,
-calling a wiser model (Claude Fable/Opus), or coordinating multi-agent phases.
+Read when choosing between direct work, delegation, or independent review.
+Apply `../AGENTS.md`; these are local workflow defaults, not additional authority.
 
-These rules exist because they were violated. Do not violate them again.
-(Moved verbatim from the former top-level AGENTS.md, 2026-08-10.)
+## 1. Choose the execution shape
 
-## 1. USE HERDR — always, for agent work
-Any long-lived or model-driven agent work runs inside a herdr pane:
-- `herdr pane split <pane> --direction down` — create a pane
-- `herdr pane run <pane_id> '<command>'` — run a command there (text + Enter)
-- `herdr pane send-keys <pane_id> <key>` — steer it
-- `herdr pane read <pane_id>` — inspect output
-- Socket: `HERDR_SOCKET_PATH=/home/kiyama/.config/herdr/sessions/agent_loop/herdr.sock`
+- Use one agent for small tasks, tightly coupled reasoning, ordered dependencies,
+  or work that would make agents contend over the same files. The main agent may
+  implement complex work directly; a stronger model is not restricted to advice.
+- Delegate concrete, independent work when parallel execution, focused context,
+  or independent findings are likely to improve time or quality after accounting
+  for coordination, usage, and integration. Examples: separate codebase areas,
+  competing failure hypotheses, independent components, or a focused review.
+- Use only the roles the task needs. Do not force planner/worker/reviewer chains,
+  DAGs, per-phase human gates, or recursive agent trees for every task.
+- Select models by task fit and measured end-to-end results. No model is always
+  a worker, reviewer, or orchestrator. Cheaper tokens do not guarantee cheaper
+  completed work; include retries, reviews, fixes, and integration in comparisons.
 
-NEVER launch agent work as `nohup`/detached background processes — invisible,
-unsteerable, was the repeated failure (violated 3+ times).
+## 2. Execute within the existing authorization
 
-## 2. The rule when you call a wiser model (Claude Fable/Opus)
-- **I write the prompt.** Never launch it with a bare "implement this".
-- The prompt must tell it: **do NOT implement the full task yourself — use YOUR OWN
-  subagents to do the implementation.** It plans/coordinates; its subagents do the
-  work; it reviews the result. Do as the agent-loop does: planner/oracle at the top,
-  workers below, HITL gates between.
-- Wiser model role = **planner / orchestrator / oracle (reviewer)** — never a lone
-  worker grinding the implementation.
-- Run it **interactively in a herdr pane** (no `-p`, no headless).
-- **Exception (prewalk):** the wiser model may implement the FIRST DAG node only, as a pattern-setting exemplar for the worker; all subsequent nodes go to the worker. First node only — never more.
+- Infer routine details from context and complete the intended outcome. Do not
+  stop at "shall I continue?" when the requested work is already authorized.
+- Ask when the answer could materially change correctness, scope, or permission.
+  Complete independent, authorized preparation before requesting approval for
+  deployment, publication, merging, or other actions whose authority is missing.
+- Do not invent approval flows for hypothetical risks. Do not treat autonomy as
+  authorization for destructive or irreversible actions.
+- Within local guidance, explicit user requests override skill defaults. If an
+  instruction blocks progress, cite its file and exact text instead of silently
+  imposing a workflow. System/developer rules and tool permissions still apply.
 
-## 3. I orchestrate the phases
-Decompose → write the prompt → wise model plans → HITL gate → wise model delegates
-implementation to its subagents → I verify deterministically (tests, `bash -n`,
-`git diff --check`) → wise model reviews the result as oracle → iterate.
+## 3. When delegation is useful
 
-Phase chain for planned work: planner writes the DAG as `.pi/todos` → worker `claim`s one node at a time → reviewer runs after the last node (per-node only when the DAG is flagged risky) → promoter runs the `/promote` prompt template.
+- Use `pi-subagents` for governed delegation. Read its applicable skill/reference,
+  discover executable agents, and check the actual runtime tools before relying
+  on them. A capability listing alone is not proof that a child can do the work.
+- Give each child a bounded task, relevant context, write scope, completion
+  criteria, expected evidence, and stop conditions. The parent retains final
+  acceptance and reconciles conflicting findings.
+- Keep one writer per shared scope; isolate concurrent writers. Child fan-out is
+  allowed only when explicitly authorized and supported by the runtime.
+- Use fresh-context, read-only review where independent scrutiny is worthwhile.
+  Advisors answer unresolved questions; reviewers inspect evidence. Neither is a
+  compulsory stage or automatic implementation approval.
+- Use the runtime's asynchronous lifecycle and native completion notifications.
+  Do not sleep/poll for completion or launch ungoverned background agent processes.
+- On a child launch, extension, or tool-setup failure, stop the affected workflow,
+  report the exact failure and run/cwd/ref, and capture clean state or partial
+  changes. Do not repeat a known-broken route or silently switch execution modes;
+  obtain owner approval for a different mode, including direct parent fallback.
+- Use Herdr only when explicitly requested. Load its skill then, rather than
+  hard-coding pane IDs or a machine-specific socket. Herdr is not a prerequisite
+  for native `pi-subagents` runs.
 
-## 4. Full doctrine
-Read `/home/kiyama/.agents/skills/orchestrate-agents/SKILL.md` before orchestrating
-multi-agent work (or force-load with `/skill:orchestrate-agents`).
+## 4. Verification and completion
+
+Run required checks and meaningful tests appropriate to the change. After they
+pass, repeat or broaden verification only for new changes, failures, or unresolved
+concerns. Independent review supplements deterministic checks; it does not replace
+those checks or authorize publication. Report actual outcomes and remaining gaps.
+
+## Sources and local choices
+
+Based on OpenAI's [GPT-6 Astra guide](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra)
+(initiative, instruction following, delegation, verification) and
+[Multi-agent guide](https://developers.openai.com/api/docs/guides/responses-multi-agent)
+(independent work versus sequential/shared-state work and token overhead).
+Runtime choice, one-writer boundaries, restricted recursive delegation, Herdr
+opt-in, and failure recovery are local policies, not OpenAI requirements.
